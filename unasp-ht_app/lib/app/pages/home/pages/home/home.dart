@@ -25,14 +25,12 @@ class _HomeState extends State<Home> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SquareHomeButton(
-                  'Aluno',
+                SquareHomeButton('Aluno',
                   Color(0xFF34495E),
                   FontAwesomeIcons.userGraduate,
                   () {},
                 ),
-                SquareHomeButton(
-                  'saídas',
+                SquareHomeButton('saídas',
                   Color(0xFF6FBFCC),
                   FontAwesomeIcons.signOutAlt,
                   () => Navigator.of(context).push<CupertinoPageRoute>(
@@ -41,39 +39,53 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                SquareHomeButton('cardápio', Color(0xFF9A735C),
-                    FontAwesomeIcons.utensils, () {})
+                SquareHomeButton('cardápio', 
+                  Color(0xFF9A735C),
+                  FontAwesomeIcons.utensils, 
+                  () {}
+                )
               ],
             ),
-            SizedBox(
-              height: 15,
-            ),
+            SizedBox(height: 15,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SquareHomeButton(
-                    'portais', Color(0xFF818CD3), FontAwesomeIcons.link, () {}),
-                SquareHomeButton('mapa', Color(0xFF7DB760),
-                    FontAwesomeIcons.mapMarkedAlt, () {}),
-                SquareHomeButton('ramais', Color(0xFFFFAB91),
-                    FontAwesomeIcons.phoneAlt, () {}),
+                SquareHomeButton('portais',
+                  Color(0xFF818CD3), 
+                  FontAwesomeIcons.link, 
+                  () {}
+                ),
+                SquareHomeButton('mapa', 
+                  Color(0xFF7DB760),
+                  FontAwesomeIcons.mapMarkedAlt, 
+                  () {}
+                ),
+                SquareHomeButton('ramais', 
+                  Color(0xFFFFAB91),
+                  FontAwesomeIcons.phoneAlt,
+                  () {}
+                ),
               ],
             ),
-            SizedBox(
-              height: appWidth * 0.1,
-            ),
+            SizedBox(height: 15,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                RectangularHomeButton('calendário', Color(0xFFC0CA33),
-                    FontAwesomeIcons.calendarAlt, () {}),
-                RectangularHomeButton('Notícias', Color(0xFF95A5A6),
-                    FontAwesomeIcons.bullhorn, () {}),
+                SquareHomeButton('calendário', 
+                  Color(0xFFC0CA33),
+                  FontAwesomeIcons.calendarAlt, 
+                  () {}),
+                SquareHomeButton('Notícias',
+                  Color(0xFF95A5A6),
+                  FontAwesomeIcons.bullhorn, 
+                  () {}),
+                SquareHomeButton('Eventos', 
+                  Color(0xFFAD1457),
+                  FontAwesomeIcons.thList, 
+                  () {}),
               ],
             ),
-            SizedBox(
-              height: appWidth * 0.1,
-            ),
+            SizedBox(height: appWidth * 0.1,),
             Text(
               'últimas notícias'.toUpperCase(),
             ),
