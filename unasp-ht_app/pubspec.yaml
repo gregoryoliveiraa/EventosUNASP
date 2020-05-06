@@ -1,0 +1,51 @@
+name: unasp_ht
+description: Made to improve the student's routine.
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  
+  intl: ^0.16.1
+  json_serializable: ^3.3.0
+  cached_network_image: ^2.1.0+1
+  build_runner: ^1.8.1
+  hive_generator: ^0.7.0+2
+  hive_flutter: ^0.3.0+2
+  hive: ^1.4.1+1
+  curved_navigation_bar: ^0.3.2
+  fancy_bottom_navigation: ^0.3.2
+  firebase_core: ^0.4.4+3
+  firebase_auth: ^0.15.5+3
+  tuple: ^1.0.3
+  cloud_firestore: ^0.13.4+2
+  dio: ^3.0.4
+  rxdart: ^0.23.1
+  bloc_pattern: ^2.4.4
+  font_awesome_flutter: ^8.5.0
+  carousel_slider: ^1.3.0
+  getflutter: ^1.0.11
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  pedantic: ^1.9.0
+  flutter_launcher_icons: 0.7.3
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/img/icon.png"
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/img/
+
+  fonts:
+    - family: Flexo
+      fonts:
+        - asset: assets/font/Flexo-Medium.otf

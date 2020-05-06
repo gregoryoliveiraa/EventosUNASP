@@ -1,0 +1,15 @@
+include: package:pedantic/analysis_options.yaml
+
+analyzer:
+  strong-mode:
+    implicit-casts: false
+    implicit-dynamic: false
+  language:
+    strict-inference: true
+linter:
+    rules:
+        omit_local_variable_types: false
+        unnecessary_statements: true
+        close_sinks: true
+        cancel_subscriptions: true
+    
