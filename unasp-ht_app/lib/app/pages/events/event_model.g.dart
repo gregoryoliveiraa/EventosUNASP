@@ -6,23 +6,23 @@ part of 'event_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Event _$EventFromJson(Map<String, dynamic> json) {
-  return Event(
+Departure _$DepartureFromJson(Map<String, dynamic> json) {
+  return Departure(
     json['going'] == null ? null : DateTime.parse(json['going'] as String),
     json['turning'] == null ? null : DateTime.parse(json['turning'] as String),
     json['location'] as String,
-    json['reason'] as String,
-    _$enumDecodeNullable(_$EventStatusEnumMap, json['status']),
+    json['obs'] as String,
+    _$enumDecodeNullable(_$DepartureStatusEnumMap, json['status']),
     json['userId'] as String,
   );
 }
 
-Map<String, dynamic> _$EventToJson(Event instance) => <String, dynamic>{
+Map<String, dynamic> _$DepartureToJson(Departure instance) => <String, dynamic>{
       'going': instance.going?.toIso8601String(),
       'turning': instance.turning?.toIso8601String(),
       'location': instance.location,
-      'reason': instance.reason,
-      'status': _$EventStatusEnumMap[instance.status],
+      'obs': instance.obs,
+      'status': _$DepartureStatusEnumMap[instance.status],
       'userId': instance.userId,
     };
 
@@ -58,8 +58,8 @@ T _$enumDecodeNullable<T>(
   return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
 }
 
-const _$EventStatusEnumMap = {
-  EventStatus.solicitado: 'solicitado',
-  EventStatus.aprovado: 'aprovado',
-  EventStatus.rejeitado: 'rejeitado',
+const _$DepartureStatusEnumMap = {
+  DepartureStatus.solicitado: 'solicitado',
+  DepartureStatus.aprovado: 'aprovado',
+  DepartureStatus.rejeitado: 'rejeitado',
 };

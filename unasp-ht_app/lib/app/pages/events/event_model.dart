@@ -3,20 +3,20 @@ import 'package:json_annotation/json_annotation.dart';
 part 'event_model.g.dart';
 
 @JsonSerializable()
-class Event {
+class Departure {
   final DateTime going;
   final DateTime turning;
   final String location;
-  final String reason;
-  final EventStatus status;
+  final String obs;
+  final DepartureStatus status;
   final String userId;
 
-  Event(this.going, this.turning, this.location, this.reason, this.status,
+  Departure(this.going, this.turning, this.location, this.obs, this.status,
       this.userId);
 
-  factory Event.fromJson(Map<String, dynamic> json) =>
-      _$EventFromJson(json);
-  Map<String, dynamic> toJson() => _$EventToJson(this);
+  factory Departure.fromJson(Map<String, dynamic> json) =>
+      _$DepartureFromJson(json);
+  Map<String, dynamic> toJson() => _$DepartureToJson(this);
 }
 
-enum EventStatus { solicitado, aprovado, rejeitado }
+enum DepartureStatus { solicitado, aprovado, rejeitado }

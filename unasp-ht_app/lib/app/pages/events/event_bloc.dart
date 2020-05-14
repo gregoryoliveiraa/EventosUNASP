@@ -1,17 +1,25 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:unasp_ht/app/pages/home/home_page.dart';
+import 'package:rxdart/rxdart.dart';
+import 'package:unasp_ht/app/pages/events/event_model.dart';
+import 'package:unasp_ht/app/pages/events/event_repository.dart';
 
-class EventBloc extends BlocBase {
-  void signOut(BuildContext context) {
-    Navigator.of(context)
-        .pushReplacement<CupertinoPageRoute, CupertinoPageRoute>(
-            CupertinoPageRoute(builder: (context) => HomePage()));
+class DeparturesBloc extends BlocBase {
+  final DeparturesRepository _repository;
+
+  DeparturesBloc(this._repository) {
+    getDepartures();
   }
+
+  final BehaviorSubject<List<Departure>> departures =
+      BehaviorSubject<List<Departure>>();
+
+  void getDepartures() => _repository.getDepartures().then((onValue) {
+        departures.add(onValue);
+      });
 
   @override
   void dispose() {
+    departures.close();
     super.dispose();
   }
 }

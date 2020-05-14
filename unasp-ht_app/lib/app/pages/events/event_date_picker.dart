@@ -29,6 +29,7 @@ class _DatePickerState extends State<DatePicker> {
           hintText: widget.hintText,
           icon: widget.icon,
           inputType: TextInputType.datetime,
+          
         ),
       );
 }

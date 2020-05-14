@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "678764687830",
-    "firebase_url": "https://app-unasp-ht.firebaseio.com",
-    "project_id": "app-unasp-ht",
-    "storage_bucket": "app-unasp-ht.appspot.com"
+    "project_number": "440249880750",
+    "firebase_url": "https://eventounasp.firebaseio.com",
+    "project_id": "eventounasp",
+    "storage_bucket": "eventounasp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:678764687830:android:f8ef526bbcac2a23d03477",
+        "mobilesdk_app_id": "1:440249880750:android:ca0a3f3cee637f06de9d3f",
         "android_client_info": {
           "package_name": "com.example.unasp_ht"
         }
       },
       "oauth_client": [
         {
-          "client_id": "678764687830-9npe6suoa31c4joh3tf5u32rbfo6q8nt.apps.googleusercontent.com",
+          "client_id": "440249880750-hj76tka80055mgviu775hnbcdm82sf4s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD3F6_cL--FNq1V5aJKH1jXvcSRb3EoDCY"
+          "current_key": "AIzaSyC_iE3VA0a0RrMv6sdxJLtoKYrRlxJGVSg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "678764687830-9npe6suoa31c4joh3tf5u32rbfo6q8nt.apps.googleusercontent.com",
+              "client_id": "440249880750-hj76tka80055mgviu775hnbcdm82sf4s.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
