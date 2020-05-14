@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:unasp_ht/app/pages/login/login_module.dart';
 import 'package:unasp_ht/app/shared/constants.dart';
 
@@ -13,5 +14,9 @@ class AppWidget extends StatelessWidget {
         ),
         debugShowCheckedModeBanner: false,
         home: LoginModule(),
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+        ],
+        
       );
 }
