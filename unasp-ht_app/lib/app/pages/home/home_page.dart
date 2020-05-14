@@ -35,6 +35,7 @@ class _HomePageState extends State<HomePage> {
     //HomeBloc bloc = HomeModule.to.getBloc<HomeBlock>();
     PageController pageController = PageController();
 
+/*___________________________APPBAR_____________________________*/
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -180,11 +181,14 @@ class _HomePageState extends State<HomePage> {
       // ),
       // backgroundColor: blue,
       //,
+      
       body: PageView(
         controller: pageController,
         physics: NeverScrollableScrollPhysics(),
         children: <Widget>[Home(), Profile()],
-      ), //,
+      ),
+
+/*___________________________RODAPÉ_____________________________*/
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.white12,
         buttonBackgroundColor: orange,

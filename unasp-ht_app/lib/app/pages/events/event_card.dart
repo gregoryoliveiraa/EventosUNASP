@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:unasp_ht/app/pages/departures/models/departure_model.dart';
-import 'package:unasp_ht/app/pages/departures/pages/departure_details/departure_detail_page.dart';
+import 'package:unasp_ht/app/pages/events/event_detail_page.dart';
+import 'package:unasp_ht/app/pages/events/event_model.dart';
 
 class DepartureCard extends StatelessWidget {
   final Departure departure;
@@ -140,7 +140,7 @@ class DepartureCard extends StatelessWidget {
                               SizedBox(width: 10),
                               Expanded(
                                 child: Text(
-                                  departure.reason?.toUpperCase() ?? '',
+                                  departure.obs?.toUpperCase() ?? '',
                                   softWrap: false,
                                   overflow: TextOverflow.fade,
                                 ),

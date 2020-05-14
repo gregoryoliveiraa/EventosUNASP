@@ -4,22 +4,22 @@ import 'package:intl/intl.dart';
 import 'package:unasp_ht/app/pages/events/event_model.dart';
 import 'package:unasp_ht/app/shared/components/labeled.dart';
 
-class EventCadastrar extends StatefulWidget {
-  final Event event;
+class DepartureDetailPage extends StatefulWidget {
+  final Departure departure;
 
-  const EventCadastrar({Key key, @required this.event})
+  const DepartureDetailPage({Key key, @required this.departure})
       : super(key: key);
 
   @override
-  _EventCadastrarState createState() => _EventCadastrarState();
+  _DepartureDetailPageState createState() => _DepartureDetailPageState();
 }
 
-class _EventCadastrarState extends State<EventCadastrar> {
+class _DepartureDetailPageState extends State<DepartureDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.event.location),
+        title: Text(widget.departure.location),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -38,6 +38,7 @@ class _EventCadastrarState extends State<EventCadastrar> {
         ],
         centerTitle: true,
       ),
+
       body: SingleChildScrollView(
         child: Container(
           padding: const EdgeInsets.all(20),
@@ -46,7 +47,7 @@ class _EventCadastrarState extends State<EventCadastrar> {
               Labeled(
                 label: 'Ida: ',
                 text: DateFormat('dd/MM/yy - HH:mm').format(
-                      widget.event.going ?? DateTime.now(),
+                      widget.departure.going ?? DateTime.now(),
                     ) +
                     'h',
               ),
@@ -54,22 +55,22 @@ class _EventCadastrarState extends State<EventCadastrar> {
               Labeled(
                 label: 'Volta: ',
                 text: DateFormat('dd/MM/yy - HH:mm').format(
-                      widget.event.turning ?? DateTime.now(),
+                      widget.departure.turning ?? DateTime.now(),
                     ) +
                     'h',
               ),
               const SizedBox(height: 8),
               Labeled(
                 label: 'Motivo: ',
-                text: widget.event.reason,
+                text: widget.departure.obs,
               ),
               const SizedBox(height: 8),
               Labeled(
                 label: 'Status: ',
-                text: widget.event.status
+                text: widget.departure.status
                     .toString()
                     .substring(
-                        widget.event.status.toString().indexOf('.') + 1)
+                        widget.departure.status.toString().indexOf('.') + 1)
                     .toUpperCase(),
               )
             ],

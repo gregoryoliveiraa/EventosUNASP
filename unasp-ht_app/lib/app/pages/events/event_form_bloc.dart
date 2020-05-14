@@ -5,60 +5,60 @@ import 'package:rxdart/rxdart.dart';
 import 'package:unasp_ht/app/shared/utils/string_extensions.dart';
 
 class DepartureFormBloc extends BlocBase {
-  TextEditingController goingDateController = TextEditingController();
-  TextEditingController goingTimeController = TextEditingController();
-  TextEditingController turningDateController = TextEditingController();
-  TextEditingController turningTimeController = TextEditingController();
-  TextEditingController reasonController = TextEditingController();
-  TextEditingController locationController = TextEditingController();
+  TextEditingController inicioDateController = TextEditingController();
+  TextEditingController inicioTimeController = TextEditingController();
+  TextEditingController terminoDateController = TextEditingController();
+  TextEditingController terminoTimeController = TextEditingController();
+  TextEditingController obsController = TextEditingController();
+  TextEditingController localController = TextEditingController();
 
-  BehaviorSubject<DateTime> goingDateC = BehaviorSubject<DateTime>();
-  BehaviorSubject<DateTime> turningDateC = BehaviorSubject<DateTime>();
+  BehaviorSubject<DateTime> inicioDateC = BehaviorSubject<DateTime>();
+  BehaviorSubject<DateTime> terminoDateC = BehaviorSubject<DateTime>();
 
   DepartureFormBloc() {
-    goingDateController.addListener(validate);
-    goingTimeController.addListener(validate);
-    turningDateController.addListener(validate);
-    turningTimeController.addListener(validate);
-    reasonController.addListener(validate);
-    locationController.addListener(validate);
-    goingDateC.listen((onData) {
+    inicioDateController.addListener(validate);
+    inicioTimeController.addListener(validate);
+    terminoDateController.addListener(validate);
+    terminoTimeController.addListener(validate);
+    obsController.addListener(validate);
+    localController.addListener(validate);
+    inicioDateC.listen((onData) {
       if (onData != null) {
-        goingDateController.text = DateFormat('dd/MM/yyyy').format(onData);
-        goingTimeController.text = DateFormat('HH:mm').format(onData) + ' h';
+        inicioDateController.text = DateFormat('dd/MM/yyyy').format(onData);
+        inicioTimeController.text = DateFormat('HH:mm').format(onData) + ' h';
       }
     });
-    turningDateC.listen((onData) {
+    terminoDateC.listen((onData) {
       if (onData != null) {
-        turningDateController.text = DateFormat('dd/MM/yyyy').format(onData);
-        turningTimeController.text = DateFormat('HH:mm').format(onData) + ' h';
+        terminoDateController.text = DateFormat('dd/MM/yyyy').format(onData);
+        terminoTimeController.text = DateFormat('HH:mm').format(onData) + ' h';
       }
     });
   }
 
   void clearFields() {
-    goingDateController.clear();
-    goingTimeController.clear();
-    turningDateController.clear();
-    turningTimeController.clear();
-    reasonController.clear();
-    locationController.clear();
-    goingDateC.add(null);
-    turningDateC.add(null);
+    inicioDateController.clear();
+    inicioTimeController.clear();
+    terminoDateController.clear();
+    terminoTimeController.clear();
+    obsController.clear();
+    localController.clear();
+    inicioDateC.add(null);
+    terminoDateC.add(null);
   }
 
   final BehaviorSubject<bool> isValidFormController =
       BehaviorSubject<bool>.seeded(false);
 
-  void validate() => isValidFormController.add(goingDateC.value != null &&
-      turningDateC.value != null &&
-      !locationController.text.isNullOrEmpty &&
-      !reasonController.text.isNullOrEmpty);
+  void validate() => isValidFormController.add(inicioDateC.value != null &&
+      terminoDateC.value != null &&
+      !localController.text.isNullOrEmpty &&
+      !obsController.text.isNullOrEmpty);
 
   @override
   void dispose() {
-    goingDateC.close();
-    turningDateC.close();
+    inicioDateC.close();
+    terminoDateC.close();
     super.dispose();
   }
 }

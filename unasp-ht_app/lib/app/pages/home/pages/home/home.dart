@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/pages/departures/departures_module.dart';
-import 'package:unasp_ht/app/pages/home/components/rectangular_home_button.dart';
+import 'package:unasp_ht/app/pages/events/event_page.dart';
 import 'package:unasp_ht/app/pages/home/components/square_home_button.dart';
 
 class Home extends StatefulWidget {
@@ -19,9 +19,7 @@ class _HomeState extends State<Home> {
       child: Center(
         child: Column(
           children: <Widget>[
-            SizedBox(
-              height: appWidth * .1,
-            ),
+            SizedBox(height: appWidth * .1,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -74,28 +72,31 @@ class _HomeState extends State<Home> {
                 SquareHomeButton('calendário', 
                   Color(0xFFC0CA33),
                   FontAwesomeIcons.calendarAlt, 
-                  () {}),
+                  () {}
+                ),
                 SquareHomeButton('Notícias',
                   Color(0xFF95A5A6),
                   FontAwesomeIcons.bullhorn, 
-                  () {}),
+                  () {}
+                ),
                 SquareHomeButton('Eventos', 
                   Color(0xFFAD1457),
                   FontAwesomeIcons.thList, 
-                  () {}),
+                  () => Navigator.of(context).push<CupertinoPageRoute>(
+                    CupertinoPageRoute(
+                      builder: (context) => EventPage(),
+                    ),
+                  ),
+                ),
               ],
             ),
             SizedBox(height: appWidth * 0.1,),
             Text(
               'últimas notícias'.toUpperCase(),
             ),
-            SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: 20,),
             _news(context),
-            SizedBox(
-              height: 50,
-            ),
+            SizedBox(height: 50,),
           ],
         ),
       ),
@@ -106,6 +107,7 @@ class _HomeState extends State<Home> {
 Widget _news(BuildContext context) {
   double appWidth = MediaQuery.of(context).size.width;
 
+/*___________________________CARROUSEL_____________________________*/
   return CarouselSlider(
     enableInfiniteScroll: false,
     height: appWidth * .3,
@@ -163,4 +165,6 @@ Widget _news(BuildContext context) {
       );
     }).toList(),
   );
+
+
 }
