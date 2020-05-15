@@ -19,40 +19,8 @@ class _HomeState extends State<Home> {
       child: Center(
         child: Column(
           children: <Widget>[
-<<<<<<< HEAD
-<<<<<<< HEAD
-            SizedBox(
-              height: appWidth * .1,
+            SizedBox(height: appWidth * .08,
             ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //   children: <Widget>[
-            //     SquareHomeButton(
-            //       'Aluno',
-            //       Color(0xFF34495E),
-            //       FontAwesomeIcons.userGraduate,
-            //       () {},
-            //     ),
-            //     SquareHomeButton(
-            //       'saídas',
-            //       Color(0xFF6FBFCC),
-            //       FontAwesomeIcons.signOutAlt,
-            //       () => Navigator.of(context).push<CupertinoPageRoute>(
-            //         CupertinoPageRoute(
-            //           builder: (context) => DeparturesModule(),
-            //         ),
-            //       ),
-            //     ),
-            //     SquareHomeButton('cardápio', Color(0xFF9A735C),
-            //         FontAwesomeIcons.utensils, () {})
-            //   ],
-            // ),
-            SizedBox(
-              height: 15,
-=======
-=======
->>>>>>> 4957c13ad7c61abc8c72fdb342ebead8fa3e34f6
-            SizedBox(height: appWidth * .1,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -70,103 +38,84 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                SquareHomeButton('cardápio', 
-                  Color(0xFF9A735C),
-                  FontAwesomeIcons.utensils, 
-                  () {}
-                )
+                SquareHomeButton('cardápio', Color(0xFF9A735C),
+                    FontAwesomeIcons.utensils, 
+                    () {})
               ],
->>>>>>> 4957c13ad7c61abc8c72fdb342ebead8fa3e34f6
             ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //   children: <Widget>[
-            //     SquareHomeButton(
-            //         'portais', Color(0xFF818CD3), FontAwesomeIcons.link, () {}),
-            //     SquareHomeButton('mapa', Color(0xFF7DB760),
-            //         FontAwesomeIcons.mapMarkedAlt, () {}),
-            //     SquareHomeButton('ramais', Color(0xFFFFAB91),
-            //         FontAwesomeIcons.phoneAlt, () {}),
-            //   ],
-            // ),
-            SizedBox(
-              height: appWidth * 0.1,
+            SizedBox(height: appWidth * .04,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-<<<<<<< HEAD
-                RectangularHomeButton('calendário', Color(0xFFC0CA33),
-                    FontAwesomeIcons.calendarAlt, () {}),
-                RectangularHomeButton('Notícias', Color(0xFF95A5A6),
-                    FontAwesomeIcons.bullhorn, () {}),
-=======
+                SquareHomeButton('portais', 
+                  Color(0xFF818CD3), 
+                  FontAwesomeIcons.link, 
+                  () {}),
+                SquareHomeButton('mapa', 
+                  Color(0xFF7DB760),
+                  FontAwesomeIcons.mapMarkedAlt, 
+                  () {}),
+                SquareHomeButton('ramais', 
+                  Color(0xFFFFAB91),
+                  FontAwesomeIcons.phoneAlt, 
+                  () {}),
+              ],
+            ),
+            SizedBox(height: appWidth * 0.04,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
                 SquareHomeButton('calendário', 
                   Color(0xFFC0CA33),
                   FontAwesomeIcons.calendarAlt, 
-                  () {}
-                ),
-                SquareHomeButton('Notícias',
+                  () {}),
+                SquareHomeButton('Notícias', 
                   Color(0xFF95A5A6),
                   FontAwesomeIcons.bullhorn, 
-                  () {}
-                ),
-                SquareHomeButton('Eventos', 
+                  () {}),
+                SquareHomeButton('Eventos',
                   Color(0xFFAD1457),
-                  FontAwesomeIcons.thList, 
+                  FontAwesomeIcons.thList,
                   () => Navigator.of(context).push<CupertinoPageRoute>(
                     CupertinoPageRoute(
                       builder: (context) => EventModule(),
                     ),
                   ),
                 ),
-<<<<<<< HEAD
->>>>>>> 4957c13ad7c61abc8c72fdb342ebead8fa3e34f6
-=======
->>>>>>> 4957c13ad7c61abc8c72fdb342ebead8fa3e34f6
               ],
             ),
-            SizedBox(
-              height: appWidth * 0.1,
+            SizedBox(height: appWidth * 0.1,
             ),
-            Text(
-              'últimas notícias'.toUpperCase(),
+            Text('últimas notícias'.toUpperCase(),
             ),
-<<<<<<< HEAD
-<<<<<<< HEAD
-            SizedBox(
-              height: 10,
+            SizedBox(height: 10,
             ),
             _news(context),
-            SizedBox(
-              height: 40,
-            ),
-            ////novo sizedbox
-            SizedBox(
-              height: appWidth * 0.03,
-            ),
-            Text(
-              'eventos da semana'.toUpperCase(),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            _news2(context),
-            SizedBox(
-              height: 40,
+            SizedBox(height: 20,
             ),
 
-            ///
-=======
-            SizedBox(height: 20,),
+////novo sizedbox
+            SizedBox(height: appWidth * 0.03,
+            ),
+            Text('eventos da semana'.toUpperCase(),
+            ),
+            SizedBox(height: 10,
+            ),
+            _news2(context),
+
+            SizedBox(height: 20,
+            ),
             _news(context),
-            SizedBox(height: 50,),
->>>>>>> 4957c13ad7c61abc8c72fdb342ebead8fa3e34f6
-=======
-            SizedBox(height: 20,),
+            SizedBox(height: 10,
+            ),
+            SizedBox(height: 20,
+            ),
             _news(context),
-            SizedBox(height: 50,),
->>>>>>> 4957c13ad7c61abc8c72fdb342ebead8fa3e34f6
+
+            SizedBox(height: 50,
+            ),
           ],
         ),
       ),
@@ -235,9 +184,6 @@ Widget _news(BuildContext context) {
       );
     }).toList(),
   );
-
-
-<<<<<<< HEAD
 }
 
 //Novo carousel slider
@@ -302,6 +248,4 @@ Widget _news2(BuildContext context2) {
       );
     }).toList(),
   );
-=======
->>>>>>> 4957c13ad7c61abc8c72fdb342ebead8fa3e34f6
 }

@@ -2,26 +2,13 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-<<<<<<< HEAD
-<<<<<<< HEAD
-import 'package:unasp_ht/app/pages/eventos/event_list.dart';
+import 'package:unasp_ht/app/pages/events/event_home.dart';
+import 'package:unasp_ht/app/pages/home/home_module.dart';
 import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
 import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
-//import 'package:unasp_ht/app/pages/eventos/event_list.dart';
-=======
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
-import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
-import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
 import 'package:unasp_ht/app/shared/components/labeled.dart';
->>>>>>> 4957c13ad7c61abc8c72fdb342ebead8fa3e34f6
-=======
-import 'package:unasp_ht/app/app_bloc.dart';
-import 'package:unasp_ht/app/app_module.dart';
-import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
-import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
-import 'package:unasp_ht/app/shared/components/labeled.dart';
->>>>>>> 4957c13ad7c61abc8c72fdb342ebead8fa3e34f6
 
 class HomePage extends StatefulWidget {
   @override
@@ -75,29 +62,15 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             UserAccountsDrawerHeader(
               accountName: Labeled(
-                        label: 'Nome: ',
-                        text: bloc.currentUser.value.name,
-                        inline: true,
-                      ),
+                label: 'Nome: ',
+                text: bloc.currentUser.value.name,
+                inline: true,
+              ),
               accountEmail: Labeled(
-                        label: 'Email: ',
-                        text: bloc.currentUser.value.email,
-                        inline: true,
-                      ),
-
-              // accountName: Text('Ricardo',
-              //     style: TextStyle(
-              //         fontWeight: FontWeight.bold,
-              //         color: Colors.grey[300],
-              //         fontSize: 20)),
-              // accountEmail: Text('ricardo@gmail.com',
-              //     style: TextStyle(
-              //         fontWeight: FontWeight.bold,
-              //         color: Colors.grey[300],
-              //         fontSize: 18)),
-
-
-
+                label: 'Email: ',
+                text: bloc.currentUser.value.email,
+                inline: true,
+              ),
 
               currentAccountPicture: GestureDetector(
                 child: CircleAvatar(
@@ -109,86 +82,61 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            InkWell(
-              //  onTap: () {
-              //    Navigator.of(context).pop();
-              //    Navigator.of(context).push(MaterialPageRoute(
-              //        builder: (BuildContext context) => AppModule()));
-              //  },
-              child: ListTile(
-                title: Text('Sair'.toUpperCase(),
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey[700],
-                        fontSize: 18)),
-                leading: Icon(
-                  Icons.keyboard_arrow_left,
-                  size: 35,
-                ),
+            InkWell(child: ListTile(title: Text('Sair'.toUpperCase(),
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.grey[700],
+              fontSize: 18)),
+              leading: Icon(
+                Icons.keyboard_arrow_left,
+                size: 35,
               ),
-              onTap: () {},
             ),
-            InkWell(
-              // onTap: () {
-              //   Navigator.of(context).pop();
-              //   Navigator.of(context).push(MaterialPageRoute(
-              //       builder: (BuildContext context) => AppModule()));
-              // },
-              child: ListTile(
-                title: Text('Perfil',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey[700],
-                        fontSize: 18)),
-                leading: Icon(
-                  Icons.person,
-                  size: 35,
-                ),
+            onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
+              CupertinoPageRoute(
+                builder: (context) => HomeModule(),
               ),
+            ),
+            ),
+            InkWell(child: ListTile(title: Text('Perfil',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.grey[700],
+              fontSize: 18)),
+              leading: Icon(
+                Icons.person,
+                size: 35,
+              ),
+            ),
             ),
             //Botão Eventos
-            InkWell(
-              onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
-                CupertinoPageRoute(
-                  builder: (context) => Eventlist(),
-                ),
-              ),
-
-              // onTap: () {
-              //   Navigator.of(context).pop();
-              //   Navigator.of(context).push(MaterialPageRoute(
-              //       builder: (BuildContext context) => EventList()));
-              //},
-              child: ListTile(
-                title: Text('Eventos',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey[700],
-                        fontSize: 18)),
-                leading: Icon(
-                  Icons.event,
-                  size: 35,
-                ),
+            InkWell(child: ListTile(title: Text('Eventos',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.grey[700],
+              fontSize: 18)),
+              leading: Icon(
+                Icons.event,
+                size: 35,
               ),
             ),
-            InkWell(
-              //  onTap: () {
-              //    Navigator.of(context).pop();
-              //    Navigator.of(context).push(MaterialPageRoute(
-              //        builder: (BuildContext context) => AppModule()));
-              //  },
-              child: ListTile(
-                title: Text('Sobre',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey[700],
-                        fontSize: 18)),
-                leading: Icon(
-                  Icons.help,
-                  color: orange,
-                  size: 35,
-                ),
+            onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
+              CupertinoPageRoute(
+                builder: (context) => EventHomePage(),
               ),
+            ),
+            ),
+            InkWell(child: ListTile(title: Text('Sobre',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.grey[700],
+              fontSize: 18)),
+              leading: Icon(
+                Icons.help,
+                color: orange,
+                size: 35,
+              ),
+            ),
             ),
           ],
         ),
