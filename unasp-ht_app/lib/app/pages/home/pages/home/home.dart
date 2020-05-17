@@ -95,7 +95,7 @@ class _HomeState extends State<Home> {
               height: 20,
             ),
 
-////novo sizedbox Eventos da Semana
+            ////novo sizedbox Eventos da Semana
             ///-------------------------distancia do fim da pagina  ----------------
             SizedBox(
               height: appWidth * 0.03,
@@ -103,7 +103,7 @@ class _HomeState extends State<Home> {
             Text(
               'eventos da semana'.toUpperCase(),
             ),
-//-------------Distancia entre o carousel e o titulo --------------
+            //-------------Distancia entre o carousel e o titulo --------------
             SizedBox(
               height: 10,
             ),

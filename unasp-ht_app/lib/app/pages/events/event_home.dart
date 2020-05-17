@@ -54,7 +54,7 @@ class _EventHomePageState extends State<EventHomePage> {
         ],
       ),
 
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             SizedBox(
@@ -79,18 +79,42 @@ class _EventHomePageState extends State<EventHomePage> {
                 ),
               ],
             ),
+            //________________ CHAMADA__________________________
             SizedBox(
-              height: 50,
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                SquareHomeButton('Chamadas', Color(0xFF0000CD),
+                    FontAwesomeIcons.peopleArrows, () {}),
+              ],
+            ),
+            SizedBox(
+              height: 40,
             ),
             Text(
               'últimas notícias'.toUpperCase(),
             ),
             SizedBox(
-              height: 20,
+              height: 10,
             ),
             _news(context),
             SizedBox(
-              height: 50,
+              height: 30,
+            ),
+
+//_____________________Segundo caroulsel ____________________________
+
+            Text(
+              'Noticias da Semana'.toUpperCase(),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            _news2(context),
+            SizedBox(
+              height: 60,
             ),
           ],
         ),
@@ -162,6 +186,70 @@ Widget _news(BuildContext context) {
                             ),
                             Text(
                               'Idealizado e coordenado pela direção da Escola de Artes. Foi um evento top!',
+                              softWrap: true,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  fontSize: 11, color: Colors.black45),
+                            ),
+                            // )
+                          ],
+                        ),
+                      ),
+                    )
+                  ],
+                )),
+          );
+        },
+      );
+    }).toList(),
+  );
+}
+
+//___________ SEGUNDO CAROUSEL___________________
+Widget _news2(BuildContext context) {
+  double appWidth = MediaQuery.of(context).size.width;
+
+/*___________________________CARROUSEL_____________________________*/
+  return CarouselSlider(
+    enableInfiniteScroll: false,
+    height: appWidth * .3,
+    items: [1, 2, 3, 4, 5].map((i) {
+      return Builder(
+        builder: (BuildContext context) {
+          return Padding(
+            padding: EdgeInsets.only(top: 10, bottom: 10),
+            child: Container(
+                width: MediaQuery.of(context).size.width,
+                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black12,
+                        blurRadius:
+                            5.0, // has the effect of softening the shadow
+                      )
+                    ]),
+                child: Row(
+                  children: <Widget>[
+                    Image.asset('assets/img/IOT.png', fit: BoxFit.contain),
+                    Expanded(
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              'Palestra sobre IOT'.toUpperCase(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 12),
+                            ),
+                            SizedBox(
+                              height: appWidth * .02,
+                            ),
+                            Text(
+                              'Palestra IOT do Curso de sistemas e engenharia da computação',
                               softWrap: true,
                               textAlign: TextAlign.start,
                               style: TextStyle(
