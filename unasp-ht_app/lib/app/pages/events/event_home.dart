@@ -54,42 +54,47 @@ class _EventHomePageState extends State<EventHomePage> {
         ],
       ),
 
-    body: Center(
-            child: Column(
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SizedBox(height: 15,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    SquareHomeButton('calendário', 
-                      Color(0xFFC0CA33),
-                      FontAwesomeIcons.calendarAlt, 
-                      () {}),
-                    SquareHomeButton('Notícias', 
-                      Color(0xFF95A5A6),
-                      FontAwesomeIcons.bullhorn, 
-                      () {}),
-                    SquareHomeButton('Eventos',
-                      Color(0xFFAD1457),
-                      FontAwesomeIcons.thList,
-                      () => Navigator.of(context).push<CupertinoPageRoute>(
-                        CupertinoPageRoute(
-                          builder: (context) => EventModule(),
-                        ),
-                      ),
+                SquareHomeButton('calendário', Color(0xFFC0CA33),
+                    FontAwesomeIcons.calendarAlt, () {}),
+                SquareHomeButton('Notícias', Color(0xFF95A5A6),
+                    FontAwesomeIcons.bullhorn, () {}),
+                SquareHomeButton(
+                  'Eventos',
+                  Color(0xFFAD1457),
+                  FontAwesomeIcons.thList,
+                  () => Navigator.of(context).push<CupertinoPageRoute>(
+                    CupertinoPageRoute(
+                      builder: (context) => EventModule(),
                     ),
-                  ],
+                  ),
                 ),
-                SizedBox(height: 10,),
-                Text('últimas notícias'.toUpperCase(),
-                ),
-                SizedBox(height: 20,),
-                _news(context),
-                SizedBox(height: 50,),
               ],
             ),
-          ),
-           
+            SizedBox(
+              height: 50,
+            ),
+            Text(
+              'últimas notícias'.toUpperCase(),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            _news(context),
+            SizedBox(
+              height: 50,
+            ),
+          ],
+        ),
+      ),
 
 /*___________________________RODAPÉ_____________________________*/
       bottomNavigationBar: CurvedNavigationBar(

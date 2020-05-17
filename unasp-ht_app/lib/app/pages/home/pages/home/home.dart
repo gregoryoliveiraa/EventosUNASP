@@ -19,17 +19,20 @@ class _HomeState extends State<Home> {
       child: Center(
         child: Column(
           children: <Widget>[
-            SizedBox(height: appWidth * .08,
+            SizedBox(
+              height: appWidth * .08,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SquareHomeButton('Aluno',
+                SquareHomeButton(
+                  'Aluno',
                   Color(0xFF34495E),
                   FontAwesomeIcons.userGraduate,
                   () {},
                 ),
-                SquareHomeButton('saídas',
+                SquareHomeButton(
+                  'saídas',
                   Color(0xFF6FBFCC),
                   FontAwesomeIcons.signOutAlt,
                   () => Navigator.of(context).push<CupertinoPageRoute>(
@@ -39,43 +42,35 @@ class _HomeState extends State<Home> {
                   ),
                 ),
                 SquareHomeButton('cardápio', Color(0xFF9A735C),
-                    FontAwesomeIcons.utensils, 
-                    () {})
+                    FontAwesomeIcons.utensils, () {})
               ],
             ),
-            SizedBox(height: appWidth * .04,
+            SizedBox(
+              height: appWidth * .04,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SquareHomeButton('portais', 
-                  Color(0xFF818CD3), 
-                  FontAwesomeIcons.link, 
-                  () {}),
-                SquareHomeButton('mapa', 
-                  Color(0xFF7DB760),
-                  FontAwesomeIcons.mapMarkedAlt, 
-                  () {}),
-                SquareHomeButton('ramais', 
-                  Color(0xFFFFAB91),
-                  FontAwesomeIcons.phoneAlt, 
-                  () {}),
+                SquareHomeButton(
+                    'portais', Color(0xFF818CD3), FontAwesomeIcons.link, () {}),
+                SquareHomeButton('mapa', Color(0xFF7DB760),
+                    FontAwesomeIcons.mapMarkedAlt, () {}),
+                SquareHomeButton('ramais', Color(0xFFFFAB91),
+                    FontAwesomeIcons.phoneAlt, () {}),
               ],
             ),
-            SizedBox(height: appWidth * 0.04,
+            SizedBox(
+              height: appWidth * 0.04,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SquareHomeButton('calendário', 
-                  Color(0xFFC0CA33),
-                  FontAwesomeIcons.calendarAlt, 
-                  () {}),
-                SquareHomeButton('Notícias', 
-                  Color(0xFF95A5A6),
-                  FontAwesomeIcons.bullhorn, 
-                  () {}),
-                SquareHomeButton('Eventos',
+                SquareHomeButton('calendário', Color(0xFFC0CA33),
+                    FontAwesomeIcons.calendarAlt, () {}),
+                SquareHomeButton('Notícias', Color(0xFF95A5A6),
+                    FontAwesomeIcons.bullhorn, () {}),
+                SquareHomeButton(
+                  'Eventos',
                   Color(0xFFAD1457),
                   FontAwesomeIcons.thList,
                   () => Navigator.of(context).push<CupertinoPageRoute>(
@@ -86,35 +81,46 @@ class _HomeState extends State<Home> {
                 ),
               ],
             ),
-            SizedBox(height: appWidth * 0.1,
+            SizedBox(
+              height: appWidth * 0.1,
             ),
-            Text('últimas notícias'.toUpperCase(),
+            Text(
+              'últimas notícias'.toUpperCase(),
             ),
-            SizedBox(height: 10,
+            SizedBox(
+              height: 10,
             ),
             _news(context),
-            SizedBox(height: 20,
+            SizedBox(
+              height: 20,
             ),
 
-////novo sizedbox
-            SizedBox(height: appWidth * 0.03,
+////novo sizedbox Eventos da Semana
+            ///-------------------------distancia do fim da pagina  ----------------
+            SizedBox(
+              height: appWidth * 0.03,
             ),
-            Text('eventos da semana'.toUpperCase(),
+            Text(
+              'eventos da semana'.toUpperCase(),
             ),
-            SizedBox(height: 10,
+//-------------Distancia entre o carousel e o titulo --------------
+            SizedBox(
+              height: 10,
             ),
             _news2(context),
 
-            SizedBox(height: 20,
+            SizedBox(
+              height: 10,
             ),
-            _news(context),
-            SizedBox(height: 10,
-            ),
-            SizedBox(height: 20,
-            ),
-            _news(context),
+            // _news(context),
+            // SizedBox(height: 10,
+            // ),
+            // SizedBox(height: 20,
+            // ),
+            // _news(context),
 
-            SizedBox(height: 50,
+            SizedBox(
+              height: 50,
             ),
           ],
         ),
@@ -140,7 +146,7 @@ Widget _news(BuildContext context) {
                 margin: EdgeInsets.symmetric(horizontal: 5.0),
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(20),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.black12,
@@ -197,7 +203,7 @@ Widget _news2(BuildContext context2) {
       return Builder(
         builder: (BuildContext context) {
           return Padding(
-            padding: EdgeInsets.only(top: 10, bottom: 10),
+            padding: EdgeInsets.only(top: 5, bottom: 5),
             child: Container(
                 width: MediaQuery.of(context).size.width,
                 margin: EdgeInsets.symmetric(horizontal: 5.0),
