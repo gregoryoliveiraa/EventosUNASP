@@ -5,16 +5,17 @@ class Eventlist extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Pagina Eventos'),
+        title: Text('QR Code'.toUpperCase()),
       ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('retorna'),
-        ),
-      ),
+      body: Column(children: <Widget>[
+        Image.asset('assets/img/qrCode.png', fit: BoxFit.contain),
+        // ] RaisedButton(
+        //   onPressed: () {
+        //     Navigator.pop(context);
+        //   },
+        //   child: Text('retorna'),
+        // ),
+      ]),
     );
   }
 }

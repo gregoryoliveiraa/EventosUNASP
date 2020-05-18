@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
+import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 import 'package:unasp_ht/app/pages/events/event_module.dart';
 import 'package:unasp_ht/app/pages/home/components/square_home_button.dart';
 
@@ -81,13 +82,33 @@ class _EventHomePageState extends State<EventHomePage> {
             ),
             //________________ CHAMADA__________________________
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SquareHomeButton('Chamadas', Color(0xFF0000CD),
-                    FontAwesomeIcons.peopleArrows, () {}),
+                SizedBox(
+                  width: 200,
+                  height: 50,
+                  child: RaisedButton(
+                    child: const Text('QR CODE',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                        )),
+                    color: Colors.deepOrangeAccent,
+                    elevation: 8.0,
+                    splashColor: Colors.white,
+                    onPressed: () =>
+                        Navigator.of(context).push<CupertinoPageRoute>(
+                      CupertinoPageRoute(
+                        builder: (context) => Eventlist(),
+                      ),
+                    ),
+                  ),
+                ),
+                // SquareHomeButton('Chamadas', Color(0xFF0000CD),
+                //     FontAwesomeIcons.peopleArrows, () {}),
               ],
             ),
             SizedBox(
