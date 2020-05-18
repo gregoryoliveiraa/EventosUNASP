@@ -59,7 +59,7 @@ T _$enumDecodeNullable<T>(
 }
 
 const _$DepartureStatusEnumMap = {
-  DepartureStatus.solicitado: 'solicitado',
-  DepartureStatus.aprovado: 'aprovado',
-  DepartureStatus.rejeitado: 'rejeitado',
+  DepartureStatus.pendente: 'pendente',
+  DepartureStatus.decorrendo: 'decorrendo',
+  DepartureStatus.encerrado: 'encerrado',
 };

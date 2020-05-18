@@ -4,33 +4,32 @@ import 'package:intl/intl.dart';
 import 'package:unasp_ht/app/pages/events/event_model.dart';
 import 'package:unasp_ht/app/shared/components/labeled.dart';
 
-class DepartureDetailPage extends StatefulWidget {
-  final Departure departure;
+class EventDetailPage extends StatefulWidget {
+  final Eventos eventos;
 
-  const DepartureDetailPage({Key key, @required this.departure})
+  const EventDetailPage({Key key, @required this.eventos})
       : super(key: key);
 
   @override
-  _DepartureDetailPageState createState() => _DepartureDetailPageState();
+  _EventDetailPageState createState() => _EventDetailPageState();
 }
 
-class _DepartureDetailPageState extends State<DepartureDetailPage> {
+class _EventDetailPageState extends State<EventDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[600],
       appBar: AppBar(
-        title: Text(widget.departure.location),
+        title: Text(widget.eventos.local),
         actions: <Widget>[
           IconButton(
-            icon: Icon(
-              FontAwesomeIcons.pencilAlt,
+            icon: Icon(FontAwesomeIcons.pencilAlt,
               size: 18,
             ),
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(
-              FontAwesomeIcons.trashAlt,
+            icon: Icon(FontAwesomeIcons.trashAlt,
               size: 18,
             ),
             onPressed: () {},
@@ -45,32 +44,47 @@ class _DepartureDetailPageState extends State<DepartureDetailPage> {
           child: Column(
             children: <Widget>[
               Labeled(
-                label: 'Ida: ',
-                text: DateFormat('dd/MM/yy - HH:mm').format(
-                      widget.departure.going ?? DateTime.now(),
-                    ) +
-                    'h',
+                label: 'Inicio: ',
+                text: DateFormat('dd/MM/yy').format(widget.eventos.inicio ?? DateTime.now(),
+                ),
               ),
               const SizedBox(height: 8),
               Labeled(
-                label: 'Volta: ',
-                text: DateFormat('dd/MM/yy - HH:mm').format(
-                      widget.departure.turning ?? DateTime.now(),
-                    ) +
-                    'h',
+                label: 'hora: ',
+                text: DateFormat('HH:mm').format(
+                  widget.eventos.inicio?? DateTime.now(),
+                ) +'h',
               ),
               const SizedBox(height: 8),
               Labeled(
-                label: 'Motivo: ',
-                text: widget.departure.obs,
+                label: 'Término: ',
+                text: DateFormat('dd/MM/yy').format(widget.eventos.termino ?? DateTime.now(),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Labeled(
+                label: 'hora: ',
+                text: DateFormat('HH:mm').format(
+                  widget.eventos.termino ?? DateTime.now(),
+                ) +'h',
+              ),
+              const SizedBox(height: 8),
+              Labeled(
+                label: 'Local: ',
+                text: widget.eventos.local,
+              ),
+              const SizedBox(height: 8),
+              Labeled(
+                label: 'Observações: ',
+                text: widget.eventos.obs,
               ),
               const SizedBox(height: 8),
               Labeled(
                 label: 'Status: ',
-                text: widget.departure.status
+                text: widget.eventos.status
                     .toString()
                     .substring(
-                        widget.departure.status.toString().indexOf('.') + 1)
+                        widget.eventos.status.toString().indexOf('.') + 1)
                     .toUpperCase(),
               )
             ],

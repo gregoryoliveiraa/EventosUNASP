@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:unasp_ht/app/pages/events/event_form_bloc.dart';
 import 'package:unasp_ht/app/pages/events/event_module.dart';
 import 'package:unasp_ht/app/pages/events/event_date_picker.dart';
-import 'package:unasp_ht/app/pages/events/event_form_bloc.dart';
 import 'package:unasp_ht/app/pages/events/event_time_picker.dart';
 import 'package:unasp_ht/app/shared/components/text-field.dart';
 
-class DepartureForm extends StatefulWidget {
+class EventForm extends StatefulWidget {
   @override
-  _DepartureFormState createState() => _DepartureFormState();
+  _EventFormState createState() => _EventFormState();
 }
 
-class _DepartureFormState extends State<DepartureForm> {
-  final DepartureFormBloc _bloc = EventModule.to.getBloc<DepartureFormBloc>();
+class _EventFormState extends State<EventForm> {
+  final EventFormBloc _bloc = EventModule.to.getBloc<EventFormBloc>();
   final DateTime today = DateTime.now();
 
   @override
@@ -21,11 +21,12 @@ class _DepartureFormState extends State<DepartureForm> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Text(
-          'Início / Término'.toUpperCase(),
-          style: TextStyle(
+        Text('Início / Término'.toUpperCase(),
+        style: TextStyle(
+            fontSize: 16,
             color: theme.primaryColor,
             fontWeight: FontWeight.bold,
+            
           ),
         ),
         const SizedBox(height: 20),
@@ -44,7 +45,7 @@ class _DepartureFormState extends State<DepartureForm> {
                         locale: Locale('pt'),
                         initialDate: today,
                         firstDate: today.add(Duration(days: -1)),
-                        lastDate: today.add(Duration(hours: 120)),
+                        lastDate: today.add(Duration(days: 120)),
                       ),
                     ),
                   ),
@@ -92,7 +93,7 @@ class _DepartureFormState extends State<DepartureForm> {
                         locale: Locale('pt'),
                         initialDate: today,
                         firstDate: today.add(Duration(days: -1)),
-                        lastDate: today.add(Duration(hours: 120)),
+                        lastDate: today.add(Duration(days: 365)),
                       ),
                     ),
                   ),
@@ -125,8 +126,9 @@ class _DepartureFormState extends State<DepartureForm> {
           ],
         ),
         const SizedBox(height: 20),
-        Text('detalhes'.toUpperCase(),
+        Text('detalhes:'.toUpperCase(),
           style: TextStyle(
+            fontSize: 16,
             color: theme.primaryColor,
             fontWeight: FontWeight.bold,
           ),
@@ -134,6 +136,7 @@ class _DepartureFormState extends State<DepartureForm> {
         const SizedBox(height: 10),
         CustomTextField(
           hintText: 'Local do evento',
+          
           icon: FontAwesomeIcons.mapMarkerAlt,
           controller: _bloc.localController,
         ),

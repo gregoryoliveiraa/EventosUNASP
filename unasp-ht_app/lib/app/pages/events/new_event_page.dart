@@ -7,18 +7,15 @@ import 'package:unasp_ht/app/pages/events/new_event_bloc.dart';
 import 'package:unasp_ht/app/shared/components/button.dart';
 import 'package:unasp_ht/app/shared/components/loading_widget.dart';
 
-class NewDeparturePage extends StatefulWidget {
+class NewEventPage extends StatefulWidget {
   @override
-  _NewDeparturePageState createState() => _NewDeparturePageState();
+  _NewEventPageState createState() => _NewEventPageState();
 }
 
-class _NewDeparturePageState extends State<NewDeparturePage> {
-  final NewDepartureBloc _bloc =
-      EventModule.to.getBloc<NewDepartureBloc>();
-  final DepartureFormBloc _formBloc =
-      EventModule.to.getBloc<DepartureFormBloc>();
-  final DeparturesBloc _departuresBloc =
-      EventModule.to.getBloc<DeparturesBloc>();
+class _NewEventPageState extends State<NewEventPage> {
+  final NewEventBloc _bloc = EventModule.to.getBloc<NewEventBloc>();
+  final EventFormBloc _formBloc = EventModule.to.getBloc<EventFormBloc>();
+  final EventBloc _eventosBloc = EventModule.to.getBloc<EventBloc>();
 
   DateTime today = DateTime.now();
 
@@ -29,6 +26,15 @@ class _NewDeparturePageState extends State<NewDeparturePage> {
       appBar: AppBar(
         title: Text('Novo Evento'),
         centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.refresh), 
+            onPressed: (){
+              FocusScope.of(context).unfocus();
+              _formBloc.clearFields();
+            } 
+            ),
+        ],
       ),
       
       body: StreamBuilder<bool>(
@@ -41,13 +47,12 @@ class _NewDeparturePageState extends State<NewDeparturePage> {
                 ),
               );
             }
-
             return SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   children: <Widget>[
-                    DepartureForm(),
+                    EventForm(),
                     const SizedBox(height: 40),
                     StreamBuilder<bool>(
                         stream: _formBloc.isValidFormController,
@@ -55,11 +60,11 @@ class _NewDeparturePageState extends State<NewDeparturePage> {
                           return Button(
                             enabled: snapshot.hasData && snapshot.data,
                             onTap: () async {
-                              bool res = await _bloc.sendDeparture();
+                              bool res = await _bloc.sendEventos();
 
                               if (res) {
                                 _formBloc.clearFields();
-                                _departuresBloc.getDepartures();
+                                _eventosBloc.getEventos();
                                 _bloc.isLoadingController.add(false);
                                 Navigator.of(context).pop();
                               } else {

@@ -6,23 +6,23 @@ part of 'event_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Departure _$DepartureFromJson(Map<String, dynamic> json) {
-  return Departure(
-    json['going'] == null ? null : DateTime.parse(json['going'] as String),
-    json['turning'] == null ? null : DateTime.parse(json['turning'] as String),
-    json['location'] as String,
+Eventos _$EventFromJson(Map<String, dynamic> json) {
+  return Eventos(
+    json['inicio'] == null ? null : DateTime.parse(json['inicio'] as String),
+    json['termino'] == null ? null : DateTime.parse(json['termino'] as String),
+    json['local'] as String,
     json['obs'] as String,
-    _$enumDecodeNullable(_$DepartureStatusEnumMap, json['status']),
+    _$enumDecodeNullable(_$EventStatusEnumMap, json['status']),
     json['userId'] as String,
   );
 }
 
-Map<String, dynamic> _$DepartureToJson(Departure instance) => <String, dynamic>{
-      'going': instance.going?.toIso8601String(),
-      'turning': instance.turning?.toIso8601String(),
-      'location': instance.location,
+Map<String, dynamic> _$EventToJson(Eventos instance) => <String, dynamic>{
+      'inicio': instance.inicio?.toIso8601String(),
+      'termino': instance.termino?.toIso8601String(),
+      'local': instance.local,
       'obs': instance.obs,
-      'status': _$DepartureStatusEnumMap[instance.status],
+      'status': _$EventStatusEnumMap[instance.status],
       'userId': instance.userId,
     };
 
@@ -32,7 +32,7 @@ T _$enumDecode<T>(
   T unknownValue,
 }) {
   if (source == null) {
-    throw ArgumentError('A value must be provided. Supported values: '
+    throw ArgumentError('Um valor deve ser fornecido. Valores suportados: '
         '${enumValues.values.join(', ')}');
   }
 
@@ -41,7 +41,7 @@ T _$enumDecode<T>(
       ?.key;
 
   if (value == null && unknownValue == null) {
-    throw ArgumentError('`$source` is not one of the supported values: '
+    throw ArgumentError('`$source` Não é um dos valores suportados: '
         '${enumValues.values.join(', ')}');
   }
   return value ?? unknownValue;
@@ -58,8 +58,8 @@ T _$enumDecodeNullable<T>(
   return _$enumDecode<T>(enumValues, source, unknownValue: unknownValue);
 }
 
-const _$DepartureStatusEnumMap = {
-  DepartureStatus.solicitado: 'solicitado',
-  DepartureStatus.aprovado: 'aprovado',
-  DepartureStatus.rejeitado: 'rejeitado',
+const _$EventStatusEnumMap = {
+  EventStatus.pendente: 'pendente',
+  EventStatus.decorrendo: 'decorrendo',
+  EventStatus.encerrado: 'encerrado',
 };

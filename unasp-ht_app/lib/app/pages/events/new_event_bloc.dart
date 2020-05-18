@@ -7,24 +7,24 @@ import 'package:unasp_ht/app/pages/events/event_model.dart';
 import 'package:unasp_ht/app/pages/events/event_module.dart';
 import 'package:unasp_ht/app/pages/events/event_repository.dart';
 
-class NewDepartureBloc extends BlocBase {
-  final DeparturesRepository _repository;
-  final DepartureFormBloc formBloc = EventModule.to.getBloc<DepartureFormBloc>();
+class NewEventBloc extends BlocBase {
+  final EventRepository _repository;
+  final EventFormBloc formBloc = EventModule.to.getBloc<EventFormBloc>();
 
   final BehaviorSubject<bool> isLoadingController =
       BehaviorSubject<bool>.seeded(false);
 
-  NewDepartureBloc(this._repository);
+  NewEventBloc(this._repository);
 
-  Future<bool> sendDeparture() async {
+  Future<bool> sendEventos() async {
     isLoadingController.add(true);
     return await _repository.post(
-      Departure(
+      Eventos(
         formBloc.inicioDateC.value,
         formBloc.terminoDateC.value,
         formBloc.localController.text,
         formBloc.obsController.text,
-        DepartureStatus.solicitado,
+        EventStatus.pendente,
         AppModule.to.getBloc<AppBloc>().currentUser.value.uid,
       ),
     );

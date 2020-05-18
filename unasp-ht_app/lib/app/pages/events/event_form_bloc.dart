@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:unasp_ht/app/shared/utils/string_extensions.dart';
 
-class DepartureFormBloc extends BlocBase {
+class EventFormBloc extends BlocBase {
   TextEditingController inicioDateController = TextEditingController();
   TextEditingController inicioTimeController = TextEditingController();
   TextEditingController terminoDateController = TextEditingController();
@@ -15,7 +15,7 @@ class DepartureFormBloc extends BlocBase {
   BehaviorSubject<DateTime> inicioDateC = BehaviorSubject<DateTime>();
   BehaviorSubject<DateTime> terminoDateC = BehaviorSubject<DateTime>();
 
-  DepartureFormBloc() {
+  EventFormBloc() {
     inicioDateController.addListener(validate);
     inicioTimeController.addListener(validate);
     terminoDateController.addListener(validate);

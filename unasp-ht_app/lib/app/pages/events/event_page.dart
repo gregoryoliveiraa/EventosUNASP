@@ -14,31 +14,30 @@ class EventPage extends StatefulWidget {
 }
 
 class _EventPageState extends State<EventPage> {
-  final DeparturesBloc _bloc = EventModule.to.getBloc();
+  final EventBloc _bloc = EventModule.to.getBloc();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Eventos'.toUpperCase()),
+        title: Text('lista eventos'.toUpperCase()),
         centerTitle: true,
       ),
-      body: Container(
-        padding: const EdgeInsets.all(25),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(15),
         child: Column(
           children: <Widget>[
-            StreamBuilder<List<Departure>>(
-              stream: _bloc.departures,
-              builder: (c, s) {
+            StreamBuilder<List<Eventos>>(
+              stream: _bloc.eventos,
+              builder: (c, s, ) {
                 if (!s.hasData) {
                   return Center(
                     child: LoadingWidget(),
                   );
                 }
-
                 return ListView.builder(
                   shrinkWrap: true,
-                  itemBuilder: (c, i) => DepartureCard(departure: s.data[i]),
+                  itemBuilder: (c, i) => EventCard(eventos: s.data[i]),
                   itemCount: s.data.length,
                 );
               },
@@ -47,12 +46,15 @@ class _EventPageState extends State<EventPage> {
         ),
       ),
       
+      
+
+/*______________________BOTÃO ADICIONAR EVENTO_____________________________*/
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).accentColor,
         child: Icon(FontAwesomeIcons.plus),
         onPressed: () => Navigator.of(context).push<CupertinoPageRoute>(
           CupertinoPageRoute(
-            builder: (context) => NewDeparturePage(),
+            builder: (context) => NewEventPage(),
           ),
         ),
       ),

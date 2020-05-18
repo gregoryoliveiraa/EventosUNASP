@@ -2,9 +2,12 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:unasp_ht/app/app_bloc.dart';
+import 'package:unasp_ht/app/app_module.dart';
 import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
 import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
+import 'package:unasp_ht/app/shared/components/labeled.dart';
 //import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 
 class HomeEventos extends StatefulWidget {
@@ -13,6 +16,7 @@ class HomeEventos extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomeEventos> {
+  AppBloc bloc = AppModule.to.getBloc();
   @override
   Widget build(BuildContext context) {
     List<Widget> t = [
@@ -50,21 +54,23 @@ class _HomePageState extends State<HomeEventos> {
               ),
         ],
       ),
-      //GRELHA
+
+ //GRELHA
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: Text('Ricardo',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[300],
-                      fontSize: 20)),
-              accountEmail: Text('ricardo@gmail.com',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[300],
-                      fontSize: 18)),
+              accountName: Labeled(
+                label: 'Nome: ',
+                text: bloc.currentUser.value.name,
+                inline: true,
+              ),
+              accountEmail: Labeled(
+                label: 'Email: ',
+                text: bloc.currentUser.value.email,
+                inline: true,
+              ),
+
               currentAccountPicture: GestureDetector(
                 child: CircleAvatar(
                   backgroundColor: Colors.blue[300],
@@ -92,7 +98,7 @@ class _HomePageState extends State<HomeEventos> {
                   size: 35,
                 ),
               ),
-              onTap: () {},
+              onTap: () {Navigator.pop(context);},
             ),
             InkWell(
               // onTap: () {
@@ -111,6 +117,7 @@ class _HomePageState extends State<HomeEventos> {
                   size: 35,
                 ),
               ),
+              onTap: () {Navigator.pop(context);},
             ),
             //Botão Eventos
             InkWell(

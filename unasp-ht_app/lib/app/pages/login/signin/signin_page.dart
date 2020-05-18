@@ -158,7 +158,6 @@ class _SigninPageState extends State<SigninPage>
                                 onTap: () async {
                                   FocusScope.of(context)
                                       .requestFocus(FocusNode());
-
                                   String res = await _bloc.login();
                                   _bloc.animationController.reverse();
                                   if (res != null) {
