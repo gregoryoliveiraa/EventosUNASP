@@ -25,7 +25,7 @@ class NewDepartureBloc extends BlocBase {
         formBloc.turningDateC.value,
         formBloc.locationController.text,
         formBloc.reasonController.text,
-        DepartureStatus.solicitado,
+        DepartureStatus.pendente,
         AppModule.to.getBloc<AppBloc>().currentUser.value.uid,
       ),
     );

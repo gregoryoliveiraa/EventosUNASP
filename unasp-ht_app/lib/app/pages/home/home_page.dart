@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/pages/events/event_home.dart';
-import 'package:unasp_ht/app/pages/home/home_module.dart';
 import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
 import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
@@ -94,7 +93,7 @@ class _HomePageState extends State<HomePage> {
             ),
             onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
               CupertinoPageRoute(
-                builder: (context) => HomeModule(),
+                builder: (context) => Home(),
               ),
             ),
             ),
@@ -109,7 +108,8 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             ),
-            //Botão Eventos
+        
+//Botão Eventos
             InkWell(child: ListTile(title: Text('Eventos',
             style: TextStyle(
               fontWeight: FontWeight.bold,

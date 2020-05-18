@@ -3,23 +3,23 @@ import 'package:rxdart/rxdart.dart';
 import 'package:unasp_ht/app/pages/events/event_model.dart';
 import 'package:unasp_ht/app/pages/events/event_repository.dart';
 
-class DeparturesBloc extends BlocBase {
-  final DeparturesRepository _repository;
+class EventBloc extends BlocBase {
+  final EventRepository _repository;
 
-  DeparturesBloc(this._repository) {
-    getDepartures();
+  EventBloc(this._repository) {
+    getEventos();
   }
 
-  final BehaviorSubject<List<Departure>> departures =
-      BehaviorSubject<List<Departure>>();
+  final BehaviorSubject<List<Eventos>> 
+    eventos = BehaviorSubject<List<Eventos>>();
 
-  void getDepartures() => _repository.getDepartures().then((onValue) {
-        departures.add(onValue);
+  void getEventos() => _repository.getEventos().then((onValue) {
+        eventos.add(onValue);
       });
 
   @override
   void dispose() {
-    departures.close();
+    eventos.close();
     super.dispose();
   }
 }

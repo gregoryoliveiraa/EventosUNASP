@@ -19,4 +19,4 @@ class Departure {
   Map<String, dynamic> toJson() => _$DepartureToJson(this);
 }
 
-enum DepartureStatus { solicitado, aprovado, rejeitado }
+enum DepartureStatus { pendente, decorrendo, encerrado }

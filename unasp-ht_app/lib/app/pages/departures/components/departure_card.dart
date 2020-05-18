@@ -13,13 +13,13 @@ class DepartureCard extends StatelessWidget {
   Color getDepartureStatusColor(DepartureStatus status) {
     Color color;
     switch (status) {
-      case DepartureStatus.solicitado:
+      case DepartureStatus.pendente:
         color = Colors.orange;
         break;
-      case DepartureStatus.rejeitado:
+      case DepartureStatus.encerrado:
         color = Colors.redAccent;
         break;
-      case DepartureStatus.aprovado:
+      case DepartureStatus.decorrendo:
         color = Colors.green;
         break;
     }

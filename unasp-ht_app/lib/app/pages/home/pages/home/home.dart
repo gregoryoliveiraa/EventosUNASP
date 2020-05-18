@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/pages/departures/departures_module.dart';
-import 'package:unasp_ht/app/pages/events/event_module.dart';
+import 'package:unasp_ht/app/pages/events/event_home.dart';
 import 'package:unasp_ht/app/pages/home/components/square_home_button.dart';
 
 class Home extends StatefulWidget {
@@ -25,14 +25,12 @@ class _HomeState extends State<Home> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SquareHomeButton(
-                  'Aluno',
+                SquareHomeButton('Aluno',
                   Color(0xFF34495E),
                   FontAwesomeIcons.userGraduate,
                   () {},
                 ),
-                SquareHomeButton(
-                  'saídas',
+                SquareHomeButton('saídas',
                   Color(0xFF6FBFCC),
                   FontAwesomeIcons.signOutAlt,
                   () => Navigator.of(context).push<CupertinoPageRoute>(
@@ -41,8 +39,10 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                SquareHomeButton('cardápio', Color(0xFF9A735C),
-                    FontAwesomeIcons.utensils, () {})
+                SquareHomeButton('cardápio', 
+                  Color(0xFF9A735C),
+                  FontAwesomeIcons.utensils, 
+                  () {})
               ],
             ),
             SizedBox(
@@ -51,12 +51,18 @@ class _HomeState extends State<Home> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SquareHomeButton(
-                    'portais', Color(0xFF818CD3), FontAwesomeIcons.link, () {}),
-                SquareHomeButton('mapa', Color(0xFF7DB760),
-                    FontAwesomeIcons.mapMarkedAlt, () {}),
-                SquareHomeButton('ramais', Color(0xFFFFAB91),
-                    FontAwesomeIcons.phoneAlt, () {}),
+                SquareHomeButton('portais', 
+                  Color(0xFF818CD3), 
+                  FontAwesomeIcons.link, 
+                  () {}),
+                SquareHomeButton('mapa', 
+                  Color(0xFF7DB760),
+                  FontAwesomeIcons.mapMarkedAlt, 
+                  () {}),
+                SquareHomeButton('ramais', 
+                  Color(0xFFFFAB91),
+                  FontAwesomeIcons.phoneAlt, 
+                  () {}),
               ],
             ),
             SizedBox(
@@ -65,17 +71,20 @@ class _HomeState extends State<Home> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SquareHomeButton('calendário', Color(0xFFC0CA33),
-                    FontAwesomeIcons.calendarAlt, () {}),
-                SquareHomeButton('Notícias', Color(0xFF95A5A6),
-                    FontAwesomeIcons.bullhorn, () {}),
-                SquareHomeButton(
-                  'Eventos',
+                SquareHomeButton('calendário', 
+                  Color(0xFFC0CA33),
+                  FontAwesomeIcons.calendarAlt, 
+                  () {}),
+                SquareHomeButton('Notícias', 
+                  Color(0xFF95A5A6),
+                  FontAwesomeIcons.bullhorn, 
+                  () {}),
+                SquareHomeButton('Eventos',
                   Color(0xFFAD1457),
                   FontAwesomeIcons.thList,
                   () => Navigator.of(context).push<CupertinoPageRoute>(
                     CupertinoPageRoute(
-                      builder: (context) => EventModule(),
+                      builder: (context) => EventHomePage(),
                     ),
                   ),
                 ),

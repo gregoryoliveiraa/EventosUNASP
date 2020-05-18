@@ -12,17 +12,17 @@ import 'package:unasp_ht/app/pages/events/new_event_bloc.dart';
 class EventModule extends ModuleWidget {
   @override
   List<Bloc> get blocs => [
-        Bloc<DeparturesBloc>(
-            (i) => DeparturesBloc(i.getDependency<DeparturesRepository>())),
-        Bloc<NewDepartureBloc>(
-            (i) => NewDepartureBloc(i.getDependency<DeparturesRepository>())),
-        Bloc<DepartureFormBloc>((i) => DepartureFormBloc())
+        Bloc<EventBloc>(
+            (i) => EventBloc(i.getDependency<EventRepository>())),
+        Bloc<NewEventBloc>(
+            (i) => NewEventBloc(i.getDependency<EventRepository>())),
+        Bloc<EventFormBloc>((i) => EventFormBloc())
       ];
 
   @override
   List<Dependency> get dependencies => [
-        Dependency<DeparturesRepository>((i) =>
-            DeparturesRepository(AppModule.to.getDependency<Firestore>()))
+        Dependency<EventRepository>((i) =>
+            EventRepository(AppModule.to.getDependency<Firestore>()))
       ];
 
   @override

@@ -5,21 +5,21 @@ import 'package:intl/intl.dart';
 import 'package:unasp_ht/app/pages/events/event_detail_page.dart';
 import 'package:unasp_ht/app/pages/events/event_model.dart';
 
-class DepartureCard extends StatelessWidget {
-  final Departure departure;
+class EventCard extends StatelessWidget {
+  final Eventos eventos;
 
-  const DepartureCard({Key key, @required this.departure}) : super(key: key);
+  const EventCard({Key key, @required this.eventos}) : super(key: key);
 
-  Color getDepartureStatusColor(DepartureStatus status) {
+  Color getEventStatusColor(EventStatus status) {
     Color color;
     switch (status) {
-      case DepartureStatus.solicitado:
+      case EventStatus.pendente:
         color = Colors.orange;
         break;
-      case DepartureStatus.rejeitado:
+      case EventStatus.encerrado:
         color = Colors.redAccent;
         break;
-      case DepartureStatus.aprovado:
+      case EventStatus.decorrendo:
         color = Colors.green;
         break;
     }
@@ -31,8 +31,8 @@ class DepartureCard extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
         CupertinoPageRoute(
-          builder: (context) => DepartureDetailPage(
-            departure: departure,
+          builder: (context) => EventDetailPage(
+            eventos: eventos,
           ),
         ),
       ),
@@ -49,7 +49,7 @@ class DepartureCard extends StatelessWidget {
           children: <Widget>[
             Container(
               decoration: BoxDecoration(
-                  color: getDepartureStatusColor(departure.status),
+                  color: getEventStatusColor(eventos.status),
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       bottomLeft: Radius.circular(20))),
@@ -75,14 +75,14 @@ class DepartureCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'ida: '.toUpperCase(),
+                              'inicio: '.toUpperCase(),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).primaryColor,
                               ),
                             ),
                             Text(DateFormat('dd/MM/yy')
-                                .format(departure.going ?? DateTime.now()))
+                                .format(eventos.inicio ?? DateTime.now()))
                           ],
                         ),
                         Row(
@@ -96,7 +96,7 @@ class DepartureCard extends StatelessWidget {
                               ),
                             ),
                             Text(DateFormat('dd/MM/yy')
-                                .format(departure.turning ?? DateTime.now()))
+                                .format(eventos.termino ?? DateTime.now()))
                           ],
                         ),
                       ],
@@ -119,7 +119,7 @@ class DepartureCard extends StatelessWidget {
                               SizedBox(width: 10),
                               Expanded(
                                 child: Text(
-                                  departure.location?.toUpperCase() ?? '',
+                                  eventos.local?.toUpperCase() ?? '',
                                   softWrap: false,
                                   overflow: TextOverflow.fade,
                                 ),
@@ -140,7 +140,7 @@ class DepartureCard extends StatelessWidget {
                               SizedBox(width: 10),
                               Expanded(
                                 child: Text(
-                                  departure.obs?.toUpperCase() ?? '',
+                                  eventos.obs?.toUpperCase() ?? '',
                                   softWrap: false,
                                   overflow: TextOverflow.fade,
                                 ),
@@ -160,10 +160,10 @@ class DepartureCard extends StatelessWidget {
                   Container(
                       width: MediaQuery.of(context).size.width - 100,
                       child: Center(
-                        child: Text(departure.status
+                        child: Text(eventos.status
                                 .toString()
                                 .substring(
-                                    departure.status.toString().indexOf('.') +
+                                    eventos.status.toString().indexOf('.') +
                                         1)
                                 .toUpperCase() ??
                             ''),
