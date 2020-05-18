@@ -110,8 +110,8 @@ class _EventHomePageState extends State<EventHomePage> {
                 // SquareHomeButton('Chamadas', Color(0xFF0000CD),
                 //     FontAwesomeIcons.peopleArrows, () {}),
 
-                SquareHomeButton('Chamadas', Color(0xFF0000CD),
-                    FontAwesomeIcons.peopleArrows, () {}),
+                // SquareHomeButton('Chamadas', Color(0xFF0000CD),
+                //     FontAwesomeIcons.peopleArrows, () {}),
               ],
             ),
             SizedBox(
