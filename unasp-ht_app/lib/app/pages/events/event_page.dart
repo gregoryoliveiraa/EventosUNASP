@@ -22,6 +22,16 @@ class _EventPageState extends State<EventPage> {
       appBar: AppBar(
         title: Text('lista eventos'.toUpperCase()),
         centerTitle: true,
+         actions: <Widget>[
+          IconButton(
+            icon: Icon(FontAwesomeIcons.plusCircle), 
+            onPressed: () => Navigator.of(context).push<CupertinoPageRoute>(
+          CupertinoPageRoute(
+            builder: (context) => NewEventPage(),
+          ),
+        ),
+            ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(15),

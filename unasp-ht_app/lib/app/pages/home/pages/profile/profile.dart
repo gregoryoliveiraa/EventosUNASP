@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
@@ -17,8 +18,7 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    String genre =
-        bloc.currentUser.value.genre == 'F' ? 'Feminino' : 'Masculino';
+    String genre = bloc.currentUser.value.genre == 'F' ? 'Feminino' : 'Masculino';
     return SingleChildScrollView(
       child: Container(
         child: Center(
@@ -27,7 +27,7 @@ class _ProfileState extends State<Profile> {
               children: <Widget>[
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 300,
+                  height: 250,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                         alignment: Alignment(-.2, 0),
@@ -36,8 +36,15 @@ class _ProfileState extends State<Profile> {
                         fit: BoxFit.cover),
                   ),
                 ),
-                SizedBox(
-                  height: 25,
+                IconButton(
+                  icon: Icon(FontAwesomeIcons.camera),
+                  iconSize: 40,
+                  padding: EdgeInsets.symmetric(vertical: 2.0, horizontal: 350,),
+                  color: Colors.grey[500],
+                  tooltip: 'Adicione Foto de Perfil',
+                  onPressed: (){},
+                  ),
+                SizedBox(height: 1,
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 25, horizontal: 25),
@@ -101,4 +108,6 @@ class _ProfileState extends State<Profile> {
       ),
     );
   }
+
+
 }
