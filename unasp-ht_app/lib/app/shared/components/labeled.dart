@@ -37,7 +37,7 @@ class Labeled extends StatelessWidget {
           Text(
             label.toUpperCase(),
             style: TextStyle(
-              color: Colors.grey[300],
+              color: Colors.grey[500],
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -47,7 +47,7 @@ class Labeled extends StatelessWidget {
       Text(
         text.toUpperCase(),
         style: TextStyle(
-          color: Colors.grey[300]),
+          color: Colors.grey[500]),
       )
     ];
 
