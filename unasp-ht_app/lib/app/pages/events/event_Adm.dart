@@ -9,12 +9,12 @@ import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 import 'package:unasp_ht/app/pages/events/event_module.dart';
 import 'package:unasp_ht/app/pages/home/components/square_home_button.dart';
 
-class EventHomePage extends StatefulWidget {
+class EventAdm extends StatefulWidget {
   @override
-  _EventHomePageState createState() => _EventHomePageState();
+  _EventAdmState createState() => _EventAdmState();
 }
 
-class _EventHomePageState extends State<EventHomePage> {
+class _EventAdmState extends State<EventAdm> {
   AppBloc bloc = AppModule.to.getBloc();
   @override
   Widget build(BuildContext context) {
@@ -45,7 +45,7 @@ class _EventHomePageState extends State<EventHomePage> {
 /*___________________________APPBAR_____________________________*/
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Eventos - Home'.toUpperCase()),
+        title: Text('Eventos - Adm'.toUpperCase()),
         actions: <Widget>[
           IconButton(
               icon: Icon(FontAwesomeIcons.search),
@@ -68,47 +68,47 @@ class _EventHomePageState extends State<EventHomePage> {
                     FontAwesomeIcons.calendarAlt, () {}),
                 SquareHomeButton('Notícias', Color(0xFF95A5A6),
                     FontAwesomeIcons.bullhorn, () {}),
-                // SquareHomeButton(
-                //   'Eventos',
-                //   Color(0xFFAD1457),
-                //   FontAwesomeIcons.thList,
-                //   () => Navigator.of(context).push<CupertinoPageRoute>(
-                //     CupertinoPageRoute(
-                //       builder: (context) => EventModule(),
-                //     ),
-                //   ),
-                // ),
-              ],
-            ),
-            //________________ CHAMADA__________________________
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                SizedBox(
-                  width: 200,
-                  height: 50,
-                  child: RaisedButton(
-                    child: const Text('QR CODE',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                        )),
-                    color: Colors.deepOrangeAccent,
-                    elevation: 8.0,
-                    splashColor: Colors.white,
-                    onPressed: () =>
-                        Navigator.of(context).push<CupertinoPageRoute>(
-                      CupertinoPageRoute(
-                        builder: (context) => Eventlist(),
-                      ),
+                SquareHomeButton(
+                  'Eventos',
+                  Color(0xFFAD1457),
+                  FontAwesomeIcons.thList,
+                  () => Navigator.of(context).push<CupertinoPageRoute>(
+                    CupertinoPageRoute(
+                      builder: (context) => EventModule(),
                     ),
                   ),
                 ),
               ],
             ),
+            //________________ CHAMADA__________________________
+            // SizedBox(
+            //   height: 20,
+            // ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //   children: <Widget>[
+            //     SizedBox(
+            //       width: 200,
+            //       height: 50,
+            //       child: RaisedButton(
+            //         child: const Text('QR CODE',
+            //             style: TextStyle(
+            //               fontSize: 20,
+            //               color: Colors.white,
+            //             )),
+            //         color: Colors.deepOrangeAccent,
+            //         elevation: 8.0,
+            //         splashColor: Colors.white,
+            //         onPressed: () =>
+            //             Navigator.of(context).push<CupertinoPageRoute>(
+            //           CupertinoPageRoute(
+            //             builder: (context) => Eventlist(),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
             SizedBox(
               height: 40,
             ),

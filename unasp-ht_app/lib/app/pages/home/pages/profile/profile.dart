@@ -1,10 +1,9 @@
-
-import 'dart:html';
+//import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:image_picker/image_picker.dart';
+//import 'package:image_picker/image_picker.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
 import 'package:unasp_ht/app/pages/login/signup/enums/category_enum.dart';
@@ -32,8 +31,9 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    String genre = bloc.currentUser.value.genre == 'F' ? 'Feminino' : 'Masculino';
-    
+    String genre =
+        bloc.currentUser.value.genre == 'F' ? 'Feminino' : 'Masculino';
+
     return SingleChildScrollView(
       child: Container(
         child: Center(
@@ -67,7 +67,8 @@ class _ProfileState extends State<Profile> {
                   tooltip: 'Adicione Foto de Perfil',
                   onPressed: () {},
                 ),
-                SizedBox(height: 1,
+                SizedBox(
+                  height: 1,
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 25, horizontal: 25),

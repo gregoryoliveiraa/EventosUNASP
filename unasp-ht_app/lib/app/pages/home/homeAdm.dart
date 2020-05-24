@@ -4,18 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
-import 'package:unasp_ht/app/pages/eventos/event_list.dart';
+//import 'package:unasp_ht/app/pages/eventos/event_list.dart';
+import 'package:unasp_ht/app/pages/events/event_Adm.dart';
+//import 'package:unasp_ht/app/pages/events/event_home.dart';
+//import 'package:unasp_ht/app/pages/events/event_page.dart';
 import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
 import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
 import 'package:unasp_ht/app/shared/components/labeled.dart';
+
+import 'home_page.dart';
 //import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 
-class HomeEventos extends StatefulWidget {
+class HomeAdm extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomeAdmState createState() => _HomeAdmState();
 }
 
-class _HomePageState extends State<HomeEventos> {
+class _HomeAdmState extends State<HomeAdm> {
   AppBloc bloc = AppModule.to.getBloc();
   @override
   Widget build(BuildContext context) {
@@ -45,7 +50,7 @@ class _HomePageState extends State<HomeEventos> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Home'.toUpperCase()),
+        title: Text('Administrador'.toUpperCase()),
         actions: <Widget>[
           IconButton(
               icon: Icon(FontAwesomeIcons.search),
@@ -107,7 +112,7 @@ class _HomePageState extends State<HomeEventos> {
             //
             InkWell(
               child: ListTile(
-                title: Text('Perfil',
+                title: Text('Aluno',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.grey[700],
@@ -117,15 +122,17 @@ class _HomePageState extends State<HomeEventos> {
                   size: 35,
                 ),
               ),
-              onTap: () {
-                Navigator.pop(context);
-              },
+              onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
+                CupertinoPageRoute(
+                  builder: (context) => HomePage(),
+                ),
+              ),
             ),
             //________________Botão Eventos________________________
             InkWell(
               onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
                 CupertinoPageRoute(
-                  builder: (context) => Eventlist(),
+                  builder: (context) => EventAdm(),
                 ),
               ),
               child: ListTile(

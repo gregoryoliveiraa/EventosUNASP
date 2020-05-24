@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/pages/events/event_home.dart';
+import 'package:unasp_ht/app/pages/home/homeAdm.dart';
 import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
 import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
@@ -70,7 +71,6 @@ class _HomePageState extends State<HomePage> {
                 text: bloc.currentUser.value.email,
                 inline: true,
               ),
-
               currentAccountPicture: GestureDetector(
                 child: CircleAvatar(
                   backgroundColor: Colors.blue[300],
@@ -81,62 +81,105 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            InkWell(child: ListTile(title: Text('Sair'.toUpperCase(),
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.grey[700],
-              fontSize: 18)),
-              leading: Icon(
-                Icons.keyboard_arrow_left,
-                size: 35,
+            InkWell(
+              child: ListTile(
+                title: Text('Sair'.toUpperCase(),
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[700],
+                        fontSize: 18)),
+                leading: Icon(
+                  Icons.keyboard_arrow_left,
+                  size: 35,
+                ),
+              ),
+              onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
+                CupertinoPageRoute(
+                  builder: (context) => Home(),
+                ),
               ),
             ),
-            onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
-              CupertinoPageRoute(
-                builder: (context) => Home(),
+            InkWell(
+              child: ListTile(
+                title: Text('Perfil',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[700],
+                        fontSize: 18)),
+                leading: Icon(
+                  Icons.person,
+                  size: 35,
+                ),
               ),
             ),
-            ),
-            InkWell(child: ListTile(title: Text('Perfil',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.grey[700],
-              fontSize: 18)),
-              leading: Icon(
-                Icons.person,
-                size: 35,
+            //____________________botao Administrador_________________________________
+            InkWell(
+              child: ListTile(
+                title: Text('Administrador',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[700],
+                        fontSize: 18)),
+                leading: Icon(
+                  Icons.person_outline,
+                  size: 35,
+                ),
+              ),
+              onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
+                CupertinoPageRoute(
+                  builder: (context) => HomeAdm(),
+                ),
               ),
             ),
+            //
+            //____________________botao Gerente_________________________________
+            InkWell(
+              child: ListTile(
+                title: Text('Gerente',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[700],
+                        fontSize: 18)),
+                leading: Icon(
+                  Icons.person_add,
+                  size: 35,
+                ),
+              ),
             ),
-        
+            //
+
 //Botão Eventos
-            InkWell(child: ListTile(title: Text('Eventos',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.grey[700],
-              fontSize: 18)),
-              leading: Icon(
-                Icons.event,
-                size: 35,
+            InkWell(
+              child: ListTile(
+                title: Text('Eventos',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[700],
+                        fontSize: 18)),
+                leading: Icon(
+                  Icons.event,
+                  size: 35,
+                ),
+              ),
+              onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
+                CupertinoPageRoute(
+                  builder: (context) => EventHomePage(),
+                ),
               ),
             ),
-            onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
-              CupertinoPageRoute(
-                builder: (context) => EventHomePage(),
+            InkWell(
+              child: ListTile(
+                title: Text('Sobre',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[700],
+                        fontSize: 18)),
+                leading: Icon(
+                  Icons.help,
+                  color: orange,
+                  size: 35,
+                ),
               ),
-            ),
-            ),
-            InkWell(child: ListTile(title: Text('Sobre',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: Colors.grey[700],
-              fontSize: 18)),
-              leading: Icon(
-                Icons.help,
-                color: orange,
-                size: 35,
-              ),
-            ),
             ),
           ],
         ),
@@ -172,7 +215,7 @@ class _HomePageState extends State<HomePage> {
       // ),
       // backgroundColor: blue,
       //,
-      
+
       body: PageView(
         controller: pageController,
         physics: NeverScrollableScrollPhysics(),
