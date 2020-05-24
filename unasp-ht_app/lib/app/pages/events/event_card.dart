@@ -37,12 +37,12 @@ class EventCard extends StatelessWidget {
         ),
       ),
       child: Container(
-        constraints: BoxConstraints(minHeight: 150),
+        constraints: BoxConstraints(maxHeight: 100),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
-            BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 1),
+            BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 5),
           ],
         ),
         child: Row(
@@ -53,15 +53,14 @@ class EventCard extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       bottomLeft: Radius.circular(20))),
-              constraints: BoxConstraints(minHeight: 150),
+              constraints: BoxConstraints(minHeight: 80),
               width: 15,
               height: 150,
             ),
-            SizedBox(
-              width: 15,
+            SizedBox(width: 15,
             ),
             Container(
-              constraints: BoxConstraints(minHeight: 150),
+              constraints: BoxConstraints(minHeight: 80),
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,7 +74,7 @@ class EventCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'inicio: '.toUpperCase(),
+                              'Data: '.toUpperCase(),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).primaryColor,
@@ -89,13 +88,13 @@ class EventCard extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'volta: '.toUpperCase(),
+                              'Início às: '.toUpperCase(),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).primaryColor,
                               ),
                             ),
-                            Text(DateFormat('dd/MM/yy')
+                            Text(DateFormat('HH:mm')
                                 .format(eventos.termino ?? DateTime.now()))
                           ],
                         ),
@@ -127,7 +126,7 @@ class EventCard extends StatelessWidget {
                             ],
                           ),
                         ),
-                        const SizedBox(width: 30),
+                        const SizedBox(width: 3),
                         Expanded(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -151,23 +150,23 @@ class EventCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width - 100,
-                    child: Divider(
-                      thickness: 1,
-                    ),
-                  ),
-                  Container(
-                      width: MediaQuery.of(context).size.width - 100,
-                      child: Center(
-                        child: Text(eventos.status
-                                .toString()
-                                .substring(
-                                    eventos.status.toString().indexOf('.') +
-                                        1)
-                                .toUpperCase() ??
-                            ''),
-                      )),
+                  // Container(
+                  //   width: MediaQuery.of(context).size.width - 100,
+                  //   child: Divider(
+                  //     thickness: 1,
+                  //   ),
+                  // ),
+                  // Container(
+                  //     width: MediaQuery.of(context).size.width - 100,
+                  //     child: Center(
+                  //       child: Text(eventos.status
+                  //               .toString()
+                  //               .substring(
+                  //                   eventos.status.toString().indexOf('.') +
+                  //                       1)
+                  //               .toUpperCase() ??
+                  //           ''),
+                  //     )),
                 ],
               ),
             ),

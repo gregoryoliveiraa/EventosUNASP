@@ -1,5 +1,10 @@
+
+import 'dart:html';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
 import 'package:unasp_ht/app/pages/login/signup/enums/category_enum.dart';
@@ -15,10 +20,20 @@ class _ProfileState extends State<Profile> {
   Color get primaryColor => Theme.of(context).primaryColor;
   AppBloc bloc = AppModule.to.getBloc();
 
+  // File _image;
+
+  // Future getImage() async{
+  //   //var image = await ImagePicker.pickImage(source: ImageSource.camera);
+  //   var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+  //   setState(() {
+  //     _image = image as File;
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
-    String genre =
-        bloc.currentUser.value.genre == 'F' ? 'Feminino' : 'Masculino';
+    String genre = bloc.currentUser.value.genre == 'F' ? 'Feminino' : 'Masculino';
+    
     return SingleChildScrollView(
       child: Container(
         child: Center(
@@ -26,8 +41,12 @@ class _ProfileState extends State<Profile> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Container(
+                  margin: EdgeInsets.all(10),
+                  child: CircleAvatar(
+                    backgroundImage: AssetImage('test.png'),
+                  ),
                   width: MediaQuery.of(context).size.width,
-                  height: 300,
+                  height: 250,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                         alignment: Alignment(-.2, 0),
@@ -36,8 +55,19 @@ class _ProfileState extends State<Profile> {
                         fit: BoxFit.cover),
                   ),
                 ),
-                SizedBox(
-                  height: 25,
+/*____________________________BOTÃO CAMERA_____________________________________*/
+                IconButton(
+                  icon: Icon(Icons.add_a_photo),
+                  iconSize: 40,
+                  padding: EdgeInsets.symmetric(
+                    vertical: 2.0,
+                    horizontal: 350,
+                  ),
+                  color: Colors.grey[500],
+                  tooltip: 'Adicione Foto de Perfil',
+                  onPressed: () {},
+                ),
+                SizedBox(height: 1,
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 25, horizontal: 25),
@@ -95,7 +125,7 @@ class _ProfileState extends State<Profile> {
                       )
                     ],
                   ),
-                )
+                ),
               ]),
         ),
       ),

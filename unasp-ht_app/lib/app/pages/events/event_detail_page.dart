@@ -20,7 +20,8 @@ class _EventDetailPageState extends State<EventDetailPage> {
     return Scaffold(
       backgroundColor: Colors.grey[600],
       appBar: AppBar(
-        title: Text(widget.eventos.local),
+/*__________________________TÍTULO DA APPBAR___________________________*/
+        title: Text(widget.eventos.obs.toUpperCase()),
         actions: <Widget>[
           IconButton(
             icon: Icon(FontAwesomeIcons.pencilAlt,
@@ -48,11 +49,11 @@ class _EventDetailPageState extends State<EventDetailPage> {
                 text: DateFormat('dd/MM/yy').format(widget.eventos.inicio ?? DateTime.now(),
                 ),
               ),
+              
               const SizedBox(height: 8),
               Labeled(
                 label: 'hora: ',
-                text: DateFormat('HH:mm').format(
-                  widget.eventos.inicio?? DateTime.now(),
+                text: DateFormat('HH:mm').format(widget.eventos.inicio?? DateTime.now(),
                 ) +'h',
               ),
               const SizedBox(height: 8),
@@ -64,8 +65,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
               const SizedBox(height: 8),
               Labeled(
                 label: 'hora: ',
-                text: DateFormat('HH:mm').format(
-                  widget.eventos.termino ?? DateTime.now(),
+                text: DateFormat('HH:mm').format(widget.eventos.termino ?? DateTime.now(),
                 ) +'h',
               ),
               const SizedBox(height: 8),
@@ -75,7 +75,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
               ),
               const SizedBox(height: 8),
               Labeled(
-                label: 'Observações: ',
+                label: 'título: ',
                 text: widget.eventos.obs,
               ),
               const SizedBox(height: 8),
@@ -83,8 +83,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                 label: 'Status: ',
                 text: widget.eventos.status
                     .toString()
-                    .substring(
-                        widget.eventos.status.toString().indexOf('.') + 1)
+                    .substring(widget.eventos.status.toString().indexOf('.') + 1)
                     .toUpperCase(),
               )
             ],

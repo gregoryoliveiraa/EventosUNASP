@@ -64,12 +64,15 @@ class _EventHomePageState extends State<EventHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SquareHomeButton('calendário', Color(0xFFC0CA33),
-                    FontAwesomeIcons.calendarAlt, () {}),
-                SquareHomeButton('Notícias', Color(0xFF95A5A6),
-                    FontAwesomeIcons.bullhorn, () {}),
-                SquareHomeButton(
-                  'Eventos',
+                SquareHomeButton('calendário', 
+                  Color(0xFFC0CA33),
+                  FontAwesomeIcons.calendarAlt, 
+                  () {}),
+                SquareHomeButton('Notícias', 
+                  Color(0xFF95A5A6),
+                  FontAwesomeIcons.bullhorn, 
+                  () {}),
+                SquareHomeButton('Eventos',
                   Color(0xFFAD1457),
                   FontAwesomeIcons.thList,
                   () => Navigator.of(context).push<CupertinoPageRoute>(
@@ -195,8 +198,7 @@ Widget _news(BuildContext context) {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                              'semana da arte'.toUpperCase(),
+                            Text('semana da arte'.toUpperCase(),
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 12),
                             ),
