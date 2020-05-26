@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/pages/events/event_home.dart';
 import 'package:unasp_ht/app/pages/home/homeAdm.dart';
+import 'package:unasp_ht/app/pages/home/home_acessor.dart';
 import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
 import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
@@ -46,7 +47,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Home'.toUpperCase()),
+        title: Text('Home alunos'.toUpperCase()),
         actions: <Widget>[
           IconButton(
               icon: Icon(FontAwesomeIcons.search),
@@ -132,10 +133,10 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             //
-            //____________________botao Gerente_________________________________
+            //____________________botao Acessor_________________________________
             InkWell(
               child: ListTile(
-                title: Text('Gerente',
+                title: Text('Acessor',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.grey[700],
@@ -143,6 +144,11 @@ class _HomePageState extends State<HomePage> {
                 leading: Icon(
                   Icons.person_add,
                   size: 35,
+                ),
+              ),
+              onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
+                CupertinoPageRoute(
+                  builder: (context) => HomeAcessor(),
                 ),
               ),
             ),

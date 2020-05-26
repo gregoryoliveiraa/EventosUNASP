@@ -6,15 +6,18 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
 import 'package:unasp_ht/app/pages/eventos/event_list.dart';
-//import 'package:unasp_ht/app/pages/events/event_module.dart';
+import 'package:unasp_ht/app/pages/events/event_module.dart';
 import 'package:unasp_ht/app/pages/home/components/square_home_button.dart';
+//import 'package:barcode_scan/barcode_scan.dart';
 
-class EventHomePage extends StatefulWidget {
+class EventAcessor extends StatefulWidget {
   @override
-  _EventHomePageState createState() => _EventHomePageState();
+  _EventAcessorState createState() => _EventAcessorState();
 }
 
-class _EventHomePageState extends State<EventHomePage> {
+class _EventAcessorState extends State<EventAcessor> {
+  //_________________________________________Texto para o QrCode_____________________
+  String code = '57246';
   AppBloc bloc = AppModule.to.getBloc();
   @override
   Widget build(BuildContext context) {
@@ -45,7 +48,7 @@ class _EventHomePageState extends State<EventHomePage> {
 /*___________________________APPBAR_____________________________*/
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Eventos - Home'.toUpperCase()),
+        title: Text('Eventos - Adm'.toUpperCase()),
         actions: <Widget>[
           IconButton(
               icon: Icon(FontAwesomeIcons.search),
@@ -68,22 +71,23 @@ class _EventHomePageState extends State<EventHomePage> {
                     FontAwesomeIcons.calendarAlt, () {}),
                 SquareHomeButton('Notícias', Color(0xFF95A5A6),
                     FontAwesomeIcons.bullhorn, () {}),
-                // SquareHomeButton(
-                //   'Eventos',
-                //   Color(0xFFAD1457),
-                //   FontAwesomeIcons.thList,
-                //   () => Navigator.of(context).push<CupertinoPageRoute>(
-                //     CupertinoPageRoute(
-                //       builder: (context) => EventModule(),
-                //     ),
-                //   ),
-                // ),
+                SquareHomeButton(
+                  'Eventos',
+                  Color(0xFFAD1457),
+                  FontAwesomeIcons.thList,
+                  () => Navigator.of(context).push<CupertinoPageRoute>(
+                    CupertinoPageRoute(
+                      builder: (context) => EventModule(),
+                    ),
+                  ),
+                ),
               ],
             ),
-            //________________ CHAMADA__________________________
+            // ________________ CHAMADA__________________________
             SizedBox(
               height: 20,
             ),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -91,7 +95,7 @@ class _EventHomePageState extends State<EventHomePage> {
                   width: 200,
                   height: 50,
                   child: RaisedButton(
-                    child: const Text('QR CODE',
+                    child: const Text('CHAMADA',
                         style: TextStyle(
                           fontSize: 20,
                           color: Colors.white,
@@ -99,7 +103,7 @@ class _EventHomePageState extends State<EventHomePage> {
                     color: Colors.deepOrangeAccent,
                     elevation: 8.0,
                     splashColor: Colors.white,
-                    onPressed: () =>
+                    onPressed: () => //scanQrCode(),
                         Navigator.of(context).push<CupertinoPageRoute>(
                       CupertinoPageRoute(
                         builder: (context) => Eventlist(),
@@ -123,7 +127,7 @@ class _EventHomePageState extends State<EventHomePage> {
               height: 30,
             ),
 
-//_____________________Segundo caroulsel ____________________________
+            //_____________________Segundo caroulsel ____________________________
 
             Text(
               'Noticias da Semana'.toUpperCase(),
@@ -139,7 +143,7 @@ class _EventHomePageState extends State<EventHomePage> {
         ),
       ),
 
-/*___________________________RODAPÉ_____________________________*/
+      /*___________________________RODAPÉ_____________________________*/
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Colors.white12,
         buttonBackgroundColor: orange,
@@ -159,6 +163,18 @@ class _EventHomePageState extends State<EventHomePage> {
       ), //,
     );
   }
+  //Metodo para Scan do QrCode
+  // scanQrCode() async {
+  //   try {
+  //     final result = await BarcodeScanner.scan();
+
+  //     setState(() {
+  //       code = result;
+  //     });
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 }
 
 Widget _news(BuildContext context) {

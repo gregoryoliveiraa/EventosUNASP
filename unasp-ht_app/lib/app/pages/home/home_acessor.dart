@@ -4,23 +4,23 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
+import 'package:unasp_ht/app/pages/events/event_Acessor.dart';
 //import 'package:unasp_ht/app/pages/eventos/event_list.dart';
-import 'package:unasp_ht/app/pages/events/event_Adm.dart';
+//import 'package:unasp_ht/app/pages/events/event_Adm.dart';
 //import 'package:unasp_ht/app/pages/events/event_home.dart';
 //import 'package:unasp_ht/app/pages/events/event_page.dart';
 import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
 import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
 import 'package:unasp_ht/app/shared/components/labeled.dart';
-
 import 'home_page.dart';
 //import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 
-class HomeAdm extends StatefulWidget {
+class HomeAcessor extends StatefulWidget {
   @override
-  _HomeAdmState createState() => _HomeAdmState();
+  _HomeAcessorState createState() => _HomeAcessorState();
 }
 
-class _HomeAdmState extends State<HomeAdm> {
+class _HomeAcessorState extends State<HomeAcessor> {
   AppBloc bloc = AppModule.to.getBloc();
   @override
   Widget build(BuildContext context) {
@@ -50,7 +50,7 @@ class _HomeAdmState extends State<HomeAdm> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Administrador'.toUpperCase()),
+        title: Text('Acessor'.toUpperCase()),
         actions: <Widget>[
           IconButton(
               icon: Icon(FontAwesomeIcons.search),
@@ -86,11 +86,6 @@ class _HomeAdmState extends State<HomeAdm> {
               ),
             ),
             InkWell(
-              //  onTap: () {
-              //    Navigator.of(context).pop();
-              //    Navigator.of(context).push(MaterialPageRoute(
-              //        builder: (BuildContext context) => AppModule()));
-              //  },
               child: ListTile(
                 title: Text('Sair'.toUpperCase(),
                     style: TextStyle(
@@ -109,7 +104,7 @@ class _HomeAdmState extends State<HomeAdm> {
 
             InkWell(
               child: ListTile(
-                title: Text('Aluno',
+                title: Text('Alunos',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.grey[700],
@@ -129,7 +124,7 @@ class _HomeAdmState extends State<HomeAdm> {
             InkWell(
               onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
                 CupertinoPageRoute(
-                  builder: (context) => EventAdm(),
+                  builder: (context) => EventAcessor(),
                 ),
               ),
               child: ListTile(
