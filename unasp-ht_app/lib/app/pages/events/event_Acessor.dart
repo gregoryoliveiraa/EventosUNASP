@@ -48,7 +48,7 @@ class _EventAcessorState extends State<EventAcessor> {
 /*___________________________APPBAR_____________________________*/
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Eventos - Adm'.toUpperCase()),
+        title: Text('Eventos - Acessor'.toUpperCase()),
         actions: <Widget>[
           IconButton(
               icon: Icon(FontAwesomeIcons.search),
