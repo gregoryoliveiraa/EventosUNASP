@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:unasp_ht/app/app_bloc.dart';
+import 'package:unasp_ht/app/app_module.dart';
 import 'package:unasp_ht/app/pages/events/event_model.dart';
 import 'package:unasp_ht/app/shared/components/labeled.dart';
 
@@ -15,13 +17,13 @@ class EventDetailPage extends StatefulWidget {
 }
 
 class _EventDetailPageState extends State<EventDetailPage> {
+  AppBloc bloc = AppModule.to.getBloc();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[600],
       appBar: AppBar(
 /*__________________________TÍTULO DA APPBAR___________________________*/
-        title: Text(widget.eventos.obs.toUpperCase()),
+        title: Text(widget.eventos.obs),
         actions: <Widget>[
           IconButton(
             icon: Icon(FontAwesomeIcons.pencilAlt,
@@ -85,7 +87,22 @@ class _EventDetailPageState extends State<EventDetailPage> {
                     .toString()
                     .substring(widget.eventos.status.toString().indexOf('.') + 1)
                     .toUpperCase(),
-              )
+              ),
+              Container(
+                  margin: EdgeInsets.all(10),
+                  // child: CircleAvatar(
+                  //   backgroundImage: AssetImage('test.png'),
+                  // ),
+                  width: MediaQuery.of(context).size.width,
+                  height: 250,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                        alignment: Alignment(-.2, 0),
+                        image: NetworkImage(bloc.currentUser.value?.imagePath ??
+                            'https://www.syncfusion.com/blogs/wp-content/uploads/2020/03/How-to-Create-a-Scheduling-Application-Using-Flutter-Event-Calendar.png'),
+                        fit: BoxFit.cover),
+                  ),
+                ),
             ],
           ),
         ),
