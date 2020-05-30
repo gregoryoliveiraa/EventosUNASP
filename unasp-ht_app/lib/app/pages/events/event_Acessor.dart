@@ -5,11 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
-//import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 import 'package:unasp_ht/app/pages/events/event_chamada.dart';
 import 'package:unasp_ht/app/pages/events/event_module.dart';
 import 'package:unasp_ht/app/pages/home/components/square_home_button.dart';
-//import 'package:barcode_scan/barcode_scan.dart';
 
 class EventAcessor extends StatefulWidget {
   @override
@@ -17,8 +15,7 @@ class EventAcessor extends StatefulWidget {
 }
 
 class _EventAcessorState extends State<EventAcessor> {
-  //_________________________________________Texto para o QrCode_____________________
-  String code = '57246';
+
   AppBloc bloc = AppModule.to.getBloc();
   @override
   Widget build(BuildContext context) {
@@ -46,7 +43,6 @@ class _EventAcessorState extends State<EventAcessor> {
     PageController pageController = PageController();
 
     return Scaffold(
-/*___________________________APPBAR_____________________________*/
       appBar: AppBar(
         centerTitle: true,
         title: Text('Eventos - Acessor'.toUpperCase()),
@@ -164,143 +160,131 @@ class _EventAcessorState extends State<EventAcessor> {
       ), //,
     );
   }
-  //Metodo para Scan do QrCode
-  // scanQrCode() async {
-  //   try {
-  //     final result = await BarcodeScanner.scan();
 
-  //     setState(() {
-  //       code = result;
-  //     });
-  //   } catch (e) {
-  //     print(e);
-  //   }
-  // }
-}
-
-Widget _news(BuildContext context) {
-  double appWidth = MediaQuery.of(context).size.width;
+  Widget _news(BuildContext context) {
+    double appWidth = MediaQuery.of(context).size.width;
 
 /*___________________________CARROUSEL_____________________________*/
-  return CarouselSlider(
-    enableInfiniteScroll: false,
-    height: appWidth * .3,
-    items: [1, 2, 3, 4, 5].map((i) {
-      return Builder(
-        builder: (BuildContext context) {
-          return Padding(
-            padding: EdgeInsets.only(top: 10, bottom: 10),
-            child: Container(
-                width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius:
-                            5.0, // has the effect of softening the shadow
-                      )
-                    ]),
-                child: Row(
-                  children: <Widget>[
-                    Image.asset('assets/img/test.png', fit: BoxFit.contain),
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'semana da arte'.toUpperCase(),
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 12),
-                            ),
-                            SizedBox(
-                              height: appWidth * .02,
-                            ),
-                            Text(
-                              'Idealizado e coordenado pela direção da Escola de Artes. Foi um evento top!',
-                              softWrap: true,
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                  fontSize: 11, color: Colors.black45),
-                            ),
-                            // )
-                          ],
+    return CarouselSlider(
+      enableInfiniteScroll: false,
+      height: appWidth * .3,
+      items: [1, 2, 3, 4, 5].map((i) {
+        return Builder(
+          builder: (BuildContext context) {
+            return Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: EdgeInsets.symmetric(horizontal: 5.0),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius:
+                              5.0, // has the effect of softening the shadow
+                        )
+                      ]),
+                  child: Row(
+                    children: <Widget>[
+                      Image.asset('assets/img/test.png', fit: BoxFit.contain),
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'semana da arte'.toUpperCase(),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 12),
+                              ),
+                              SizedBox(
+                                height: appWidth * .02,
+                              ),
+                              Text(
+                                'Idealizado e coordenado pela direção da Escola de Artes. Foi um evento top!',
+                                softWrap: true,
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                    fontSize: 11, color: Colors.black45),
+                              ),
+                              // )
+                            ],
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                )),
-          );
-        },
-      );
-    }).toList(),
-  );
-}
+                      )
+                    ],
+                  )),
+            );
+          },
+        );
+      }).toList(),
+    );
+  }
 
 //___________ SEGUNDO CAROUSEL___________________
-Widget _news2(BuildContext context) {
-  double appWidth = MediaQuery.of(context).size.width;
+  Widget _news2(BuildContext context) {
+    double appWidth = MediaQuery.of(context).size.width;
 
 /*___________________________CARROUSEL_____________________________*/
-  return CarouselSlider(
-    enableInfiniteScroll: false,
-    height: appWidth * .3,
-    items: [1, 2, 3, 4, 5].map((i) {
-      return Builder(
-        builder: (BuildContext context) {
-          return Padding(
-            padding: EdgeInsets.only(top: 10, bottom: 10),
-            child: Container(
-                width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius:
-                            5.0, // has the effect of softening the shadow
-                      )
-                    ]),
-                child: Row(
-                  children: <Widget>[
-                    Image.asset('assets/img/IOT.png', fit: BoxFit.contain),
-                    Expanded(
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text(
-                              'Palestra sobre IOT'.toUpperCase(),
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 12),
-                            ),
-                            SizedBox(
-                              height: appWidth * .02,
-                            ),
-                            Text(
-                              'Palestra IOT do Curso de sistemas e engenharia da computação',
-                              softWrap: true,
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                  fontSize: 11, color: Colors.black45),
-                            ),
-                            // )
-                          ],
+    return CarouselSlider(
+      enableInfiniteScroll: false,
+      height: appWidth * .3,
+      items: [1, 2, 3, 4, 5].map((i) {
+        return Builder(
+          builder: (BuildContext context) {
+            return Padding(
+              padding: EdgeInsets.only(top: 10, bottom: 10),
+              child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  margin: EdgeInsets.symmetric(horizontal: 5.0),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius:
+                              5.0, // has the effect of softening the shadow
+                        )
+                      ]),
+                  child: Row(
+                    children: <Widget>[
+                      Image.asset('assets/img/IOT.png', fit: BoxFit.contain),
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.all(10),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                'Palestra sobre IOT'.toUpperCase(),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 12),
+                              ),
+                              SizedBox(
+                                height: appWidth * .02,
+                              ),
+                              Text(
+                                'Palestra IOT do Curso de sistemas e engenharia da computação',
+                                softWrap: true,
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                    fontSize: 11, color: Colors.black45),
+                              ),
+                              // )
+                            ],
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                )),
-          );
-        },
-      );
-    }).toList(),
-  );
+                      )
+                    ],
+                  )),
+            );
+          },
+        );
+      }).toList(),
+    );
+  }
 }

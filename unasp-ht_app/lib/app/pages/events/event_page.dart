@@ -30,7 +30,7 @@ class _EventPageState extends State<EventPage> {
             builder: (context) => NewEventPage(),
           ),
         ),
-            ),
+        ),
         ],
       ),
       body: SingleChildScrollView(

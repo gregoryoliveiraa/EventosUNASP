@@ -37,22 +37,28 @@ class EventCard extends StatelessWidget {
         ),
       ),
       child: Container(
-        constraints: BoxConstraints(maxHeight: 100),
+        constraints: BoxConstraints(maxHeight: 120),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
-            BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 5),
+            BoxShadow(
+              color: Colors.black12, 
+              blurRadius: 5, 
+              spreadRadius: 5
+            ),
           ],
         ),
         child: Row(
           children: <Widget>[
             Container(
               decoration: BoxDecoration(
-                  color: getEventStatusColor(eventos.status),
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      bottomLeft: Radius.circular(20))),
+                color: getEventStatusColor(eventos.status),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(20),
+                  bottomLeft: Radius.circular(20)
+                  )
+              ),
               constraints: BoxConstraints(minHeight: 80),
               width: 15,
               height: 150,
@@ -73,22 +79,21 @@ class EventCard extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                              'Data: '.toUpperCase(),
+                            Text('Data: '.toUpperCase(),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).primaryColor,
                               ),
                             ),
                             Text(DateFormat('dd/MM/yy')
-                                .format(eventos.inicio ?? DateTime.now()))
+                              .format(eventos.inicio ?? DateTime.now())
+                            )
                           ],
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                              'Início às: '.toUpperCase(),
+                            Text('Início às: '.toUpperCase(),
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 color: Theme.of(context).primaryColor,
@@ -150,23 +155,23 @@ class EventCard extends StatelessWidget {
                       ],
                     ),
                   ),
-                  // Container(
-                  //   width: MediaQuery.of(context).size.width - 100,
-                  //   child: Divider(
-                  //     thickness: 1,
-                  //   ),
-                  // ),
-                  // Container(
-                  //     width: MediaQuery.of(context).size.width - 100,
-                  //     child: Center(
-                  //       child: Text(eventos.status
-                  //               .toString()
-                  //               .substring(
-                  //                   eventos.status.toString().indexOf('.') +
-                  //                       1)
-                  //               .toUpperCase() ??
-                  //           ''),
-                  //     )),
+                  Container(
+                    width: MediaQuery.of(context).size.width - 100,
+                    child: Divider(
+                      thickness: 1,
+                    ),
+                  ),
+                  Container(
+                      width: MediaQuery.of(context).size.width - 100,
+                      child: Center(
+                        child: Text(eventos.status
+                                .toString()
+                                .substring(
+                                    eventos.status.toString().indexOf('.') +
+                                        1)
+                                .toUpperCase() ??
+                            ''),
+                      )),
                 ],
               ),
             ),

@@ -1,9 +1,6 @@
-//import 'dart:html';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-//import 'package:image_picker/image_picker.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
 import 'package:unasp_ht/app/pages/login/signup/enums/category_enum.dart';
@@ -19,20 +16,9 @@ class _ProfileState extends State<Profile> {
   Color get primaryColor => Theme.of(context).primaryColor;
   AppBloc bloc = AppModule.to.getBloc();
 
-  // File _image;
-
-  // Future getImage() async{
-  //   //var image = await ImagePicker.pickImage(source: ImageSource.camera);
-  //   var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-  //   setState(() {
-  //     _image = image as File;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
-    String genre =
-        bloc.currentUser.value.genre == 'F' ? 'Feminino' : 'Masculino';
+    String genre = bloc.currentUser.value.genre == 'F' ? 'Feminino' : 'Masculino';
 
     return SingleChildScrollView(
       child: Container(
@@ -42,9 +28,9 @@ class _ProfileState extends State<Profile> {
               children: <Widget>[
                 Container(
                   margin: EdgeInsets.all(10),
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage('test.png'),
-                  ),
+                  // child: CircleAvatar(
+                  //   backgroundImage: AssetImage('test.png'),
+                  // ),
                   width: MediaQuery.of(context).size.width,
                   height: 250,
                   decoration: BoxDecoration(
