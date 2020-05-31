@@ -19,24 +19,26 @@ class _EventlistState extends State<Eventlist> {
       appBar: AppBar(
         title: Text('QR Code'.toUpperCase()),
       ),
-      
       body: Container(
-        child: Column(
-        mainAxisSize: MainAxisSize.min,
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
         children: <Widget>[
+          SizedBox(
+            height: 16,
+          ),
           Labeled(
             label: 'RA',
             text: bloc.currentUser.value.ra,
             icon: FontAwesomeIcons.userAlt,
             inline: false,
           ),
-          // Text(
-          //   'QrCode gerado com RA:\n $data',
-          //   textAlign: TextAlign.center,
-          //   style: TextStyle(
-          //     fontSize: 24,
-          //   ),
-          // ),
+          Labeled(
+            label: 'NOME',
+            text: bloc.currentUser.value.name,
+            icon: FontAwesomeIcons.userAlt,
+            inline: false,
+          ),
           //____________Distancia entre o texto e o QRCode________________
           SizedBox(
             height: 16,

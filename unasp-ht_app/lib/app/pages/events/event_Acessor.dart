@@ -15,7 +15,6 @@ class EventAcessor extends StatefulWidget {
 }
 
 class _EventAcessorState extends State<EventAcessor> {
-
   AppBloc bloc = AppModule.to.getBloc();
   @override
   Widget build(BuildContext context) {
