@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
@@ -19,25 +19,27 @@ class _EventlistState extends State<Eventlist> {
       appBar: AppBar(
         title: Text('QR Code'.toUpperCase()),
       ),
-      body: Container(
+      body: Center(
           child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
+        //crossAxisAlignment: CrossAxisAlignment.center,
+        //mainAxisSize: MainAxisSize.max,
         children: <Widget>[
           SizedBox(
-            height: 16,
+            height: 24,
           ),
           Labeled(
-            label: 'RA',
+            label: 'RA : ',
             text: bloc.currentUser.value.ra,
-            icon: FontAwesomeIcons.userAlt,
-            inline: false,
+            //icon: FontAwesomeIcons.userAlt,
+            inline: true,
           ),
-          Labeled(
-            label: 'NOME',
-            text: bloc.currentUser.value.name,
-            icon: FontAwesomeIcons.userAlt,
-            inline: false,
+          Center(
+            child: Labeled(
+              label: 'NOME : ',
+              text: bloc.currentUser.value.name,
+              //icon: FontAwesomeIcons.userAlt,
+              inline: true,
+            ),
           ),
           //____________Distancia entre o texto e o QRCode________________
           SizedBox(

@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 import 'package:unasp_ht/app/pages/events/event_home.dart';
 import 'package:unasp_ht/app/pages/home/homeAdm.dart';
 import 'package:unasp_ht/app/pages/home/home_acessor.dart';
@@ -152,6 +153,27 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+            //__________________________ QR Code____________________________
+            InkWell(
+              child: ListTile(
+                title: Text('Qr Code',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[700],
+                        fontSize: 18)),
+                leading: Icon(
+                  Icons.select_all,
+                  size: 35,
+                ),
+              ),
+              onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
+                CupertinoPageRoute(
+                  builder: (context) => Eventlist(),
+                ),
+              ),
+            ),
+
+            //
 
 //Botão Eventos
             InkWell(

@@ -6,13 +6,13 @@ class Labeled extends StatelessWidget {
   final String text;
   final bool inline;
 
-  const Labeled(
-      {Key key,
-      this.icon,
-      @required this.label,
-      @required this.text,
-      this.inline = true})
-      : super(key: key);
+  const Labeled({
+    Key key,
+    this.icon,
+    @required this.label,
+    @required this.text,
+    this.inline = true,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,9 @@ class Labeled extends StatelessWidget {
           Text(
             label.toUpperCase(),
             style: TextStyle(
+              //color: Colors.black,
               color: Colors.grey[500],
+              //fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -46,8 +48,7 @@ class Labeled extends StatelessWidget {
       const SizedBox(height: 5),
       Text(
         text.toUpperCase(),
-        style: TextStyle(
-          color: Colors.grey[500]),
+        style: TextStyle(color: Colors.grey[500]),
       )
     ];
 
@@ -56,7 +57,6 @@ class Labeled extends StatelessWidget {
       children: <Widget>[
         !inline
             ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: widgets,
               )
             : Row(

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/pages/departures/departures_module.dart';
+//import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 import 'package:unasp_ht/app/pages/events/event_home.dart';
 import 'package:unasp_ht/app/pages/home/components/square_home_button.dart';
 
@@ -84,18 +85,18 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: appWidth * 0.1,
             ),
+            //_____Botao
+
             Text(
               'últimas notícias'.toUpperCase(),
             ),
-            SizedBox(
-              height: 10,
-            ),
+
             _news(context),
             SizedBox(
               height: 20,
             ),
 
-            ////novo sizedbox Eventos da Semana
+            //_________________________________________________________novo sizedbox Eventos da Semana
             ///-------------------------distancia do fim da pagina  ----------------
             SizedBox(
               height: appWidth * 0.03,
