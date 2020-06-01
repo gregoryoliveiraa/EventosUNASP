@@ -61,7 +61,6 @@ class _NewEventPageState extends State<NewEventPage> {
                             enabled: snapshot.hasData && snapshot.data,
                             onTap: () async {
                               bool res = await _bloc.sendEventos();
-
                               if (res) {
                                 _formBloc.clearFields();
                                 _eventosBloc.getEventos();

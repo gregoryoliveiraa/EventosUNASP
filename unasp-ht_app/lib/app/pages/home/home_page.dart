@@ -1,4 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,7 +18,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  AppBloc bloc = AppModule.to.getBloc();
+  FirebaseAuth auth = FirebaseAuth.instance;
+  AppBloc block = AppModule.to.getBloc();
   @override
   Widget build(BuildContext context) {
     List<Widget> t = [
@@ -40,7 +42,7 @@ class _HomePageState extends State<HomePage> {
     ];
     Color orange = Theme.of(context).accentColor;
     Color blue = Theme.of(context).primaryColor;
-    //HomeBloc bloc = HomeModule.to.getBloc<HomeBlock>();
+    //HomeBloc bloc = HomeModule.to.getBloc<HomeBloc>();
     PageController pageController = PageController();
 
 /*___________________________APPBAR_____________________________*/
@@ -57,19 +59,19 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
 
-//GRELHA
+/*_____________________________GRELHA___________________________ */
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
             UserAccountsDrawerHeader(
               accountName: Labeled(
                 label: 'Nome: ',
-                text: bloc.currentUser.value.name,
+                text: block.currentUser.value.name,
                 inline: true,
               ),
               accountEmail: Labeled(
                 label: 'Email: ',
-                text: bloc.currentUser.value.email,
+                text: block.currentUser.value.email,
                 inline: true,
               ),
               currentAccountPicture: GestureDetector(
@@ -94,11 +96,8 @@ class _HomePageState extends State<HomePage> {
                   size: 35,
                 ),
               ),
-              onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
-                CupertinoPageRoute(
-                  builder: (context) => Home(),
-                ),
-              ),
+              onTap: () => auth.signOut(),
+              
             ),
             InkWell(
               child: ListTile(
@@ -113,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            //____________________botao Administrador_________________________________
+//____________________botao Administrador_________________________________
             InkWell(
               child: ListTile(
                 title: Text('Administrador',
