@@ -90,9 +90,6 @@ class _EventDetailPageState extends State<EventDetailPage> {
               ),
               Container(
                   margin: EdgeInsets.all(10),
-                  // child: CircleAvatar(
-                  //   backgroundImage: AssetImage('test.png'),
-                  // ),
                   width: MediaQuery.of(context).size.width,
                   height: 250,
                   decoration: BoxDecoration(

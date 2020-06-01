@@ -19,7 +19,8 @@ class _ChamadaState extends State<Chamada> {
           child: FutureBuilder<String>(
               future: _barcodeString,
               builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                return Text(snapshot.data != null ? snapshot.data : '');
+                //return Text(snapshot.data != null ? snapshot.data : '');
+                return Text(snapshot.data ?? '');
               })),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -30,7 +31,7 @@ class _ChamadaState extends State<Chamada> {
                 .setTorchEnabled(true)
                 .setHandlePermissions(true)
                 .setExecuteAfterPermissionGranted(true)
-                .scan;
+                .scan as Future<String>;
           });
         },
         tooltip: 'Reader the QRCode',

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
+import 'package:unasp_ht/app/pages/home/pages/profile/profile_image.dart';
 import 'package:unasp_ht/app/pages/login/signup/enums/category_enum.dart';
 import 'package:unasp_ht/app/shared/components/labeled.dart';
 import 'package:unasp_ht/app/shared/utils/string_extensions.dart';
@@ -28,16 +29,14 @@ class _ProfileState extends State<Profile> {
               children: <Widget>[
                 Container(
                   margin: EdgeInsets.all(10),
-                  // child: CircleAvatar(
-                  //   backgroundImage: AssetImage('test.png'),
-                  // ),
                   width: MediaQuery.of(context).size.width,
                   height: 250,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                         alignment: Alignment(-.2, 0),
                         image: NetworkImage(bloc.currentUser.value?.imagePath ??
-                            'https://vectorified.com/images/facebook-no-photo-icon-20.jpg'),
+                            'https://vectorified.com/images/facebook-no-photo-icon-20.jpg'
+                        ),
                         fit: BoxFit.cover),
                   ),
                 ),
@@ -51,7 +50,11 @@ class _ProfileState extends State<Profile> {
                   ),
                   color: Colors.grey[500],
                   tooltip: 'Adicione Foto de Perfil',
-                  onPressed: () {},
+                  onPressed: () => Navigator.of(context).push<CupertinoPageRoute>(
+                CupertinoPageRoute(
+                  builder: (context) => ProfileImage(),
+                ),
+              ),
                 ),
                 SizedBox(
                   height: 1,

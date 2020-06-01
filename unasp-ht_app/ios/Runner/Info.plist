@@ -3,7 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>NSPhotoLibrayUsageDescription</key>
+	<string>Necessário permissão para acessar a galeria de fotos</string>
 	<key>NSCameraUsageDescription</key>
+	<string>Necessário permissão para acessar a camera</string>
 	<key>NSMicrophoneUsageDescription</key>
 
 

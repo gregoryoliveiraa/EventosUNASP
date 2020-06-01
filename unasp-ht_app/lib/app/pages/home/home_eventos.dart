@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
-import 'package:unasp_ht/app/pages/eventos/event_list.dart';
+import 'package:unasp_ht/app/pages/events/event_home.dart';
 import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
 import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
 import 'package:unasp_ht/app/shared/components/labeled.dart';
@@ -125,7 +125,7 @@ class _HomePageState extends State<HomeEventos> {
             InkWell(
               onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
                 CupertinoPageRoute(
-                  builder: (context) => Eventlist(),
+                  builder: (context) => EventHomePage(),
                 ),
               ),
               child: ListTile(

@@ -25,6 +25,5 @@ class Eventos {
   Map<String, dynamic> toJson() => _$EventToJson(this);
 }
 
-//enum EventStatus { pendente, decorrendo, encerrado }
 enum EventStatus { pendente, decorrendo, encerrado }
 
