@@ -18,7 +18,7 @@ class CustomTextField extends StatelessWidget {
       @required this.controller,
       this.inputType = TextInputType.text,
       this.enabled = true,
-      this.onChanged});
+      this.onChanged, bool autofocus});
 
   @override
   Widget build(BuildContext context) => Container(

@@ -91,12 +91,12 @@ class _EventDetailPageState extends State<EventDetailPage> {
               Container(
                   margin: EdgeInsets.all(10),
                   width: MediaQuery.of(context).size.width,
-                  height: 250,
+                  height: 280,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                         alignment: Alignment(-.2, 0),
-                        image: NetworkImage(bloc.currentUser.value?.imagePath ??
-                            'https://www.syncfusion.com/blogs/wp-content/uploads/2020/03/How-to-Create-a-Scheduling-Application-Using-Flutter-Event-Calendar.png'),
+                        image: NetworkImage(bloc.currentUser.value?.imagePath ?? 'https://firebasestorage.googleapis.com/v0/b/eventounasp.appspot.com/o/fotos%2F1591052408722.jpg?alt=media&token=9412029d-f08c-4296-8327-0f2a335ae974'
+                        ),
                         fit: BoxFit.cover),
                   ),
                 ),

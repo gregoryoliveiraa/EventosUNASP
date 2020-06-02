@@ -20,6 +20,10 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   FirebaseAuth auth = FirebaseAuth.instance;
   AppBloc block = AppModule.to.getBloc();
+
+  String url = 'https://firebasestorage.googleapis.com/v0/b/eventounasp.appspot.com/o/fotos%2F1591040782373.jpg?alt=media&token=566d19f7-4986-46c0-9f44-7e72edc70058';
+    
+  
   @override
   Widget build(BuildContext context) {
     List<Widget> t = [
@@ -76,13 +80,11 @@ class _HomePageState extends State<HomePage> {
               ),
               currentAccountPicture: GestureDetector(
                 child: CircleAvatar(
+                  maxRadius: 40,
                   backgroundColor: Colors.blue[300],
-                  child: Icon(
-                    Icons.person,
-                    color: Colors.grey[300],
-                  ),
-                ),
+                  backgroundImage: NetworkImage(url),
               ),
+            ),
             ),
             InkWell(
               child: ListTile(

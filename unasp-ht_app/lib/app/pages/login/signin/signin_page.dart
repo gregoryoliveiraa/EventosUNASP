@@ -172,8 +172,7 @@ class _SigninPageState extends State<SigninPage>
                                             CupertinoPageRoute,
                                             CupertinoPageRoute>(
                                         CupertinoPageRoute(
-                                            builder: (context) =>
-                                                HomeModule()));
+                                            builder: (context) => HomeModule()));
                                   }
                                 },
                                 width: animButtonWidth.value,
