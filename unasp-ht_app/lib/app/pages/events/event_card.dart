@@ -37,7 +37,7 @@ class EventCard extends StatelessWidget {
         ),
       ),
       child: Container(
-        constraints: BoxConstraints(maxHeight: 120),
+        constraints: BoxConstraints(maxHeight: 130),
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(20),
