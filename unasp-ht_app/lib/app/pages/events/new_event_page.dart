@@ -53,7 +53,7 @@ class _NewEventPageState extends State<NewEventPage> {
                 child: Column(
                   children: <Widget>[
                     EventForm(),
-                    const SizedBox(height: 40),
+                    const SizedBox(height: 20),
                     StreamBuilder<bool>(
                         stream: _formBloc.isValidFormController,
                         builder: (c, snapshot) {
@@ -77,7 +77,7 @@ class _NewEventPageState extends State<NewEventPage> {
                               }
                             },
                             color: theme.accentColor,
-                            text: 'enviar',
+                            text: 'enviar',                            
                           );
                         })
                   ],

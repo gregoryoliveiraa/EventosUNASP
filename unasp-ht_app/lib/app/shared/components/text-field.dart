@@ -18,7 +18,7 @@ class CustomTextField extends StatelessWidget {
       @required this.controller,
       this.inputType = TextInputType.text,
       this.enabled = true,
-      this.onChanged});
+      this.onChanged, bool autofocus});
 
   @override
   Widget build(BuildContext context) => Container(
@@ -37,17 +37,17 @@ class CustomTextField extends StatelessWidget {
           onEditingComplete: () => onChanged,
           style: TextStyle(
             fontSize: 14,
-            color: isBlue ? Color(0xFFC2C2C2) : Colors.grey[500],
+            color: isBlue ? Color(0xFFC2C2C2) : Colors.grey[800],
           ),
           decoration: InputDecoration(
             hintStyle: TextStyle(
-              color: isBlue ? Color(0xFFC2C2C2) : Colors.grey[500],
+              color: isBlue ? Color(0xFFC2C2C2) : Colors.grey[600],
               fontSize: 14,
             ),
             hintText: hintText.toUpperCase(),
             icon: IconTheme(
               data: IconThemeData(
-                color: isBlue ? Color(0xFFC2C2C2) : Colors.grey[500],
+                color: isBlue ? Color(0xFFC2C2C2) : Colors.grey[600],
               ),
               child: Icon(
                 icon,

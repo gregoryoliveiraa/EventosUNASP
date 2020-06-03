@@ -16,6 +16,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   Color get primaryColor => Theme.of(context).primaryColor;
   AppBloc bloc = AppModule.to.getBloc();
+  String urlImage = 'https://firebasestorage.googleapis.com/v0/b/eventounasp.appspot.com/o/fotos%2F1591037679788.jpg?alt=media&token=c484fed7-a40a-4668-a446-51b0cb251d02';
 
   @override
   Widget build(BuildContext context) {
@@ -34,9 +35,7 @@ class _ProfileState extends State<Profile> {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                         alignment: Alignment(-.2, 0),
-                        image: NetworkImage(bloc.currentUser.value?.imagePath ??
-                            'https://vectorified.com/images/facebook-no-photo-icon-20.jpg'
-                        ),
+                        image: NetworkImage(bloc.currentUser.value?.imagePath ?? urlImage),
                         fit: BoxFit.cover),
                   ),
                 ),
@@ -56,11 +55,9 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
                 ),
-                SizedBox(
-                  height: 1,
-                ),
+
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 25, horizontal: 25),
+                  padding: EdgeInsets.symmetric(vertical: 2, horizontal: 25),
                   child: Column(
                     children: <Widget>[
                       Labeled(
@@ -90,7 +87,7 @@ class _ProfileState extends State<Profile> {
                       ),
                       Labeled(
                         label: 'email',
-                        text: bloc.currentUser.value.email,
+                        text: bloc.currentUser.value.email.toLowerCase(),
                         icon: FontAwesomeIcons.solidEnvelope,
                         inline: false,
                       ),
@@ -98,7 +95,7 @@ class _ProfileState extends State<Profile> {
                         height: 25,
                       ),
                       Labeled(
-                        label: 'gênero',
+                        label: 'gênero: ',
                         text: genre,
                         icon: FontAwesomeIcons.venusMars,
                         inline: false,
@@ -108,11 +105,10 @@ class _ProfileState extends State<Profile> {
                       ),
                       Labeled(
                         label: 'categorias',
-                        text:
-                            '${stringValue(bloc.currentUser.value.mainCategory.index)} \n${stringValue(bloc.currentUser.value.secondaryCategory?.index)}',
+                        text: '${stringValue(bloc.currentUser.value.mainCategory.index)} \n${stringValue(bloc.currentUser.value.secondaryCategory?.index)}',
                         icon: FontAwesomeIcons.infoCircle,
                         inline: false,
-                      )
+                      ),
                     ],
                   ),
                 ),

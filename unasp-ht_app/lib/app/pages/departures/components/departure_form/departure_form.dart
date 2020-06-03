@@ -29,7 +29,7 @@ class _DepartureFormState extends State<DepartureForm> {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         Row(
           children: <Widget>[
             Expanded(

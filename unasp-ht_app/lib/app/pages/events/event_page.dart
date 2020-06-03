@@ -22,19 +22,9 @@ class _EventPageState extends State<EventPage> {
       appBar: AppBar(
         title: Text('lista eventos'.toUpperCase()),
         centerTitle: true,
-         actions: <Widget>[
-          IconButton(
-            icon: Icon(FontAwesomeIcons.plusCircle), 
-            onPressed: () => Navigator.of(context).push<CupertinoPageRoute>(
-          CupertinoPageRoute(
-            builder: (context) => NewEventPage(),
-          ),
-        ),
-        ),
-        ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
             StreamBuilder<List<Eventos>>(
@@ -45,11 +35,14 @@ class _EventPageState extends State<EventPage> {
                     child: LoadingWidget(),
                   );
                 }
-                return ListView.builder(
+                return ListView.separated(
                   shrinkWrap: true,
                   itemBuilder: (c, i) => EventCard(eventos: s.data[i]),
                   itemCount: s.data.length,
+                  separatorBuilder: (BuildContext context, int index) =>
+                      const SizedBox(height: 20),
                 );
+
               },
             )
           ],
@@ -68,6 +61,7 @@ class _EventPageState extends State<EventPage> {
           ),
         ),
       ),
+      
     );
   }
 }

@@ -23,7 +23,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
     return Scaffold(
       appBar: AppBar(
 /*__________________________TÍTULO DA APPBAR___________________________*/
-        title: Text(widget.eventos.obs),
+        title: Text('Evento'.toUpperCase()),
         actions: <Widget>[
           IconButton(
             icon: Icon(FontAwesomeIcons.pencilAlt,
@@ -46,57 +46,53 @@ class _EventDetailPageState extends State<EventDetailPage> {
           padding: const EdgeInsets.all(20),
           child: Column(
             children: <Widget>[
-              Labeled(
-                label: 'Inicio: ',
-                text: DateFormat('dd/MM/yy').format(widget.eventos.inicio ?? DateTime.now(),
-                ),
+              Text('Título: "' + widget.eventos.titulo.toUpperCase() + '"',
+                style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey[700],
+                        fontSize: 18)
               ),
-              
-              const SizedBox(height: 8),
-              Labeled(
-                label: 'hora: ',
-                text: DateFormat('HH:mm').format(widget.eventos.inicio?? DateTime.now(),
-                ) +'h',
-              ),
-              const SizedBox(height: 8),
-              Labeled(
-                label: 'Término: ',
-                text: DateFormat('dd/MM/yy').format(widget.eventos.termino ?? DateTime.now(),
-                ),
+              const SizedBox(height: 15),
+
+              Labeled(label: 'Inicio: ',
+                text: DateFormat('dd/MM/yy').format(widget.eventos.inicio ?? DateTime.now(),),
               ),
               const SizedBox(height: 8),
-              Labeled(
-                label: 'hora: ',
-                text: DateFormat('HH:mm').format(widget.eventos.termino ?? DateTime.now(),
-                ) +'h',
+              Labeled(label: 'hora: ',
+                text: DateFormat('HH:mm').format(widget.eventos.inicio?? DateTime.now(),) +'h',
               ),
               const SizedBox(height: 8),
-              Labeled(
-                label: 'Local: ',
+              Labeled(label: 'Término: ',
+                text: DateFormat('dd/MM/yy').format(widget.eventos.termino ?? DateTime.now(),),
+              ),
+              const SizedBox(height: 8),
+              Labeled(label: 'hora: ',
+                text: DateFormat('HH:mm').format(widget.eventos.termino ?? DateTime.now(),) +'h',
+              ),
+              const SizedBox(height: 8),
+              Labeled(label: 'Local: ',
                 text: widget.eventos.local,
               ),
               const SizedBox(height: 8),
-              Labeled(
-                label: 'título: ',
+              Labeled(label: 'Observações: ',
                 text: widget.eventos.obs,
               ),
               const SizedBox(height: 8),
-              Labeled(
-                label: 'Status: ',
-                text: widget.eventos.status
-                    .toString()
+              Labeled(label: 'Status: ',
+                text: widget.eventos.status.toString()
                     .substring(widget.eventos.status.toString().indexOf('.') + 1)
                     .toUpperCase(),
               ),
+              const SizedBox(height: 18),
               Container(
                   margin: EdgeInsets.all(10),
                   width: MediaQuery.of(context).size.width,
-                  height: 250,
+                  height: 280,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                         alignment: Alignment(-.2, 0),
-                        image: NetworkImage(bloc.currentUser.value?.imagePath ??
-                            'https://www.syncfusion.com/blogs/wp-content/uploads/2020/03/How-to-Create-a-Scheduling-Application-Using-Flutter-Event-Calendar.png'),
+                        image: NetworkImage(bloc.currentUser.value?.imagePath ?? 'https://firebasestorage.googleapis.com/v0/b/eventounasp.appspot.com/o/fotos%2F1591052408722.jpg?alt=media&token=9412029d-f08c-4296-8327-0f2a335ae974'
+                        ),
                         fit: BoxFit.cover),
                   ),
                 ),

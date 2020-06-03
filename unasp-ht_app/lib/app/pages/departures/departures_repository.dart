@@ -15,8 +15,8 @@ class DeparturesRepository {
       QuerySnapshot snapshot = await _firestore
           .collection('departures')
           .where('userId', isEqualTo: appBloc.currentUser.value.uid)
-          .orderBy('going', descending: true)
           .getDocuments();
+          
 
       if (snapshot == null || snapshot.documents == null) {
         return null;

@@ -10,6 +10,7 @@ class UserModel {
   CategoryEnum secondaryCategory;
   String ra;
   String uid;
+   String _urlImagem;
 
   UserModel();
 
@@ -35,5 +36,10 @@ class UserModel {
         secondaryCategory != null ? secondaryCategory.index : null;
     data['ra'] = ra;
     return data;
+  }
+  String get urlImagem => _urlImagem;
+
+  set urlImagem(String value) {
+    _urlImagem = value;
   }
 }
