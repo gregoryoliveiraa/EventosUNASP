@@ -8,6 +8,7 @@ part of 'event_model.dart';
 
 Eventos _$EventFromJson(Map<String, dynamic> json) {
   return Eventos(
+    json['titulo'] as String,
     json['inicio'] == null ? null : DateTime.parse(json['inicio'] as String),
     json['termino'] == null ? null : DateTime.parse(json['termino'] as String),
     json['local'] as String,
@@ -18,10 +19,11 @@ Eventos _$EventFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$EventToJson(Eventos instance) => <String, dynamic>{
+      'titulo': instance.titulo.toString(),
       'inicio': instance.inicio?.toIso8601String(),
       'termino': instance.termino?.toIso8601String(),
-      'local': instance.local,
-      'obs': instance.obs,
+      'local': instance.local.toString(),
+      'obs': instance.obs.toString(),
       'status': _$EventStatusEnumMap[instance.status],
       'userId': instance.userId,
     };

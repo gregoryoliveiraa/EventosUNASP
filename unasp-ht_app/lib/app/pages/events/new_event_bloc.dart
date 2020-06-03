@@ -20,6 +20,7 @@ class NewEventBloc extends BlocBase {
     isLoadingController.add(true);
     return await _repository.post(
       Eventos(
+        formBloc.tituloController.text,
         formBloc.inicioDateC.value,
         formBloc.terminoDateC.value,
         formBloc.localController.text,

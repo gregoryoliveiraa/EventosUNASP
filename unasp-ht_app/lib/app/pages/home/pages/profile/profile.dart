@@ -55,11 +55,9 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
                 ),
-                SizedBox(
-                  height: 1,
-                ),
+
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 25, horizontal: 25),
+                  padding: EdgeInsets.symmetric(vertical: 2, horizontal: 25),
                   child: Column(
                     children: <Widget>[
                       Labeled(
@@ -89,7 +87,7 @@ class _ProfileState extends State<Profile> {
                       ),
                       Labeled(
                         label: 'email',
-                        text: bloc.currentUser.value.email,
+                        text: bloc.currentUser.value.email.toLowerCase(),
                         icon: FontAwesomeIcons.solidEnvelope,
                         inline: false,
                       ),
@@ -97,7 +95,7 @@ class _ProfileState extends State<Profile> {
                         height: 25,
                       ),
                       Labeled(
-                        label: 'gênero',
+                        label: 'gênero: ',
                         text: genre,
                         icon: FontAwesomeIcons.venusMars,
                         inline: false,
@@ -107,11 +105,10 @@ class _ProfileState extends State<Profile> {
                       ),
                       Labeled(
                         label: 'categorias',
-                        text:
-                            '${stringValue(bloc.currentUser.value.mainCategory.index)} \n${stringValue(bloc.currentUser.value.secondaryCategory?.index)}',
+                        text: '${stringValue(bloc.currentUser.value.mainCategory.index)} \n${stringValue(bloc.currentUser.value.secondaryCategory?.index)}',
                         icon: FontAwesomeIcons.infoCircle,
                         inline: false,
-                      )
+                      ),
                     ],
                   ),
                 ),

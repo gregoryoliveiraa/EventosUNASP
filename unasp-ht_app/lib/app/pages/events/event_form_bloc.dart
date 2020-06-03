@@ -5,6 +5,7 @@ import 'package:rxdart/rxdart.dart';
 import 'package:unasp_ht/app/shared/utils/string_extensions.dart';
 
 class EventFormBloc extends BlocBase {
+  TextEditingController tituloController = TextEditingController();
   TextEditingController inicioDateController = TextEditingController();
   TextEditingController inicioTimeController = TextEditingController();
   TextEditingController terminoDateController = TextEditingController();
@@ -16,6 +17,7 @@ class EventFormBloc extends BlocBase {
   BehaviorSubject<DateTime> terminoDateC = BehaviorSubject<DateTime>();
 
   EventFormBloc() {
+    tituloController.addListener(validate);
     inicioDateController.addListener(validate);
     inicioTimeController.addListener(validate);
     terminoDateController.addListener(validate);
@@ -37,6 +39,7 @@ class EventFormBloc extends BlocBase {
   }
 
   void clearFields() {
+    tituloController.clear();
     inicioDateController.clear();
     inicioTimeController.clear();
     terminoDateController.clear();
@@ -52,6 +55,7 @@ class EventFormBloc extends BlocBase {
 
   void validate() => isValidFormController.add(inicioDateC.value != null &&
       terminoDateC.value != null &&
+      !tituloController.text.isNullOrEmpty &&
       !localController.text.isNullOrEmpty &&
       !obsController.text.isNullOrEmpty);
 

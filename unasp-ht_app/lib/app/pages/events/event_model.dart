@@ -4,6 +4,7 @@ part 'event_model.g.dart';
 
 @JsonSerializable()
 class Eventos {
+  final String titulo;
   final DateTime inicio;
   final DateTime termino;
   final String local;
@@ -12,6 +13,7 @@ class Eventos {
   final String userId;
 
   Eventos(
+    this.titulo,
     this.inicio, 
     this.termino, 
     this.local, 

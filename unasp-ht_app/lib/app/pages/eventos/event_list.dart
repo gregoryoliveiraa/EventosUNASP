@@ -24,8 +24,6 @@ class _EventlistState extends State<Eventlist> {
         child: Container(
             padding: EdgeInsets.all(30),
             child: Column(
-              //crossAxisAlignment: CrossAxisAlignment.center,
-              //mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 SizedBox(
                   height: 16,

@@ -3,13 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/pages/departures/departures_module.dart';
-//import 'package:unasp_ht/app/pages/eventos/event_list.dart';
-import 'package:unasp_ht/app/pages/events/event_home.dart';
+import 'package:unasp_ht/app/pages/events/event_module.dart';
 import 'package:unasp_ht/app/pages/home/components/square_home_button.dart';
 import 'package:unasp_ht/app/pages/home/home_bloc.dart';
 import 'package:unasp_ht/app/pages/home/home_module.dart';
 import 'package:unasp_ht/app/pages/home/news_model.dart';
 import 'package:unasp_ht/app/pages/home/pages/news/news_details_page.dart';
+import 'package:unasp_ht/app/pages/news/news_page.dart';
 import 'package:unasp_ht/app/shared/components/loading_widget.dart';
 
 class Home extends StatefulWidget {
@@ -18,7 +18,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  
   @override
   Widget build(BuildContext context) {
     double appWidth = MediaQuery.of(context).size.width;
@@ -74,15 +73,23 @@ class _HomeState extends State<Home> {
               children: <Widget>[
                 SquareHomeButton('calendário', Color(0xFFC0CA33),
                     FontAwesomeIcons.calendarAlt, () {}),
-                SquareHomeButton('Notícias', Color(0xFF95A5A6),
-                    FontAwesomeIcons.bullhorn, () {}),
+                SquareHomeButton(
+                  'Notícias',
+                  Color(0xFF95A5A6),
+                  FontAwesomeIcons.bullhorn,
+                  () => Navigator.of(context).push<CupertinoPageRoute>(
+                    CupertinoPageRoute(
+                      builder: (context) => NewsPage(),
+                    ),
+                  ),
+                ),
                 SquareHomeButton(
                   'Eventos',
                   Color(0xFFAD1457),
                   FontAwesomeIcons.thList,
                   () => Navigator.of(context).push<CupertinoPageRoute>(
                     CupertinoPageRoute(
-                      builder: (context) => EventHomePage(),
+                      builder: (context) => EventModule(),
                     ),
                   ),
                 ),
@@ -91,17 +98,13 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: appWidth * 0.1,
             ),
-            //_____Botao
-
             Text(
               'últimas notícias'.toUpperCase(),
             ),
-
             _news(context),
             SizedBox(
               height: 20,
             ),
-
             //_________________________________________________________novo sizedbox Eventos da Semana
             ///-------------------------distancia do fim da pagina  ----------------
             SizedBox(
@@ -119,12 +122,12 @@ class _HomeState extends State<Home> {
             SizedBox(
               height: 10,
             ),
-            // _news(context),
-            // SizedBox(height: 10,
-            // ),
-            // SizedBox(height: 20,
-            // ),
-            // _news(context),
+            _news(context),
+            SizedBox(height: 10,
+            ),
+            SizedBox(height: 20,
+            ),
+            _news(context),
 
             SizedBox(
               height: 50,
@@ -222,9 +225,7 @@ Widget _news(BuildContext context) {
             );
           }).toList(),
         );
-      }
-  );
-
+      });
 }
 
 //Novo carousel slider
@@ -289,7 +290,4 @@ Widget _news2(BuildContext context2) {
       );
     }).toList(),
   );
-
-
-
 }

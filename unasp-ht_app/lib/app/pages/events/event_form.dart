@@ -12,6 +12,7 @@ class EventForm extends StatefulWidget {
 }
 
 class _EventFormState extends State<EventForm> {
+  
   final EventFormBloc _bloc = EventModule.to.getBloc<EventFormBloc>();
   final DateTime today = DateTime.now();
 
@@ -22,14 +23,23 @@ class _EventFormState extends State<EventForm> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text('Início / Término'.toUpperCase(),
-        style: TextStyle(
+          style: TextStyle(
             fontSize: 16,
             color: theme.primaryColor,
             fontWeight: FontWeight.bold,
-            
           ),
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
+       
+        CustomTextField(
+          hintText: 'título do evento',
+          icon: FontAwesomeIcons.check,
+          controller: _bloc.tituloController,
+          autofocus: true,
+           inputType: TextInputType.text,
+        ),
+        const SizedBox(height: 10),
+
         Row(
           children: <Widget>[
             Expanded(
@@ -80,6 +90,7 @@ class _EventFormState extends State<EventForm> {
               ),
             ),
             const SizedBox(width: 10),
+
             Expanded(
               child: Column(
                 children: <Widget>[
@@ -126,6 +137,7 @@ class _EventFormState extends State<EventForm> {
           ],
         ),
         const SizedBox(height: 20),
+        
         Text('detalhes:'.toUpperCase(),
           style: TextStyle(
             fontSize: 16,
@@ -134,16 +146,16 @@ class _EventFormState extends State<EventForm> {
           ),
         ),
         const SizedBox(height: 10),
+        
         CustomTextField(
           hintText: 'Local do evento',
-          
           icon: FontAwesomeIcons.mapMarkerAlt,
           controller: _bloc.localController,
         ),
         const SizedBox(height: 10),
         CustomTextField(
           hintText: 'Observações',
-          icon: FontAwesomeIcons.infoCircle,
+          icon: FontAwesomeIcons.info,
           controller: _bloc.obsController,
         ),
       ],

@@ -64,9 +64,11 @@ class _EventHomePageState extends State<EventHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SquareHomeButton('calendário', Color(0xFFC0CA33),
+                SquareHomeButton(
+                  'calendário', Color(0xFFC0CA33),
                     FontAwesomeIcons.calendarAlt, () {}),
-                SquareHomeButton('Notícias', Color(0xFF95A5A6),
+                SquareHomeButton(
+                  'Notícias', Color(0xFF95A5A6),
                     FontAwesomeIcons.bullhorn, () {}),
                 SquareHomeButton(
                   'Eventos',

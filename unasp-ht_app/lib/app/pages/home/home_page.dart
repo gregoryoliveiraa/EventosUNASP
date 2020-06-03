@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   AppBloc block = AppModule.to.getBloc();
 
   String url = 'https://firebasestorage.googleapis.com/v0/b/eventounasp.appspot.com/o/fotos%2F1591040782373.jpg?alt=media&token=566d19f7-4986-46c0-9f44-7e72edc70058';
-    
+  
   
   @override
   Widget build(BuildContext context) {
@@ -56,11 +56,6 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
         title: Text('Home alunos'.toUpperCase()),
         actions: <Widget>[
-          IconButton(
-              icon: Icon(FontAwesomeIcons.search),
-              color: Colors.grey[300],
-              onPressed: () {} // CRIAR POPUP DE PESQUISA
-              ),
         ],
       ),
 
@@ -210,8 +205,10 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ],
-        ),
+        ),        
       ),
+      
+      
 
       /////Icone de logout/////////////////////////////////////////////////////////////////////
       // leading: IconButton(
@@ -271,3 +268,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
