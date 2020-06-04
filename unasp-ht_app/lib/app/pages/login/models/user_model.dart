@@ -10,7 +10,7 @@ class UserModel {
   CategoryEnum secondaryCategory;
   String ra;
   String uid;
-   String _urlImagem;
+  String url;
 
   UserModel();
 
@@ -23,6 +23,7 @@ class UserModel {
     secondaryCategory = CategoryEnum.values[json['secondaryCategory'] as int];
     ra = json['ra'] as String;
     uid = json['uid'] as String;
+    url = json['url'] as String;
   }
 
   Map<String, dynamic> toJson() {
@@ -35,11 +36,8 @@ class UserModel {
     data['secondaryCategory'] =
         secondaryCategory != null ? secondaryCategory.index : null;
     data['ra'] = ra;
+    data['url'] = url;
     return data;
   }
-  String get urlImagem => _urlImagem;
-
-  set urlImagem(String value) {
-    _urlImagem = value;
-  }
+  
 }

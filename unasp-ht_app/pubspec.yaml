@@ -31,6 +31,7 @@ dependencies:
   qr_flutter: ^2.0.0  
   qrcode_reader: ^0.4.4  
   image_picker: ^0.6.6+4
+  file_picker: ^1.1.1
 
   flutter:
     sdk: flutter    

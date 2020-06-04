@@ -11,6 +11,7 @@ import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
 import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
+import 'package:unasp_ht/app/pages/login/login_module.dart';
 import 'package:unasp_ht/app/shared/components/labeled.dart';
 
 class HomePage extends StatefulWidget {
@@ -94,7 +95,13 @@ class _HomePageState extends State<HomePage> {
                   size: 35,
                 ),
               ),
-              onTap: () => auth.signOut(),
+              onTap: () async {
+                FirebaseAuth auth = FirebaseAuth.instance;
+                await auth.signOut();
+                await Navigator.of(context).push<CupertinoPageRoute>(
+                  CupertinoPageRoute(builder: (context) => LoginModule()));
+                             
+              },
               
             ),
             InkWell(
@@ -186,9 +193,7 @@ class _HomePageState extends State<HomePage> {
               ),
               onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
                 CupertinoPageRoute(
-                  builder: (context) => EventHomePage(),
-                ),
-              ),
+                  builder: (context) => EventHomePage())),
             ),
             InkWell(
               child: ListTile(

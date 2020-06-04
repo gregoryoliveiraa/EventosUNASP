@@ -16,37 +16,31 @@ class ProfileImage extends StatefulWidget {
 
 class _ProfileImageState extends State<ProfileImage> {
   AppBloc bloc = AppModule.to.getBloc();
-  final TextEditingController _controllerNome = TextEditingController();
   File _imagem;
   String _idUsuarioLogado;
   bool _statusUpload = false;
   String _urlImagemRecuperada;
   QuerySnapshot url;
 
-/*___________________________GERAR IMAGEM______________________________ */
+/*__________________SELECIONAR IMAGEM DA GALERIA OU DA CAMERA______________________________ */
   Future _recuperarImagem(bool daCamera) async {
     File imagemSelecionada;
     if (daCamera) {
-      //camera,
-      imagemSelecionada =
-          await ImagePicker.pickImage(source: ImageSource.camera);
-    } else {
-      //galeria
-      imagemSelecionada =
-          await ImagePicker.pickImage(source: ImageSource.gallery);
-    }
-    setState(() {
-      _imagem = imagemSelecionada;
-    });
+      imagemSelecionada = await ImagePicker.pickImage(source: ImageSource.camera);}//camera
+    else {
+      imagemSelecionada = await ImagePicker.pickImage(source: ImageSource.gallery);}//galeria
+      setState(() {
+        _imagem = imagemSelecionada;
+      });
   }
 
 /*___________________________ENVIAR IMAGEM______________________________ */
   Future _uploadImagem() async {
     //Referenciar arquivo
-    String nome = DateTime.now().millisecondsSinceEpoch.toString();
+    String id = DateTime.now().millisecondsSinceEpoch.toString();
     FirebaseStorage storage = FirebaseStorage.instance;
     StorageReference pastaRaiz = storage.ref();
-    StorageReference arquivo = pastaRaiz.child('fotos').child(nome + '.jpg');
+    StorageReference arquivo = pastaRaiz.child('fotos').child(id + '.jpg');
 
     //Fazer upload da imagem
     StorageUploadTask task = arquivo.putFile(_imagem);
@@ -83,16 +77,12 @@ class _ProfileImageState extends State<ProfileImage> {
     });
   }
 
-
-  void _atualizarUrlImagemFirestore(String url) {
+   void _atualizarUrlImagemFirestore(String url){
     Firestore db = Firestore.instance;
-    Map<String, dynamic> dados 
-    //= {'urlImagem', url} as Map<String, 
-    ;
+    Map<String, dynamic> dadosAtualizar ;    
     db.collection('users')
-    .document(_idUsuarioLogado)
-    .updateData(dados);
-    print('>>>>> url: ' + url);
+    .document(bloc.currentUser.value.uid)
+    .updateData( dadosAtualizar );
   }
 
   void _recuperarDadosUsuario() async {
@@ -104,11 +94,11 @@ class _ProfileImageState extends State<ProfileImage> {
       .document(_idUsuarioLogado)
       .get();
     Map<String, dynamic> dados = snapshot.data;
-    _controllerNome.text = dados['name'] as String;
-    if (dados['urlImagem'] != null) {
-      _urlImagemRecuperada = dados['urlImagem'] as String;
-    }
+      if (dados['urlImagem'] != null) {
+        _urlImagemRecuperada = dados['urlImagem'] as String;
+      }
   }
+
 
   @override
   void initState() {
@@ -120,7 +110,8 @@ class _ProfileImageState extends State<ProfileImage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Selecionar imagem'),
+        title: Center(
+          child: Text('Selecionar imagem')),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(10),
@@ -133,6 +124,7 @@ class _ProfileImageState extends State<ProfileImage> {
             Center(
               child: Row(
                 children: <Widget>[
+
                   IconButton(
                     icon: Icon(Icons.add_a_photo),
                     iconSize: 50,
@@ -145,6 +137,7 @@ class _ProfileImageState extends State<ProfileImage> {
                       _recuperarImagem(true);
                     },
                   ),
+                  
                   IconButton(
                     icon: Icon(Icons.photo_library),
                     iconSize: 50,

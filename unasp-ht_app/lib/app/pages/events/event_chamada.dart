@@ -9,15 +9,17 @@ class Chamada extends StatefulWidget {
 
 class _ChamadaState extends State<Chamada> {
   // String scanResult = '';
-  Future<String> _barcodeString;
+  Future<String> barcodeString;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Leitor de Qr Code'.toUpperCase())),
+      appBar: AppBar(
+          centerTitle: true, 
+										title: Text('Leitor de Qr Code'.toUpperCase())),
       body: Center(
           child: FutureBuilder<String>(
-              future: _barcodeString,
+              future: barcodeString,
               builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
                 //return Text(snapshot.data != null ? snapshot.data : '');
                 return Text(snapshot.data ?? '');
@@ -25,7 +27,7 @@ class _ChamadaState extends State<Chamada> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            _barcodeString = QRCodeReader()
+            barcodeString = QRCodeReader()
                 .setAutoFocusIntervalInMs(200)
                 .setForceAutoFocus(true)
                 .setTorchEnabled(true)

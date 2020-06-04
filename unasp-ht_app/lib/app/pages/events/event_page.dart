@@ -23,29 +23,33 @@ class _EventPageState extends State<EventPage> {
         title: Text('lista eventos'.toUpperCase()),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
+      body: Container(
         padding: const EdgeInsets.all(20),
-        child: Column(
-          children: <Widget>[
-            StreamBuilder<List<Eventos>>(
-              stream: _bloc.eventos,
-              builder: (c, s, ) {
-                if (!s.hasData) {
-                  return Center(
-                    child: LoadingWidget(),
-                  );
-                }
-                return ListView.separated(
-                  shrinkWrap: true,
-                  itemBuilder: (c, i) => EventCard(eventos: s.data[i]),
-                  itemCount: s.data.length,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const SizedBox(height: 20),
-                );
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                StreamBuilder<List<Eventos>>(
+                  stream: _bloc.eventos,
+                  builder: (c, s, ) {
+                    if (!s.hasData) {
+                      return Center(
+                        child: LoadingWidget(),
+                      );
+                    }
+                    return ListView.separated(
+                      shrinkWrap: true,
+                      itemBuilder: (c, i) => EventCard(eventos: s.data[i]),
+                      itemCount: s.data.length,
+                      separatorBuilder: (BuildContext context, int index) =>
+                          const SizedBox(height: 20),
+                    );
 
-              },
-            )
-          ],
+                  },
+                )
+              ],
+            ),
+          ),
         ),
       ),
       

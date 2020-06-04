@@ -141,8 +141,7 @@ class _SigninPageState extends State<SigninPage>
                     );
                   },
                 ),
-                SizedBox(
-                  height: 30,
+                SizedBox(                  height: 30,
                 ),
                 AnimatedBuilder(
                   animation: _bloc.animationController,

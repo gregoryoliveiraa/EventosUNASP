@@ -1,4 +1,5 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -7,6 +8,7 @@ import 'package:unasp_ht/app/app_module.dart';
 import 'package:unasp_ht/app/pages/events/event_home.dart';
 import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
 import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
+import 'package:unasp_ht/app/pages/login/login_module.dart';
 import 'package:unasp_ht/app/shared/components/labeled.dart';
 //import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 
@@ -97,8 +99,11 @@ class _HomePageState extends State<HomeEventos> {
                   size: 35,
                 ),
               ),
-              onTap: () {
-                Navigator.pop(context);
+              onTap: () async {
+                FirebaseAuth auth = FirebaseAuth.instance;
+                await auth.signOut();
+                await Navigator.of(context).push<CupertinoPageRoute>(
+                  CupertinoPageRoute(builder: (context) => LoginModule()));
               },
             ),
 

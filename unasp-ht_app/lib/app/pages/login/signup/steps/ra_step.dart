@@ -39,14 +39,14 @@ class _RAStepState extends State<RAStep> {
                 color: orange,
                 onTap: () async {
                   bool res = await signupBloc.onTap(context);
-
                   if (res) {
                     await Navigator.of(context).pushReplacement<
                             MaterialPageRoute, MaterialPageRoute>(
                         MaterialPageRoute(builder: (context) => HomePage()));
                   }
                 },
-                text: 'Continuar')
+                text: 'Continuar'
+            )
           ],
         ),
       ),

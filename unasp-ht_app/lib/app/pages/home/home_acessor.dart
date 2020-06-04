@@ -48,7 +48,7 @@ class _HomeAcessorState extends State<HomeAcessor> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Acessor'.toUpperCase()),
+        title: Text(' home acessor'.toUpperCase()),
         actions: <Widget>[
           IconButton(
               icon: Icon(FontAwesomeIcons.search),
@@ -119,12 +119,7 @@ class _HomeAcessorState extends State<HomeAcessor> {
               ),
             ),
             //________________Botão Eventos________________________
-            InkWell(
-              onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
-                CupertinoPageRoute(
-                  builder: (context) => EventAcessor(),
-                ),
-              ),
+            InkWell(              
               child: ListTile(
                 title: Text('Eventos',
                     style: TextStyle(
@@ -134,6 +129,11 @@ class _HomeAcessorState extends State<HomeAcessor> {
                 leading: Icon(
                   Icons.event,
                   size: 35,
+                ),
+              ),
+              onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
+                CupertinoPageRoute(
+                  builder: (context) => EventAcessor(),
                 ),
               ),
             ),
