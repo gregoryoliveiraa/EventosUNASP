@@ -14,10 +14,9 @@ class LoginRepository {
   LoginRepository(this._auth, this._firestore);
 
   Future<String> signUp(UserModel model) async {
-    try {
-      firebaseUser = await _auth.createUserWithEmailAndPassword(
+    try { firebaseUser = await _auth.createUserWithEmailAndPassword(
           email: model.email, password: model.password);
-
+          
       await Firestore.instance
           .collection('users')
           .document(firebaseUser.user.uid)

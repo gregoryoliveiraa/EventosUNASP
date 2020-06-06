@@ -11,8 +11,9 @@ class Labeled extends StatelessWidget {
       this.icon,
       @required this.label,
       @required this.text,
-      this.inline = true})
-      : super(key: key);
+      this.inline = true
+      }
+  ): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,7 @@ class Labeled extends StatelessWidget {
           Text(
             label.toUpperCase(),
             style: TextStyle(
-              color: primaryColor,
+              //color: primaryColor,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -46,7 +47,7 @@ class Labeled extends StatelessWidget {
       const SizedBox(height: 5),
       Text(
         text.toUpperCase(),
-        style: TextStyle(color: Colors.black54),
+        style: TextStyle(color: Colors.grey[600]),
       )
     ];
 

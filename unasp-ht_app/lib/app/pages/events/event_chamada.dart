@@ -16,31 +16,47 @@ class _ChamadaState extends State<Chamada> {
     return Scaffold(
       appBar: AppBar(
           centerTitle: true, 
-										title: Text('Leitor de Qr Code'.toUpperCase())),
+          title: Text('Leitor Qr Code'.toUpperCase())),
       body: Center(
-          child: FutureBuilder<String>(
-              future: barcodeString,
-              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                //return Text(snapshot.data != null ? snapshot.data : '');
-                return Text(snapshot.data ?? '');
-              })),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            barcodeString = QRCodeReader()
-                .setAutoFocusIntervalInMs(200)
-                .setForceAutoFocus(true)
-                .setTorchEnabled(true)
-                .setHandlePermissions(true)
-                .setExecuteAfterPermissionGranted(true)
-                .scan as Future<String>;
-          });
-        },
-        tooltip: 'Reader the QRCode',
-        child: Icon(Icons.add_a_photo),
+        child: FutureBuilder<String>(
+          future: barcodeString,
+          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+            //return Text(snapshot.data != null ? snapshot.data : '');
+            return Container(
+              child: Text(snapshot.data ?? '',
+                style: TextStyle(
+                  fontSize: 26)),
+            );
+          }
+        )
+      ),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 125),
+        child: FloatingActionButton.extended(          
+          tooltip: 'Acionar Câmera Leitor QRCode',
+          label: Text('Scan',
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.grey[100],
+              height: 2,)),
+          icon: Icon(Icons.add_a_photo,
+            size: 30),
+          onPressed: () {
+            setState(() {
+              barcodeString = QRCodeReader()
+                  .setAutoFocusIntervalInMs(200)
+                  .setForceAutoFocus(true)
+                  .setTorchEnabled(true)
+                  .setHandlePermissions(true)
+                  .setExecuteAfterPermissionGranted(true)
+                  .scan;                  
+            });
+          },
+        ),
       ),
     );
   }
+  
 }
 
 // Future scanQRCode() async {

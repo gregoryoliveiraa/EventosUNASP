@@ -9,6 +9,8 @@ import 'package:unasp_ht/app/pages/events/event_chamada.dart';
 import 'package:unasp_ht/app/pages/events/event_module.dart';
 import 'package:unasp_ht/app/pages/home/components/square_home_button.dart';
 
+
+
 class EventAcessor extends StatefulWidget {
   @override
   _EventAcessorState createState() => _EventAcessorState();
@@ -103,8 +105,8 @@ class _EventAcessorState extends State<EventAcessor> {
                     splashColor: Colors.white,
                     onPressed: () => //scanQrCode(),
                         Navigator.of(context).push<CupertinoPageRoute>(
-                      CupertinoPageRoute(
-                        builder: (context) => Chamada(),
+                          CupertinoPageRoute(
+                            builder: (context) => Chamada(),
                       ),
                     ),
                   ),

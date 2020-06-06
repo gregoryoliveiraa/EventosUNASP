@@ -12,12 +12,12 @@ import 'package:unasp_ht/app/pages/login/signup/enums/category_enum.dart';
 import 'package:unasp_ht/app/shared/components/labeled.dart';
 import 'package:unasp_ht/app/shared/utils/string_extensions.dart';
 
-class Profile extends StatefulWidget {
+class Profile2 extends StatefulWidget {
   @override
-  _ProfileState createState() => _ProfileState();
+  _Profile2State createState() => _Profile2State();
 }
 
-class _ProfileState extends State<Profile> {
+class _Profile2State extends State<Profile2> {
   Color get primaryColor => Theme.of(context).primaryColor;
   AppBloc bloc = AppModule.to.getBloc();
   File imagem;
@@ -26,38 +26,11 @@ class _ProfileState extends State<Profile> {
   String url;
   String urlImagemRecuperada;
 
-/*__________________SELECIONAR IMAGEM DA GALERIA OU DA CÂMERA______________________________ */
-  Future recuperarImagem(bool daCamera) async {
-    File imagemSelecionada;
-    if (daCamera) {
-      imagemSelecionada =
-          await ImagePicker.pickImage(source: ImageSource.camera);
-    } //camera
-    else {
-      imagemSelecionada =
-          await ImagePicker.pickImage(source: ImageSource.gallery);
-    } //galeria
-    setState(() {
-      imagem = imagemSelecionada;
-      if (imagem != null) {
-        statusUpload = true;
-        uploadImagem();
-      }
-    });
-  }
-
-/*___________________________ENVIAR IMAGEM______________________________ */
   Future uploadImagem() async {
-    //Referenciar arquivo
     FirebaseStorage storage = FirebaseStorage.instance;
     StorageReference pastaRaiz = storage.ref();
-    StorageReference arquivo =
-        pastaRaiz.child('fotos').child(idUsuarioLogado + '.jpg');
-
-    //Fazer upload da imagem
+    StorageReference arquivo = pastaRaiz.child('fotos').child(idUsuarioLogado + '.jpg');
     StorageUploadTask task = arquivo.putFile(imagem);
-
-    //Controlar progresso do upload
     task.events.listen((StorageTaskEvent storageEvent) {
       if (storageEvent.type == StorageTaskEventType.progress) {
         setState(() {
@@ -73,13 +46,44 @@ class _ProfileState extends State<Profile> {
       recuperarUrlImagem(snap);
     });
 
-    //Recuperar url da imagem
     await task.onComplete.then((StorageTaskSnapshot snapshot) {
       recuperarUrlImagem(snapshot);
     });
   }
 
-  /*_____________________RECUPERAR URL IMAGEM____________________________ */
+  void recuperarDadosUsuario() async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    FirebaseUser usuarioLogado = await auth.currentUser();
+    idUsuarioLogado = usuarioLogado.uid;
+    Firestore db = Firestore.instance;
+    DocumentSnapshot snapshot = await db.collection('users').document(idUsuarioLogado).get();
+
+    Map<String, dynamic> dados = snapshot.data;
+    if (dados['imagePath'] != null) {
+      urlImagemRecuperada = dados['imagePath'] as String;
+      setState(() {
+      urlImagemRecuperada = url;
+    });
+    }
+    return null;
+  }
+
+  Future recuperarImagem(bool daCamera) async {
+    File imagemSelecionada;
+    if (daCamera) {
+      imagemSelecionada = await ImagePicker.pickImage(source: ImageSource.camera);} //camera
+    else {
+      imagemSelecionada =await ImagePicker.pickImage(source: ImageSource.gallery);} //galeria
+    
+    setState(() {
+      imagem = imagemSelecionada;
+      if (imagem != null) {
+        statusUpload = true;
+        uploadImagem();
+      }
+    });
+  }
+
   Future recuperarUrlImagem(StorageTaskSnapshot snapshot) async {
     String url = (await snapshot.ref.getDownloadURL()) as String;
     atualizarUrlImagemFirestore(url);
@@ -96,19 +100,7 @@ class _ProfileState extends State<Profile> {
     db.collection('users').document(idUsuarioLogado).updateData(dadosAtualizar);
   }
 
-  void recuperarDadosUsuario() async {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    FirebaseUser usuarioLogado = await auth.currentUser();
-    idUsuarioLogado = usuarioLogado.uid;
-    Firestore db = Firestore.instance;
-    DocumentSnapshot snapshot =
-        await db.collection('users').document(idUsuarioLogado).get();
-
-    Map<String, dynamic> dados = snapshot.data;
-    if (dados['imagePath'] != null) {
-      urlImagemRecuperada = dados['imagePath'] as String;
-    }
-  }
+  
 
   @override
   void initState() {
@@ -119,42 +111,43 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     String genre = bloc.currentUser.value.genre == 'F' ? 'Feminino' : 'Masculino';
-    String path = bloc.currentUser.value.imagePath;
-
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.only(top: 5),
+        padding: EdgeInsets.only(top: 20),
         child: Center(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
 
-
-                Visibility(
-                  visible: true,
-                  child: Container(
-                    child: Image.network(path,
-                    height: 250.0,
-                    width: 380.0,
-                    fit: BoxFit.cover,
+                if (imagem == null) Container(child: Image.asset('assets/img/logo_branco.png',
+                      height: 300.0,
+                      width: 400.0,
+                      fit: BoxFit.contain,))
+                       else Container (                  
+                  child: Image.network(bloc.currentUser.value.imagePath,
+                      height: 300.0,
+                      width: 400.0,
+                      fit: BoxFit.contain,
                     ),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey[400],
-                      ),
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                  ),
                 ),
-              
 
+
+
+              //  if (urlImagemRecuperada == null) Container() 
+              //  else Image.network(urlImagemRecuperada,
+              //         height: 200.0,
+              //         width: 300.0,
+              //         fit: BoxFit.contain,
+              //       ),
+                    
 
                 const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     RaisedButton.icon(
-                      label: Text('Câmera',
+                      label: Text(
+                        'Câmera',
                         style: TextStyle(color: Colors.white),
                       ),
                       icon: Icon(
@@ -162,7 +155,8 @@ class _ProfileState extends State<Profile> {
                         color: Colors.white,
                       ),
                       elevation: 10,
-                      padding: EdgeInsets.symmetric(vertical: 7, horizontal: 20),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 7, horizontal: 20),
                       onPressed: () {
                         recuperarImagem(true);
                       },
@@ -175,7 +169,8 @@ class _ProfileState extends State<Profile> {
                     ),
                     const SizedBox(width: 35),
                     RaisedButton.icon(
-                      label: Text('Galeria  ',
+                      label: Text(
+                        'Galeria  ',
                         style: TextStyle(color: Colors.white),
                       ),
                       icon: Icon(
@@ -183,24 +178,27 @@ class _ProfileState extends State<Profile> {
                         color: Colors.white,
                       ),
                       elevation: 10,
-                      padding: EdgeInsets.symmetric(vertical: 7, horizontal: 20),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 7, horizontal: 20),
                       onPressed: () {
                         recuperarImagem(false);
                       },
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10.0))),
                       textColor: Colors.white,
                       splashColor: Colors.red,
                       color: Colors.lightBlue[600],
                     ),
                   ],
                 ),
+
+
                 Container(
-                  //padding: EdgeInsets.only(top: 10),
                   child: statusUpload ? CircularProgressIndicator() : Container(),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                  padding: EdgeInsets.symmetric(vertical: 40, horizontal: 25),
                   child: Column(
                     children: <Widget>[
                       Labeled(
@@ -209,7 +207,8 @@ class _ProfileState extends State<Profile> {
                         icon: FontAwesomeIcons.userAlt,
                         inline: false,
                       ),
-                      SizedBox(height: 20,
+                      SizedBox(
+                        height: 25,
                       ),
                       Visibility(
                         visible: !bloc.currentUser.value.ra.isNullOrEmpty,
@@ -221,7 +220,8 @@ class _ProfileState extends State<Profile> {
                               icon: FontAwesomeIcons.idCard,
                               inline: false,
                             ),
-                            SizedBox(height: 20,
+                            SizedBox(
+                              height: 25,
                             ),
                           ],
                         ),
@@ -232,7 +232,8 @@ class _ProfileState extends State<Profile> {
                         icon: FontAwesomeIcons.solidEnvelope,
                         inline: false,
                       ),
-                      SizedBox(height: 20,
+                      SizedBox(
+                        height: 25,
                       ),
                       Labeled(
                         label: 'gênero: ',
@@ -240,7 +241,8 @@ class _ProfileState extends State<Profile> {
                         icon: FontAwesomeIcons.venusMars,
                         inline: false,
                       ),
-                      SizedBox(height: 20,
+                      SizedBox(
+                        height: 25,
                       ),
                       Labeled(
                         label: 'categorias',

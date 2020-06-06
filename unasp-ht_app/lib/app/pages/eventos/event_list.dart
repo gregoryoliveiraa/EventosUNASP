@@ -38,8 +38,7 @@ class _EventlistState extends State<Eventlist> {
                   ),
                   title: Row(
                     children: <Widget>[
-                      Text(
-                        'RA: ',
+                      Text('RA: ',
                         style: TextStyle(
                           fontSize: 20,
                           decorationColor: Colors.yellow[900],

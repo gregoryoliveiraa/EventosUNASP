@@ -20,6 +20,7 @@ class HomeAcessor extends StatefulWidget {
 
 class _HomeAcessorState extends State<HomeAcessor> {
   AppBloc bloc = AppModule.to.getBloc();
+ 
   @override
   Widget build(BuildContext context) {
     List<Widget> t = [
@@ -119,24 +120,27 @@ class _HomeAcessorState extends State<HomeAcessor> {
               ),
             ),
             //________________Botão Eventos________________________
-            InkWell(              
-              child: ListTile(
-                title: Text('Eventos',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey[700],
-                        fontSize: 18)),
-                leading: Icon(
-                  Icons.event,
-                  size: 35,
+            InkWell(
+                child: ListTile(
+                  title: Text('Eventos',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[700],
+                          fontSize: 18)),
+                  leading: Icon(
+                    Icons.event,
+                    color: Colors.greenAccent[600],
+                    size: 35,
+                  ),
                 ),
-              ),
-              onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
-                CupertinoPageRoute(
-                  builder: (context) => EventAcessor(),
-                ),
-              ),
-            ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push<CupertinoPageRoute>(
+                    CupertinoPageRoute(
+                      builder: (context) => EventAcessor(),
+                    ),
+                  );
+                }),
             InkWell(
               child: ListTile(
                 title: Text('Sobre',
