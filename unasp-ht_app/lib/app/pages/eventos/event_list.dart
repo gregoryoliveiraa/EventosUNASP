@@ -9,12 +9,12 @@ class Eventlist extends StatefulWidget {
 }
 
 class _EventlistState extends State<Eventlist> {
-  AppBloc bloc = AppModule.to.getBloc();
-  String urlImage =
-      'https://firebasestorage.googleapis.com/v0/b/eventounasp.appspot.com/o/fotos%2F1591037679788.jpg?alt=media&token=c484fed7-a40a-4668-a446-51b0cb251d02';
+  AppBloc bloc = AppModule.to.getBloc();  
 
   @override
   Widget build(BuildContext context) {
+    String path = bloc.currentUser.value.imagePath;
+    
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -22,60 +22,50 @@ class _EventlistState extends State<Eventlist> {
       ),
       body: Center(
         child: Container(
-            padding: EdgeInsets.all(30),
+            padding: EdgeInsets.fromLTRB(30, 5, 30, 50),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                SizedBox(
-                  height: 16,
-                ),
 
-                ListTile(
-                  leading: CircleAvatar(
-                    maxRadius: 30,
-                    backgroundImage: NetworkImage(
-                      urlImage,
+                CircleAvatar(
+                    radius: 110.0,
+                    backgroundColor: Colors.grey[300],
+                    backgroundImage: path != null ? NetworkImage(path) : null),
+                //const SizedBox(height: 10),
+
+                Column(
+                  children: <Widget>[
+                    Row(
+                      children: <Widget>[
+                        Text('RA: ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                        Text(bloc.currentUser.value.ra, style: TextStyle(fontSize: 18))
+                      ],
                     ),
-                  ),
-                  title: Row(
-                    children: <Widget>[
-                      Text('RA: ',
-                        style: TextStyle(
-                          fontSize: 20,
-                          decorationColor: Colors.yellow[900],
-                        ),
-                      ),
-                      Text(bloc.currentUser.value.ra),
-                    ],
-                  ),
-                  subtitle: Row(
-                    children: <Widget>[
-                      Text('Nome: ',
-                          style: TextStyle(
-                            fontSize: 18,                            
-                          )),
-                      Text(bloc.currentUser.value.name,
-                          style: TextStyle(
-                            fontSize: 16,
-                            decorationColor: Colors.red[900],
-                          )),
-                    ],
-                  ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: <Widget>[
+                        Text('Nome: ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18,)),
+                        Text(bloc.currentUser.value.name + ' - ', style: TextStyle(fontSize: 18)),
+                        Text('('+ bloc.currentUser.value.tipo.toUpperCase()+')', style: TextStyle(fontSize: 18)),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: <Widget>[
+                        Text('E-mail: ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                        Text(bloc.currentUser.value.email, style: TextStyle(fontSize: 18))
+                      ],
+                    ),
+                  ],
                 ),
 
-                Divider(
-                  height: 82.0,
-                  color: Colors.red[600],
-                ),
+                Divider(height: 5, color: Colors.red[600]),
 
-                //____________Distancia entre o texto e o QRCode________________
-                SizedBox(
-                  height: 16,
-                ),
                 QrImage(
                   data: bloc.currentUser.value.ra,
                   //____propriedade que melhora a renderização do QrCode
                   gapless: true,
-                  size: 300,
+                  size: 250,
                   errorCorrectionLevel: QrErrorCorrectLevel.H,
                 )
               ],

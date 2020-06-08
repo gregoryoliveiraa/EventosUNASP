@@ -22,18 +22,12 @@ class _EventHomePageState extends State<EventHomePage> {
       Container(
         padding: EdgeInsets.all(10),
         child: Icon(
-          FontAwesomeIcons.home,
-          size: 20,
-          color: Colors.white,
-        ),
+          FontAwesomeIcons.home, size: 20, color: Colors.white)
       ),
       Container(
         padding: EdgeInsets.all(10),
         child: Icon(
-          FontAwesomeIcons.userAlt,
-          size: 20,
-          color: Colors.white,
-        ),
+          FontAwesomeIcons.userAlt, size: 20, color: Colors.white)
       ),
     ];
     Color orange = Theme.of(context).accentColor;
@@ -45,11 +39,10 @@ class _EventHomePageState extends State<EventHomePage> {
 /*___________________________APPBAR_____________________________*/
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Eventos - Home'.toUpperCase()),
+        title: Text('Eventos'.toUpperCase()),
         actions: <Widget>[
           IconButton(
-              icon: Icon(FontAwesomeIcons.search),
-              color: Colors.grey[300],
+              icon: Icon(FontAwesomeIcons.search), color: Colors.grey[300],
               onPressed: () {} // CRIAR POPUP DE PESQUISA
               ),
         ],
@@ -58,9 +51,7 @@ class _EventHomePageState extends State<EventHomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[

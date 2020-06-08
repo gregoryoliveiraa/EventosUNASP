@@ -95,16 +95,12 @@ class _SigninPageState extends State<SigninPage>
           child: Center(
             child: Column(
               children: <Widget>[
-                SizedBox(
-                  height: appWidth * .3,
-                ),
+                SizedBox(height: appWidth * .3),
                 Image.asset(
                   'assets/img/logo_branco.png',
                   width: 180,
                 ),
-                SizedBox(
-                  height: appWidth * 0.2,
-                ),
+                SizedBox(height: appWidth * 0.2),
                 AnimatedBuilder(
                   animation: animTransformEmail,
                   child: CustomTextField(
@@ -122,9 +118,7 @@ class _SigninPageState extends State<SigninPage>
                     );
                   },
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 20),
                 AnimatedBuilder(
                   animation: animTransformPassword,
                   child: CustomTextField(
@@ -141,8 +135,7 @@ class _SigninPageState extends State<SigninPage>
                     );
                   },
                 ),
-                SizedBox(                  height: 30,
-                ),
+                SizedBox(height: 30),
                 AnimatedBuilder(
                   animation: _bloc.animationController,
                   builder: (BuildContext context, Widget child) {
@@ -167,17 +160,20 @@ class _SigninPageState extends State<SigninPage>
                                   } else {
                                     _bloc.emailController.clear();
                                     _bloc.passwordController.clear();
+                                
                                     await Navigator.of(context).pushReplacement<
                                             CupertinoPageRoute,
                                             CupertinoPageRoute>(
                                         CupertinoPageRoute(
                                             builder: (context) =>
-                                                HomeModule()));
+                                                HomeModule()));                                    
                                   }
                                 },
                                 width: animButtonWidth.value,
                                 circular: animButtonSigninCircular.value,
-                                isLoading: animButtonTransform.value < 0);
+                                isLoading: animButtonTransform.value < 0,
+                            );
+                                
                           }),
                       offset: Offset(0, animButtonTransform.value),
                     );

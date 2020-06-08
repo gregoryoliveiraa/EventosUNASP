@@ -23,20 +23,14 @@ class _EventFormState extends State<EventForm> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text('Início / Término'.toUpperCase(),
-          style: TextStyle(
-            fontSize: 16,
-            color: theme.primaryColor,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 10),
-       
+          style: TextStyle(fontSize: 16, color: theme.primaryColor, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 10),       
         CustomTextField(
           hintText: 'título do evento',
           icon: FontAwesomeIcons.check,
           controller: _bloc.tituloController,
           autofocus: true,
-           inputType: TextInputType.text,
+          inputType: TextInputType.text,
         ),
         const SizedBox(height: 10),
 

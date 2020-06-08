@@ -30,8 +30,7 @@ class _DeparturesPageState extends State<DeparturesPage> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: <Widget>[
-            StreamBuilder<List<Departure>>(
-              stream: _bloc.departures,
+            StreamBuilder<List<Departure>>(stream: _bloc.departures,
               builder: (c, s) {
                 if (!s.hasData) {
                   return Center(
@@ -43,24 +42,21 @@ class _DeparturesPageState extends State<DeparturesPage> {
                   shrinkWrap: true,
                   itemBuilder: (c, i) => DepartureCard(departure: s.data[i]),
                   itemCount: s.data.length,
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const SizedBox(height: 20),
+                  separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
                 );
               },
             )
           ],
         ),
       ),
-      floatingActionButton: AppModule.to
-                  .getBloc<AppBloc>()
-                  .currentUser.value.mainCategory == CategoryEnum.Admin
+      floatingActionButton: AppModule.to.getBloc<AppBloc>()
+      .currentUser.value.mainCategory != CategoryEnum.Admin
           ? null
           : FloatingActionButton(
               backgroundColor: Theme.of(context).accentColor,
               child: Icon(FontAwesomeIcons.plus),
               onPressed: () => Navigator.of(context).push<CupertinoPageRoute>(
-                CupertinoPageRoute(
-                  builder: (context) => NewDeparturePage(),
+                CupertinoPageRoute(builder: (context) => NewDeparturePage(),
                 ),
               ),
             ),

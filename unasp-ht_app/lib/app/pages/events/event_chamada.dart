@@ -23,9 +23,7 @@ class _ChamadaState extends State<Chamada> {
           builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
             //return Text(snapshot.data != null ? snapshot.data : '');
             return Container(
-              child: Text(snapshot.data ?? '',
-                style: TextStyle(
-                  fontSize: 26)),
+              child: Text(snapshot.data ?? '', style: TextStyle(fontSize: 26))
             );
           }
         )
@@ -34,13 +32,8 @@ class _ChamadaState extends State<Chamada> {
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 125),
         child: FloatingActionButton.extended(          
           tooltip: 'Acionar Câmera Leitor QRCode',
-          label: Text('Scan',
-            style: TextStyle(
-              fontSize: 20,
-              color: Colors.grey[100],
-              height: 2,)),
-          icon: Icon(Icons.add_a_photo,
-            size: 30),
+          label: Text('Scan', style: TextStyle(fontSize: 20, color: Colors.grey[100], height: 2,)),
+            icon: Icon(Icons.add_a_photo, size: 30),
           onPressed: () {
             setState(() {
               barcodeString = QRCodeReader()

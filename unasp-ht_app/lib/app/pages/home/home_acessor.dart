@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
+import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 import 'package:unasp_ht/app/pages/events/event_Acessor.dart';
 //import 'package:unasp_ht/app/pages/events/event_Adm.dart';
 //import 'package:unasp_ht/app/pages/events/event_home.dart';
 //import 'package:unasp_ht/app/pages/events/event_page.dart';
 import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
 import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
-import 'package:unasp_ht/app/shared/components/labeled.dart';
 import 'home_page.dart';
 
 class HomeAcessor extends StatefulWidget {
@@ -49,41 +49,32 @@ class _HomeAcessorState extends State<HomeAcessor> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(' home acessor'.toUpperCase()),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(FontAwesomeIcons.search),
-              color: Colors.grey[300],
-              onPressed: () {} // CRIAR POPUP DE PESQUISA
-              ),
-        ],
+        title: Text('Home'.toUpperCase()+ ' - '+ bloc.currentUser.value.tipo.toUpperCase()),
       ),
 
-      //GRELHA
+/*_____________________________GRELHA___________________________ */
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
             UserAccountsDrawerHeader(
-              accountName: Labeled(
-                label: 'Nome: ',
-                text: bloc.currentUser.value.name,
-                inline: true,
-              ),
-              accountEmail: Labeled(
-                label: 'Email: ',
-                text: bloc.currentUser.value.email,
-                inline: true,
-              ),
-              currentAccountPicture: GestureDetector(
-                child: CircleAvatar(
-                  backgroundColor: Colors.blue[300],
-                  child: Icon(
-                    Icons.person,
-                    color: Colors.grey[300],
-                  ),
+                accountName: Text(bloc.currentUser.value.name,
+                  style: TextStyle(fontSize: 18)),
+                accountEmail: Text(bloc.currentUser.value.email,
+                  style: TextStyle(fontSize: 16)),
+                currentAccountPicture: CircleAvatar(
+                  radius: 40.0,
+                  backgroundColor: Colors.grey[300],
+                  backgroundImage: bloc.currentUser.value.imagePath != null ? 
+                  NetworkImage(bloc.currentUser.value.imagePath)
+                  : null
                 ),
+                onDetailsPressed: () {
+                  Navigator.pop(context);
+                  Navigator.of(context).push<CupertinoPageRoute>(
+                  CupertinoPageRoute(builder: (context) => Eventlist()));
+                },
               ),
-            ),
+            
             InkWell(
               child: ListTile(
                 title: Text('Sair'.toUpperCase(),

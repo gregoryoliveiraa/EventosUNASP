@@ -29,18 +29,14 @@ class EventCard extends StatelessWidget {
     return GestureDetector(
       onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
         CupertinoPageRoute(
-          builder: (context) => EventDetailPage(
-            eventos: eventos,
-          ),
+          builder: (context) => EventDetailPage(eventos: eventos),
         ),
       ),
       child: Container(
-        constraints: BoxConstraints(maxHeight: 200), //ALTURA DO CARD
+        constraints: BoxConstraints(minHeight: 150), //ALTURA DO CARD
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 5),
+          color: Colors.white, borderRadius: BorderRadius.circular(20),
+          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 2),
           ],
         ),
         child: Row(
@@ -51,14 +47,13 @@ class EventCard extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       bottomLeft: Radius.circular(20))),
-              constraints: BoxConstraints(minHeight: 80),
+              constraints: BoxConstraints(minHeight: 180),
               width: 15,
               height: 150,
             ),
-            SizedBox(width: 15,
-            ),
+            SizedBox(width: 15),
             Container(
-              constraints: BoxConstraints(minHeight: 80),
+              constraints: BoxConstraints(minHeight: 150),
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,8 +69,7 @@ class EventCard extends StatelessWidget {
 /*___________TÍTULO_____________ */
                             Row(
                               children: <Widget>[
-                                Text(
-                                  'título: '.toUpperCase(),
+                                Text('título: '.toUpperCase(),
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -90,8 +84,7 @@ class EventCard extends StatelessWidget {
 /*___________INICIO___________ */
                             Row(
                               children: <Widget>[
-                                Text(
-                                  'início: '.toUpperCase(),
+                                Text('início: '.toUpperCase(),
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -99,8 +92,7 @@ class EventCard extends StatelessWidget {
                                   ),
                                 ),
                                 Text(DateFormat('dd/MM/yy').format(eventos.inicio ?? DateTime.now())),
-                                Text(
-                                  ' as ',
+                                Text(' as ',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Theme.of(context).primaryColor,
@@ -114,9 +106,7 @@ class EventCard extends StatelessWidget {
 /*___________TERMINO___________ */
                             Row(
                               children: <Widget>[
-                                Text(
-                                  'término: '.toUpperCase(),
-                                  
+                                Text('término: '.toUpperCase(),
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -124,8 +114,7 @@ class EventCard extends StatelessWidget {
                                   ),
                                 ),
                                 Text(DateFormat('dd/MM/yy').format(eventos.inicio ?? DateTime.now())),
-                                Text(
-                                  ' as ',
+                                Text(' as ',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Theme.of(context).primaryColor,
@@ -139,8 +128,7 @@ class EventCard extends StatelessWidget {
 /*___________LOCAL___________ */
                             Row(
                               children: <Widget>[
-                                Text(
-                                  'local: '.toUpperCase(),
+                                Text('local: '.toUpperCase(),
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -155,8 +143,7 @@ class EventCard extends StatelessWidget {
 /*___________OBSERVAÇÕES___________ */
                             Row(
                               children: <Widget>[
-                                Text(
-                                  'obs: '.toUpperCase(),
+                                Text('obs: '.toUpperCase(),
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
@@ -166,9 +153,6 @@ class EventCard extends StatelessWidget {
                                 Text(eventos.obs)
                               ],
                             ),
-
-
-
                           ],
                         ),
                       ],
@@ -177,19 +161,14 @@ class EventCard extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width - 100,
                     child: Divider(
-                      thickness: 1,
+                      thickness: 2,
                     ),
                   ),
                   Container(
                       width: MediaQuery.of(context).size.width - 100,
                       child: Center(
-                        child: Text(eventos.status
-                                .toString()
-                                .substring(
-                                    eventos.status.toString().indexOf('.') + 1)
-                                .toUpperCase() ??
-                            ''),
-                      )),
+                        child: Text(eventos.status.toString().substring(
+                          eventos.status.toString().indexOf('.') + 1).toUpperCase() ?? ''))),
                 ],
               ),
             ),

@@ -5,11 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
-import 'package:unasp_ht/app/pages/events/event_chamada.dart';
 import 'package:unasp_ht/app/pages/events/event_module.dart';
 import 'package:unasp_ht/app/pages/home/components/square_home_button.dart';
-
-
 
 class EventAcessor extends StatefulWidget {
   @override
@@ -22,21 +19,11 @@ class _EventAcessorState extends State<EventAcessor> {
   Widget build(BuildContext context) {
     List<Widget> t = [
       Container(
-        padding: EdgeInsets.all(10),
-        child: Icon(
-          FontAwesomeIcons.home,
-          size: 20,
-          color: Colors.white,
-        ),
-      ),
+          padding: EdgeInsets.all(10),
+          child: Icon(FontAwesomeIcons.home, size: 20, color: Colors.white)),
       Container(
-        padding: EdgeInsets.all(10),
-        child: Icon(
-          FontAwesomeIcons.userAlt,
-          size: 20,
-          color: Colors.white,
-        ),
-      ),
+          padding: EdgeInsets.all(10),
+          child: Icon(FontAwesomeIcons.userAlt, size: 20, color: Colors.white)),
     ];
     Color orange = Theme.of(context).accentColor;
     Color blue = Theme.of(context).primaryColor;
@@ -46,40 +33,29 @@ class _EventAcessorState extends State<EventAcessor> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Eventos - Acessor'.toUpperCase()),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(FontAwesomeIcons.search),
-              color: Colors.grey[300],
-              onPressed: () {} // CRIAR POPUP DE PESQUISA
-              ),
-        ],
+        title: Text('Eventos'.toUpperCase()),
       ),
 
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SquareHomeButton(
-                  'calendário', Color(0xFFC0CA33),
+                SquareHomeButton('calendário', Color(0xFFC0CA33),
                     FontAwesomeIcons.calendarAlt, () {}),
-                SquareHomeButton(
-                  'Notícias', Color(0xFF95A5A6),
+                SquareHomeButton('Notícias', Color(0xFF95A5A6),
                     FontAwesomeIcons.bullhorn, () {}),
                 SquareHomeButton(
                   'Eventos',
-                    Color(0xFFAD1457),
-                    FontAwesomeIcons.thList,
-                    () => Navigator.of(context).push<CupertinoPageRoute>(
-                      CupertinoPageRoute(
-                        builder: (context) => EventModule(),
-                      ),
+                  Color(0xFFAD1457),
+                  FontAwesomeIcons.thList,
+                  () => Navigator.of(context).push<CupertinoPageRoute>(
+                    CupertinoPageRoute(
+                      builder: (context) => EventModule(),
                     ),
+                  ),
                 ),
               ],
             ),
@@ -88,31 +64,31 @@ class _EventAcessorState extends State<EventAcessor> {
               height: 20,
             ),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                SizedBox(
-                  width: 200,
-                  height: 50,
-                  child: RaisedButton(
-                    child: const Text('CHAMADA',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                        )),
-                    color: Colors.deepOrangeAccent,
-                    elevation: 8.0,
-                    splashColor: Colors.white,
-                    onPressed: () => //scanQrCode(),
-                        Navigator.of(context).push<CupertinoPageRoute>(
-                          CupertinoPageRoute(
-                            builder: (context) => Chamada(),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //   children: <Widget>[
+            //     SizedBox(
+            //       width: 200,
+            //       height: 50,
+            //       child: RaisedButton(
+            //         child: const Text('CHAMADA',
+            //             style: TextStyle(
+            //               fontSize: 20,
+            //               color: Colors.white,
+            //             )),
+            //         color: Colors.deepOrangeAccent,
+            //         elevation: 8.0,
+            //         splashColor: Colors.white,
+            //         onPressed: () => //scanQrCode(),
+            //             Navigator.of(context).push<CupertinoPageRoute>(
+            //               CupertinoPageRoute(
+            //                 builder: (context) => Chamada(),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
             SizedBox(
               height: 40,
             ),

@@ -10,6 +10,7 @@ class UserModel {
   CategoryEnum secondaryCategory;
   String ra;
   String uid;
+  String tipo;
 
   UserModel();
 
@@ -21,6 +22,7 @@ class UserModel {
     mainCategory = CategoryEnum.values[json['mainCategory'] as int];
     secondaryCategory = CategoryEnum.values[json['secondaryCategory'] as int];
     ra = json['ra'] as String;
+    tipo = json['tipo'] as String;
     uid = json['uid'] as String;
   }
 
@@ -34,6 +36,7 @@ class UserModel {
     data['secondaryCategory'] =
         secondaryCategory != null ? secondaryCategory.index : null;
     data['ra'] = ra;
+    data['tipo'] = 'aluno';
     return data;
   }
   

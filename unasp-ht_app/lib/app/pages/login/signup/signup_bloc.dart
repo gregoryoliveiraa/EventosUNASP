@@ -38,20 +38,12 @@ class SignupBloc extends BlocBase {
     emailController.addListener(isValidBasicForm);
     passController.addListener(isValidBasicForm);
     passconfirmController.addListener(isValidBasicForm);
-    genderController.listen((event) {
-      isValidGenderController.add(event != null);
-    });
-
-    mainCategoryController.listen((value) {
-      isValidCategoryController
-          .add(value != null && value == CategoryEnum.Church);
-    });
-    secondaryCategoryController.listen((value) {
-      isValidCategoryController.add(mainCategoryController.value != null &&
-          ((mainCategoryController.value != CategoryEnum.Church &&
-                  secondaryCategoryController.value != null) ||
-              mainCategoryController.value == CategoryEnum.Church));
-    });
+    genderController.listen((event) {isValidGenderController.add(event != null);});
+    mainCategoryController.listen((value) {isValidCategoryController.add(value != null && value == CategoryEnum.Church);});
+    secondaryCategoryController.listen((value) {isValidCategoryController.add(mainCategoryController.value != null &&
+      ((mainCategoryController.value != CategoryEnum.Church &&secondaryCategoryController.value != null) ||
+      mainCategoryController.value == CategoryEnum.Church));});
+  
   }
 
   Future<String> sendData() async => await loginRepository.signUp(UserModel()

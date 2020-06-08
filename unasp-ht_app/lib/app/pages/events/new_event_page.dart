@@ -68,10 +68,7 @@ class _NewEventPageState extends State<NewEventPage> {
                                 Navigator.of(context).pop();
                               } else {
                                 Scaffold.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text('Erro ao enviar! :('),
-                                    backgroundColor: Colors.red,
-                                  ),
+                                  SnackBar(content: Text('Erro ao enviar! :('), backgroundColor: Colors.red),
                                 );
                                 _bloc.isLoadingController.add(false);
                               }

@@ -39,10 +39,8 @@ class DepartureCard extends StatelessWidget {
       child: Container(
         constraints: BoxConstraints(minHeight: 150),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 1),
+          color: Colors.white, borderRadius: BorderRadius.circular(20),
+          boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 5, spreadRadius: 1),
           ],
         ),
         child: Row(
@@ -57,9 +55,7 @@ class DepartureCard extends StatelessWidget {
               width: 15,
               height: 150,
             ),
-            SizedBox(
-              width: 15,
-            ),
+            SizedBox(width: 15),
             Container(
               constraints: BoxConstraints(minHeight: 150),
               padding: const EdgeInsets.symmetric(vertical: 20),
@@ -74,6 +70,11 @@ class DepartureCard extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
+
+
+
+
+                            
                             Text(
                               'ida: '.toUpperCase(),
                               style: TextStyle(
@@ -154,20 +155,14 @@ class DepartureCard extends StatelessWidget {
                   Container(
                     width: MediaQuery.of(context).size.width - 100,
                     child: Divider(
-                      thickness: 1,
+                      thickness: 2,
                     ),
                   ),
                   Container(
                       width: MediaQuery.of(context).size.width - 100,
                       child: Center(
-                        child: Text(departure.status
-                                .toString()
-                                .substring(
-                                    departure.status.toString().indexOf('.') +
-                                        1)
-                                .toUpperCase() ??
-                            ''),
-                      )),
+                        child: Text(departure.status.toString().substring(
+                          departure.status.toString().indexOf('.') +1).toUpperCase() ?? ''))),
                 ],
               ),
             ),

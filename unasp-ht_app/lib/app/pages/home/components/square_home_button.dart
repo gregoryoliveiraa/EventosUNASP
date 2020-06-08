@@ -16,14 +16,8 @@ class SquareHomeButton extends StatelessWidget {
       onTap: () => onTap(),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: Colors.white,
-            boxShadow: <BoxShadow>[
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 5.0, // has the effect of softening the shadow
-              )
-            ]),
+          borderRadius: BorderRadius.circular(10),color: Colors.white,
+          boxShadow: <BoxShadow>[BoxShadow(color: Colors.black12, blurRadius: 5.0)]),
         width: appWidth * .25,
         height: appWidth * .25,
         child: Column(
@@ -31,14 +25,9 @@ class SquareHomeButton extends StatelessWidget {
           children: <Widget>[
             IconTheme(
               data: IconThemeData(color: color),
-              child: Icon(icon),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              text.toUpperCase(),
-            )
+              child: Icon(icon)),
+            SizedBox(height: 10),
+            Text(text.toUpperCase())
           ],
         ),
       ),

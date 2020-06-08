@@ -19,7 +19,7 @@ class _DepartureDetailPageState extends State<DepartureDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.departure.location),
+        title: Text('Saída: '+ widget.departure.location),
         actions: <Widget>[
           IconButton(
             icon: Icon(
