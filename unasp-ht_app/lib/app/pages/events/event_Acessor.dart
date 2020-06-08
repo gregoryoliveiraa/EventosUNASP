@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
+import 'package:unasp_ht/app/pages/events/event_chamada.dart';
 import 'package:unasp_ht/app/pages/events/event_module.dart';
 import 'package:unasp_ht/app/pages/home/components/square_home_button.dart';
 
@@ -33,7 +34,7 @@ class _EventAcessorState extends State<EventAcessor> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Eventos'.toUpperCase()),
+        title: Text(' Home Acessor'.toUpperCase()),
       ),
 
       body: SingleChildScrollView(
@@ -64,31 +65,29 @@ class _EventAcessorState extends State<EventAcessor> {
               height: 20,
             ),
 
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //   children: <Widget>[
-            //     SizedBox(
-            //       width: 200,
-            //       height: 50,
-            //       child: RaisedButton(
-            //         child: const Text('CHAMADA',
-            //             style: TextStyle(
-            //               fontSize: 20,
-            //               color: Colors.white,
-            //             )),
-            //         color: Colors.deepOrangeAccent,
-            //         elevation: 8.0,
-            //         splashColor: Colors.white,
-            //         onPressed: () => //scanQrCode(),
-            //             Navigator.of(context).push<CupertinoPageRoute>(
-            //               CupertinoPageRoute(
-            //                 builder: (context) => Chamada(),
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                SizedBox(
+                  width: 200,
+                  height: 50,
+                  child: RaisedButton(
+                    child: const Text('CHAMADA',
+                        style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                        )),
+                    color: Colors.deepOrangeAccent,
+                    elevation: 8.0,
+                    splashColor: Colors.white,
+                    onPressed: () => 
+                        Navigator.of(context).push<CupertinoPageRoute>(
+                          CupertinoPageRoute(
+                            builder: (context) => Chamada())),
+                  ),
+                ),
+              ],
+            ),
             SizedBox(
               height: 40,
             ),

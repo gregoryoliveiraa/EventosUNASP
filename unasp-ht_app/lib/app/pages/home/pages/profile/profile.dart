@@ -20,44 +20,35 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   Color get primaryColor => Theme.of(context).primaryColor;
   AppBloc bloc = AppModule.to.getBloc();
+
   File imagem;
   bool statusUpload = false;
   String idUsuarioLogado;
   String url;
   String urlImagemRecuperada;
-
-/*__________________SELECIONAR IMAGEM DA GALERIA OU DA CÂMERA______________________________ */
+  
+  
   Future recuperarImagem(bool daCamera) async {
     File imagemSelecionada;
     if (daCamera) {
-      imagemSelecionada =
-          await ImagePicker.pickImage(source: ImageSource.camera);
-    } //camera
+      imagemSelecionada = await ImagePicker.pickImage(source: ImageSource.camera);} //camera
     else {
-      imagemSelecionada =
-          await ImagePicker.pickImage(source: ImageSource.gallery);
-    } //galeria
+      imagemSelecionada = await ImagePicker.pickImage(source: ImageSource.gallery);} //galeria
     setState(() {
       imagem = imagemSelecionada;
-      if (imagem != null) {
+       if (imagem != null) {
         statusUpload = true;
         uploadImagem();
       }
     });
   }
 
-/*___________________________ENVIAR IMAGEM______________________________ */
   Future uploadImagem() async {
-    //Referenciar arquivo
     FirebaseStorage storage = FirebaseStorage.instance;
     StorageReference pastaRaiz = storage.ref();
-    StorageReference arquivo =
-        pastaRaiz.child('fotos').child(idUsuarioLogado + '.jpg');
-
-    //Fazer upload da imagem
+    StorageReference arquivo = pastaRaiz.child('fotos').child(idUsuarioLogado + '.jpg');
     StorageUploadTask task = arquivo.putFile(imagem);
 
-    //Controlar progresso do upload
     task.events.listen((StorageTaskEvent storageEvent) {
       if (storageEvent.type == StorageTaskEventType.progress) {
         setState(() {
@@ -67,26 +58,21 @@ class _ProfileState extends State<Profile> {
         setState(() {
           statusUpload = false;
         });
-      }
+      } 
     });
     await task.onComplete.then((StorageTaskSnapshot snap) {
       recuperarUrlImagem(snap);
     });
-
-    //Recuperar url da imagem
-    await task.onComplete.then((StorageTaskSnapshot snapshot) {
-      recuperarUrlImagem(snapshot);
-    });
   }
 
-  /*_____________________RECUPERAR URL IMAGEM____________________________ */
   Future recuperarUrlImagem(StorageTaskSnapshot snapshot) async {
     String url = (await snapshot.ref.getDownloadURL()) as String;
     atualizarUrlImagemFirestore(url);
-    setState(() {
+    urlImagemRecuperada = url;
+      setState(() {
       urlImagemRecuperada = url;
-      print('++++++++++++++ url: ' + url);
     });
+    print('++++++++++++++ url: ' + url);
   }
 
   void atualizarUrlImagemFirestore(String url) {
@@ -101,8 +87,7 @@ class _ProfileState extends State<Profile> {
     FirebaseUser usuarioLogado = await auth.currentUser();
     idUsuarioLogado = usuarioLogado.uid;
     Firestore db = Firestore.instance;
-    DocumentSnapshot snapshot =
-        await db.collection('users').document(idUsuarioLogado).get();
+    DocumentSnapshot snapshot = await db.collection('users').document(idUsuarioLogado).get();
 
     Map<String, dynamic> dados = snapshot.data;
     if (dados['imagePath'] != null) {
@@ -110,18 +95,17 @@ class _ProfileState extends State<Profile> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    recuperarDadosUsuario();
-  }
+   @override
+    void initState() {
+      super.initState();
+      recuperarDadosUsuario();
+    }
+
 
   @override
   Widget build(BuildContext context) {
-    String genre =
-        bloc.currentUser.value.genre == 'F' ? 'Feminino' : 'Masculino';
-    String path = bloc.currentUser.value.imagePath;
-
+    String genre = bloc.currentUser.value.genre == 'F' ? 'Feminino' : 'Masculino';
+    
     return SingleChildScrollView(
       child: Container(
         padding: EdgeInsets.only(top: 5),
@@ -129,79 +113,61 @@ class _ProfileState extends State<Profile> {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                Visibility(
-                  visible: true,
-                  child: Container(
-                    child: Image.network(
-                      path,
-                      height: 250.0,
-                      width: 380.0,
-                      fit: BoxFit.cover,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey[400],
-                      ),
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
+                // Container(
+                //     child: Image.network(bloc.currentUser.value.imagePath,                    
+                //     height: 250.0, width: 380.0, fit: BoxFit.contain),
+                //     decoration: BoxDecoration(border: Border.all(color: Colors.grey[400]),
+                //     borderRadius: BorderRadius.circular(30.0)),
+                //   ),
+
+                urlImagemRecuperada == null ? Container(
+                  child: Image.asset('assets/img/user.png',
+                    height: 250.0, width: 380.0, fit: BoxFit.contain),
+                    decoration: BoxDecoration(border: Border.all(color: Colors.grey[400]),
+                      borderRadius: BorderRadius.circular(30.0)),
+                  )
+                  :  Container(
+                    child: Image.network(urlImagemRecuperada,                    
+                    height: 250.0, width: 380.0, fit: BoxFit.contain),
+                    decoration: BoxDecoration(border: Border.all(color: Colors.grey[400]),
+                    borderRadius: BorderRadius.circular(30.0)),
                   ),
-                ),
+                
                 const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     RaisedButton.icon(
-                      label: Text(
-                        'Câmera',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      icon: Icon(
-                        Icons.photo_camera,
-                        color: Colors.white,
-                      ),
+                      label: Text('Câmera', style: TextStyle(color: Colors.white)),
+                      icon: Icon(Icons.photo_camera, color: Colors.white),
                       elevation: 10,
-                      padding:
-                          EdgeInsets.symmetric(vertical: 7, horizontal: 20),
-                      onPressed: () {
-                        recuperarImagem(true);
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0))),
+                      padding: EdgeInsets.symmetric(vertical: 7, horizontal: 20),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
                       textColor: Colors.white,
                       splashColor: Colors.red,
                       color: Colors.green[600],
+                      onPressed: () {
+                        recuperarImagem(true);
+                      },
                     ),
                     const SizedBox(width: 35),
                     RaisedButton.icon(
-                      label: Text(
-                        'Galeria  ',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      icon: Icon(
-                        Icons.photo_library,
-                        color: Colors.white,
-                      ),
-                      elevation: 10,
-                      padding:
-                          EdgeInsets.symmetric(vertical: 7, horizontal: 20),
-                      onPressed: () {
-                        recuperarImagem(false);
-                      },
-                      shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.all(Radius.circular(10.0))),
+                      label: Text('Galeria  ', style: TextStyle(color: Colors.white)),
+                      icon: Icon(Icons.photo_library, color: Colors.white),
+                      elevation: 10,padding: EdgeInsets.symmetric(vertical: 7, horizontal: 20),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
                       textColor: Colors.white,
                       splashColor: Colors.red,
                       color: Colors.lightBlue[600],
+                      onPressed: () {
+                        recuperarImagem(false);
+                      },
                     ),
                   ],
                 ),
                 Container(
-                  //padding: EdgeInsets.only(top: 10),
-                  child:
-                      statusUpload ? CircularProgressIndicator() : Container(),
-                ),
+                  child: statusUpload ? CircularProgressIndicator() 
+                  : Container()),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                   child: Column(
@@ -212,9 +178,7 @@ class _ProfileState extends State<Profile> {
                         icon: FontAwesomeIcons.userAlt,
                         inline: false,
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      SizedBox(height: 20),
                       Visibility(
                         visible: !bloc.currentUser.value.ra.isNullOrEmpty,
                         child: Column(
@@ -225,9 +189,7 @@ class _ProfileState extends State<Profile> {
                               icon: FontAwesomeIcons.idCard,
                               inline: false,
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
+                            SizedBox(height: 20),
                           ],
                         ),
                       ),
@@ -237,18 +199,14 @@ class _ProfileState extends State<Profile> {
                         icon: FontAwesomeIcons.solidEnvelope,
                         inline: false,
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      SizedBox(height: 20),
                       Labeled(
                         label: 'gênero: ',
                         text: genre,
                         icon: FontAwesomeIcons.venusMars,
                         inline: false,
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      SizedBox(height: 20),
                       Labeled(
                         label: 'categorias',
                         text:

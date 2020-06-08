@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:qrcode_reader/qrcode_reader.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
+import 'package:unasp_ht/app/pages/events/event_chamada.dart';
 import 'package:unasp_ht/app/pages/events/event_model.dart';
 import 'package:unasp_ht/app/shared/components/labeled.dart';
 import 'package:unasp_ht/app/shared/constants.dart';
@@ -27,7 +27,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
     return Scaffold(
       
       appBar: AppBar(
-        title: Text('Evento'.toUpperCase()),
+        title: Image.asset('assets/img/isolado_branco.png', width: 80),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -76,21 +76,19 @@ class _EventDetailPageState extends State<EventDetailPage> {
                 width: MediaQuery.of(context).size.width,
                 height: 280,
                 decoration: BoxDecoration(
-                  image: DecorationImage(
-                      alignment: Alignment(-.2, 0),
-                      image: NetworkImage(bloc.currentUser.value.imagePath),
-                      fit: BoxFit.contain),
+                  image : DecorationImage(
+                    image: ExactAssetImage('assets/img/test.png'), fit: BoxFit.cover)
                 ),
               ),
               Divider(height: 60, color: Colors.red[600]),
               const SizedBox(height: 20),
-              Text('Registrar chamada:'.toUpperCase(), style: TextStyle(fontSize: 18, color: BLUE,)),
-              Text('Pressione o botão abaixo para leitura do QrCode', style: TextStyle(fontSize: 16, color: BLUE,)),
+              Text('Registrar chamada:'.toUpperCase(), style: TextStyle(fontSize: 18, color: BLUE)),
+              Text('Pressione o botão abaixo para leitura do QrCode', style: TextStyle(fontSize: 16, color: BLUE)),
             ],
           ),
         ),
       ),
-      floatingActionButton: AppModule.to.getBloc<AppBloc>().currentUser.value.tipo == 'aluno'
+      floatingActionButton: AppModule.to.getBloc<AppBloc>().currentUser.value.tipo == 'aluno'.toString()
               ? null
               : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -99,17 +97,10 @@ class _EventDetailPageState extends State<EventDetailPage> {
                       elevation: 4.0,
                       icon: const Icon(Icons.person_add, size: 30,),
                       label: const Text('Leitor QrCOde', style: TextStyle(fontSize: 18)),
-                      onPressed: () {
-                        setState(() {
-                          barcodeString = QRCodeReader()
-                            .setAutoFocusIntervalInMs(200)
-                            .setForceAutoFocus(true)
-                            .setTorchEnabled(true)
-                            .setHandlePermissions(true)
-                            .setExecuteAfterPermissionGranted(true)
-                          .scan;
-                        });
-                      },
+                      onPressed: () => 
+                        Navigator.of(context).push<CupertinoPageRoute>(
+                          CupertinoPageRoute(
+                            builder: (context) => Chamada())),
                     ),
                   ],
               ),
