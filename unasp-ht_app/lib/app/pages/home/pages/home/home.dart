@@ -2,13 +2,14 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:unasp_ht/app/pages/departures/departures_module.dart';
+//import 'package:unasp_ht/app/pages/departures/departures_module.dart';
 import 'package:unasp_ht/app/pages/events/event_module.dart';
+import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 import 'package:unasp_ht/app/pages/home/components/square_home_button.dart';
 import 'package:unasp_ht/app/pages/home/home_bloc.dart';
 import 'package:unasp_ht/app/pages/home/home_module.dart';
 import 'package:unasp_ht/app/pages/home/news_model.dart';
-import 'package:unasp_ht/app/pages/news/news_page.dart';
+//import 'package:unasp_ht/app/pages/news/news_page.dart';
 import 'package:unasp_ht/app/shared/components/loading_widget.dart';
 
 class Home extends StatefulWidget {
@@ -25,66 +26,25 @@ class _HomeState extends State<Home> {
         child: Column(
           children: <Widget>[
             SizedBox(
-              height: appWidth * .1,
+              height: appWidth * .07,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 SquareHomeButton(
-                  'Aluno',
-                  Color(0xFF34495E),
-                  FontAwesomeIcons.userGraduate,
-                  () {},
-                ),
-                SquareHomeButton(
-                  'saídas',
-                  Color(0xFF6FBFCC),
-                  FontAwesomeIcons.signOutAlt,
+                  'QR CODE',
+                  Color(0xFFFF4500),
+                  FontAwesomeIcons.qrcode,
                   () => Navigator.of(context).push<CupertinoPageRoute>(
                     CupertinoPageRoute(
-                      builder: (context) => DeparturesModule(),
+                      builder: (context) => Eventlist(),
                     ),
                   ),
                 ),
-                SquareHomeButton('cardápio', Color(0xFF9A735C),
-                    FontAwesomeIcons.utensils, () {})
-              ],
-            ),
-            SizedBox(
-              height: appWidth * .04,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                SquareHomeButton(
-                    'portais', Color(0xFF818CD3), FontAwesomeIcons.link, () {}),
-                SquareHomeButton('mapa', Color(0xFF7DB760),
-                    FontAwesomeIcons.mapMarkedAlt, () {}),
-                SquareHomeButton('ramais', Color(0xFFFFAB91),
-                    FontAwesomeIcons.phoneAlt, () {}),
-              ],
-            ),
-            SizedBox(
-              height: appWidth * 0.04,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                SquareHomeButton('calendário', Color(0xFFC0CA33),
-                    FontAwesomeIcons.calendarAlt, () {}),
-                SquareHomeButton(
-                  'Notícias',
-                  Color(0xFF95A5A6),
-                  FontAwesomeIcons.bullhorn,
-                  () => Navigator.of(context).push<CupertinoPageRoute>(
-                    CupertinoPageRoute(
-                      builder: (context) => NewsPage(),
-                    ),
-                  ),
-                ),
+                //Botao eventos
                 SquareHomeButton(
                   'Eventos',
-                  Color(0xFFAD1457),
+                  Color(0xFF228B22),
                   FontAwesomeIcons.thList,
                   () => Navigator.of(context).push<CupertinoPageRoute>(
                     CupertinoPageRoute(
@@ -92,13 +52,63 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
+                //
+                // SquareHomeButton(
+                //   'saídas',
+                //   Color(0xFF6FBFCC),
+                //   FontAwesomeIcons.signOutAlt,
+                //   () => Navigator.of(context).push<CupertinoPageRoute>(
+                //     CupertinoPageRoute(
+                //       builder: (context) => DeparturesModule(),
+                //     ),
+                //   ),
+                // ),
+                // SquareHomeButton('cardápio', Color(0xFF9A735C),
+                //     FontAwesomeIcons.utensils, () {})
+              ],
+            ),
+            // SizedBox(
+            //   height: appWidth * .04,
+            // ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //   children: <Widget>[
+            //     SquareHomeButton(
+            //         'portais', Color(0xFF818CD3), FontAwesomeIcons.link, () {}),
+            //     SquareHomeButton('mapa', Color(0xFF7DB760),
+            //         FontAwesomeIcons.mapMarkedAlt, () {}),
+            //     SquareHomeButton('ramais', Color(0xFFFFAB91),
+            //         FontAwesomeIcons.phoneAlt, () {}),
+            //   ],
+            // ),
+            SizedBox(
+              height: appWidth * 0.008,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                // SquareHomeButton('calendário', Color(0xFFC0CA33),
+                //     FontAwesomeIcons.calendarAlt, () {}),
+                // SquareHomeButton(
+                //   'Notícias',
+                //   Color(0xFF95A5A6),
+                //   FontAwesomeIcons.bullhorn,
+                //   () => Navigator.of(context).push<CupertinoPageRoute>(
+                //     CupertinoPageRoute(
+                //       builder: (context) => NewsPage(),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
             SizedBox(
-              height: appWidth * 0.1,
+              height: appWidth * 0.09,
             ),
             Text(
               'últimas notícias'.toUpperCase(),
+              style: TextStyle(
+                fontSize: 17,
+              ),
             ),
             SizedBox(
               height: 20,
@@ -114,6 +124,9 @@ class _HomeState extends State<Home> {
             ),
             Text(
               'eventos da semana'.toUpperCase(),
+              style: TextStyle(
+                fontSize: 17,
+              ),
             ),
             //-------------Distancia entre o carousel e o titulo --------------
             SizedBox(
@@ -255,7 +268,7 @@ Widget _news2(BuildContext context2) {
                             Text(
                               'Curso de Robótica'.toUpperCase(),
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 12),
+                                  fontWeight: FontWeight.bold, fontSize: 11),
                             ),
                             SizedBox(
                               height: appWidth * .02,

@@ -108,7 +108,7 @@ class _HomeAdmState extends State<HomeAdm> {
                 FirebaseAuth auth = FirebaseAuth.instance;
                 await auth.signOut();
                 await Navigator.of(context).push<CupertinoPageRoute>(
-                  CupertinoPageRoute(builder: (context) => LoginModule()));
+                    CupertinoPageRoute(builder: (context) => LoginModule()));
               },
             ),
 

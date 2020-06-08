@@ -118,7 +118,8 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    String genre = bloc.currentUser.value.genre == 'F' ? 'Feminino' : 'Masculino';
+    String genre =
+        bloc.currentUser.value.genre == 'F' ? 'Feminino' : 'Masculino';
     String path = bloc.currentUser.value.imagePath;
 
     return SingleChildScrollView(
@@ -128,15 +129,14 @@ class _ProfileState extends State<Profile> {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-
-
                 Visibility(
                   visible: true,
                   child: Container(
-                    child: Image.network(path,
-                    height: 250.0,
-                    width: 380.0,
-                    fit: BoxFit.cover,
+                    child: Image.network(
+                      path,
+                      height: 250.0,
+                      width: 380.0,
+                      fit: BoxFit.cover,
                     ),
                     decoration: BoxDecoration(
                       border: Border.all(
@@ -146,15 +146,13 @@ class _ProfileState extends State<Profile> {
                     ),
                   ),
                 ),
-              
-
-
                 const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     RaisedButton.icon(
-                      label: Text('Câmera',
+                      label: Text(
+                        'Câmera',
                         style: TextStyle(color: Colors.white),
                       ),
                       icon: Icon(
@@ -162,7 +160,8 @@ class _ProfileState extends State<Profile> {
                         color: Colors.white,
                       ),
                       elevation: 10,
-                      padding: EdgeInsets.symmetric(vertical: 7, horizontal: 20),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 7, horizontal: 20),
                       onPressed: () {
                         recuperarImagem(true);
                       },
@@ -175,7 +174,8 @@ class _ProfileState extends State<Profile> {
                     ),
                     const SizedBox(width: 35),
                     RaisedButton.icon(
-                      label: Text('Galeria  ',
+                      label: Text(
+                        'Galeria  ',
                         style: TextStyle(color: Colors.white),
                       ),
                       icon: Icon(
@@ -183,12 +183,14 @@ class _ProfileState extends State<Profile> {
                         color: Colors.white,
                       ),
                       elevation: 10,
-                      padding: EdgeInsets.symmetric(vertical: 7, horizontal: 20),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 7, horizontal: 20),
                       onPressed: () {
                         recuperarImagem(false);
                       },
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0))),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(10.0))),
                       textColor: Colors.white,
                       splashColor: Colors.red,
                       color: Colors.lightBlue[600],
@@ -197,7 +199,8 @@ class _ProfileState extends State<Profile> {
                 ),
                 Container(
                   //padding: EdgeInsets.only(top: 10),
-                  child: statusUpload ? CircularProgressIndicator() : Container(),
+                  child:
+                      statusUpload ? CircularProgressIndicator() : Container(),
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
@@ -209,7 +212,8 @@ class _ProfileState extends State<Profile> {
                         icon: FontAwesomeIcons.userAlt,
                         inline: false,
                       ),
-                      SizedBox(height: 20,
+                      SizedBox(
+                        height: 20,
                       ),
                       Visibility(
                         visible: !bloc.currentUser.value.ra.isNullOrEmpty,
@@ -221,7 +225,8 @@ class _ProfileState extends State<Profile> {
                               icon: FontAwesomeIcons.idCard,
                               inline: false,
                             ),
-                            SizedBox(height: 20,
+                            SizedBox(
+                              height: 20,
                             ),
                           ],
                         ),
@@ -232,7 +237,8 @@ class _ProfileState extends State<Profile> {
                         icon: FontAwesomeIcons.solidEnvelope,
                         inline: false,
                       ),
-                      SizedBox(height: 20,
+                      SizedBox(
+                        height: 20,
                       ),
                       Labeled(
                         label: 'gênero: ',
@@ -240,7 +246,8 @@ class _ProfileState extends State<Profile> {
                         icon: FontAwesomeIcons.venusMars,
                         inline: false,
                       ),
-                      SizedBox(height: 20,
+                      SizedBox(
+                        height: 20,
                       ),
                       Labeled(
                         label: 'categorias',

@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
-import 'package:unasp_ht/app/pages/eventos/event_list.dart';
+//import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 import 'package:unasp_ht/app/pages/events/event_module.dart';
 import 'package:unasp_ht/app/pages/home/components/square_home_button.dart';
 
@@ -45,7 +45,7 @@ class _EventAdmState extends State<EventAdm> {
 /*___________________________APPBAR_____________________________*/
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Eventos - Adm'.toUpperCase()),
+        title: Text('Administrador'.toUpperCase()),
         actions: <Widget>[
           IconButton(
               icon: Icon(FontAwesomeIcons.search),
@@ -84,36 +84,39 @@ class _EventAdmState extends State<EventAdm> {
             SizedBox(
               height: 20,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                SizedBox(
-                  width: 200,
-                  height: 50,
-                  child: RaisedButton(
-                    child: const Text('QR CODE',
-                        style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                        )),
-                    color: Colors.deepOrangeAccent,
-                    elevation: 8.0,
-                    splashColor: Colors.white,
-                    onPressed: () =>
-                        Navigator.of(context).push<CupertinoPageRoute>(
-                      CupertinoPageRoute(
-                        builder: (context) => Eventlist(),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //   children: <Widget>[
+            //     SizedBox(
+            //       width: 200,
+            //       height: 50,
+            //       child: RaisedButton(
+            //         child: const Text('QR CODE',
+            //             style: TextStyle(
+            //               fontSize: 20,
+            //               color: Colors.white,
+            //             )),
+            //         color: Colors.deepOrangeAccent,
+            //         elevation: 8.0,
+            //         splashColor: Colors.white,
+            //         onPressed: () =>
+            //             Navigator.of(context).push<CupertinoPageRoute>(
+            //           CupertinoPageRoute(
+            //             builder: (context) => Eventlist(),
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
             SizedBox(
-              height: 40,
+              height: 15,
             ),
             Text(
               'últimas notícias'.toUpperCase(),
+              style: TextStyle(
+                fontSize: 17,
+              ),
             ),
             SizedBox(
               height: 10,
@@ -127,6 +130,9 @@ class _EventAdmState extends State<EventAdm> {
 
             Text(
               'Noticias da Semana'.toUpperCase(),
+              style: TextStyle(
+                fontSize: 17,
+              ),
             ),
             SizedBox(
               height: 10,

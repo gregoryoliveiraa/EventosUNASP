@@ -5,14 +5,12 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-
 class ProfileImage extends StatefulWidget {
   @override
   _ProfileImageState createState() => _ProfileImageState();
 }
 
 class _ProfileImageState extends State<ProfileImage> {
-
   File _imageFile;
   final bool _isLoading = false;
   String idUsuarioLogado;
@@ -41,39 +39,39 @@ class _ProfileImageState extends State<ProfileImage> {
     FirebaseUser usuarioLogado = await auth.currentUser();
     idUsuarioLogado = usuarioLogado.uid;
     Firestore db = Firestore.instance;
-    DocumentSnapshot snapshot = await db.collection('users').document(idUsuarioLogado).get();
+    DocumentSnapshot snapshot =
+        await db.collection('users').document(idUsuarioLogado).get();
     Map<String, dynamic> dados = snapshot.data;
     if (dados['url'] != null) {
       urlImagemRecuperada = dados['url'] as String;
       setState(() {
-      urlImagemRecuperada = url;
-      print('--->---->---->----> url: ' + urlImagemRecuperada);
-    });
+        urlImagemRecuperada = url;
+        print('--->---->---->----> url: ' + urlImagemRecuperada);
+      });
     }
   }
 
   Future getImage(bool isCamera) async {
     File image;
-    if (isCamera) { image = await ImagePicker.pickImage(source: ImageSource.camera);
-    } else { image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    if (isCamera) {
+      image = await ImagePicker.pickImage(source: ImageSource.camera);
+    } else {
+      image = await ImagePicker.pickImage(source: ImageSource.gallery);
     }
     setState(() {
       _imageFile = image;
     });
   }
 
-  Future uploadImage () async {
-    StorageReference reference = FirebaseStorage.instance.ref().child(idUsuarioLogado + '.jpg');
+  Future uploadImage() async {
+    StorageReference reference =
+        FirebaseStorage.instance.ref().child(idUsuarioLogado + '.jpg');
     StorageUploadTask uploadtask = reference.putFile(_imageFile);
-    StorageTaskSnapshot taskSnapshot = await  uploadtask.onComplete;
+    StorageTaskSnapshot taskSnapshot = await uploadtask.onComplete;
     setState(() {
       _upLoaded = true;
-
     });
   }
-    
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +94,8 @@ class _ProfileImageState extends State<ProfileImage> {
               Container(
                 alignment: Alignment(0.0, 0.0),
                 width: 300.0,
-                child: Text('Please capture a new Image or pick one from the gallery to continue.',
+                child: Text(
+                  'Please capture a new Image or pick one from the gallery to continue.',
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -127,29 +126,28 @@ class _ProfileImageState extends State<ProfileImage> {
               SizedBox(
                 height: 10.0,
               ),
-              _imageFile == null ? Container() : Image.file( _imageFile,
+              _imageFile == null
+                  ? Container()
+                  : Image.file(
+                      _imageFile,
                       height: 300.0,
                       width: 300.0,
                     ),
-
-              SizedBox(height: 15.0,),
-
-              _imageFile == null? Container()
-              : RaisedButton (
-                child: Text('Subir Imagem'),
-                onPressed: () {
-                 uploadImage();
-                },
-
+              SizedBox(
+                height: 15.0,
               ),
-                _upLoaded == false ? Container() 
-                : RaisedButton(
-                  child: Text('DownLoad Imagem'),
-                  onPressed: (){
-
-                  }),
-
-
+              _imageFile == null
+                  ? Container()
+                  : RaisedButton(
+                      child: Text('Subir Imagem'),
+                      onPressed: () {
+                        uploadImage();
+                      },
+                    ),
+              _upLoaded == false
+                  ? Container()
+                  : RaisedButton(
+                      child: Text('DownLoad Imagem'), onPressed: () {}),
             ],
           ),
         ),
@@ -157,8 +155,6 @@ class _ProfileImageState extends State<ProfileImage> {
     );
   }
 }
-
-
 
 // import 'dart:io';
 // import 'package:cloud_firestore/cloud_firestore.dart';
@@ -241,7 +237,7 @@ class _ProfileImageState extends State<ProfileImage> {
 
 //    void _atualizarUrlImagemFirestore(String url){
 //     Firestore db = Firestore.instance;
-//     Map<String, dynamic> dadosAtualizar ;    
+//     Map<String, dynamic> dadosAtualizar ;
 //     db.collection('users')
 //     .document(bloc.currentUser.value.uid)
 //     .updateData( dadosAtualizar );
@@ -260,7 +256,6 @@ class _ProfileImageState extends State<ProfileImage> {
 //         _urlImagemRecuperada = dados['urlImagem'] as String;
 //       }
 //   }
-
 
 //   @override
 //   void initState() {
@@ -282,7 +277,7 @@ class _ProfileImageState extends State<ProfileImage> {
 //             Container(
 //               padding: EdgeInsets.all(16),
 //               child: _statusUpload ? CircularProgressIndicator() : Container(),
-//             ),     
+//             ),
 //             Center(
 //               child: Row(
 //                 children: <Widget>[
@@ -299,12 +294,12 @@ class _ProfileImageState extends State<ProfileImage> {
 //                       _recuperarImagem(true);
 //                     },
 //                   ),
-                  
+
 //                   IconButton(
 //                     icon: Icon(Icons.photo_library),
 //                     iconSize: 50,
 //                     padding: EdgeInsets.symmetric(
-                    
+
 //                     ),
 //                     color: Colors.grey[500],
 //                     tooltip: 'Adicione Foto de Perfil',
@@ -325,7 +320,7 @@ class _ProfileImageState extends State<ProfileImage> {
 //                       style: TextStyle(
 //                         fontWeight: FontWeight.bold,
 //                         color: Colors.grey[200],
-                        
+
 //                       ),
 //                     ),
 //                     onPressed: () {

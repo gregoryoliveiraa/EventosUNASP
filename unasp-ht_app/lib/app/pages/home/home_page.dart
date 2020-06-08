@@ -6,12 +6,13 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 import 'package:unasp_ht/app/pages/events/event_Acessor.dart';
 import 'package:unasp_ht/app/pages/events/event_module.dart';
-import 'package:unasp_ht/app/pages/home/homeAdm.dart';
+//import 'package:unasp_ht/app/pages/home/homeAdm.dart';
 import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
 import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
 import 'package:unasp_ht/app/pages/login/login_module.dart';
+import 'package:unasp_ht/app/pages/events/event_Adm.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -20,8 +21,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   AppBloc block = AppModule.to.getBloc();
- 
-   
+
   @override
   Widget build(BuildContext context) {
     List<Widget> t = [
@@ -52,26 +52,23 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Home alunos'.toUpperCase()),
-        actions: <Widget>[
-        ],
+        actions: <Widget>[],
       ),
-      
 
 /*_____________________________GRELHA___________________________ */
       drawer: Drawer(
         child: ListView(
           children: <Widget>[
             UserAccountsDrawerHeader(
-                accountName: Text(block.currentUser.value.name),
-                accountEmail: Text(block.currentUser.value.email),
-                currentAccountPicture: CircleAvatar(
+              accountName: Text(block.currentUser.value.name),
+              accountEmail: Text(block.currentUser.value.email),
+              currentAccountPicture: CircleAvatar(
                   radius: 30.0,
                   backgroundColor: Colors.grey[300],
-                  backgroundImage: block.currentUser.value.imagePath != null ? 
-                  NetworkImage(block.currentUser.value.imagePath)
-                  : null
-                ),
-              ),
+                  backgroundImage: block.currentUser.value.imagePath != null
+                      ? NetworkImage(block.currentUser.value.imagePath)
+                      : null),
+            ),
 //__________________________ SAIR ____________________________
             InkWell(
               child: ListTile(
@@ -90,126 +87,118 @@ class _HomePageState extends State<HomePage> {
                 await auth.signOut();
                 await Navigator.pop(context);
                 await Navigator.of(context).push<CupertinoPageRoute>(
-                  CupertinoPageRoute(builder: (context) => LoginModule()));
+                    CupertinoPageRoute(builder: (context) => LoginModule()));
               },
-//__________________________ PERFIL ____________________________ 
+//__________________________ PERFIL ____________________________
             ),
             InkWell(
-              child: ListTile(
-                title: Text('Perfil',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey[700],
-                        fontSize: 18)
-                ),
-                subtitle: Text('Perfil do usuário...'),
-                leading: Icon(
-                  Icons.person,
-                  size: 35,
-                ),
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push<CupertinoPageRoute>(
-                  CupertinoPageRoute(
-                    builder: (context) => HomePage(),
+                child: ListTile(
+                  title: Text('Perfil',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[700],
+                          fontSize: 18)),
+                  subtitle: Text('Perfil do usuário...'),
+                  leading: Icon(
+                    Icons.person,
+                    size: 35,
                   ),
-                );
-              } 
-            ),
+                ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push<CupertinoPageRoute>(
+                    CupertinoPageRoute(
+                      builder: (context) => HomePage(),
+                    ),
+                  );
+                }),
 //____________________botao Administrador_________________________________
             InkWell(
-              child: ListTile(
-                title: Text('Administrador',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey[700],
-                        fontSize: 18)),
-                leading: Icon(
-                  Icons.person_outline,
-                  size: 35,
-                ),
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push<CupertinoPageRoute>(
-                  CupertinoPageRoute(
-                    builder: (context) => HomeAdm(),
+                child: ListTile(
+                  title: Text('Administrador',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[700],
+                          fontSize: 18)),
+                  leading: Icon(
+                    Icons.person_outline,
+                    size: 35,
                   ),
-                );
-              } 
-            ),
+                ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push<CupertinoPageRoute>(
+                    CupertinoPageRoute(
+                      builder: (context) => EventAdm(),
+                    ),
+                  );
+                }),
 //____________________botao Acessor_________________________________
             InkWell(
-              child: ListTile(
-                title: Text('Acessor',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey[700],
-                        fontSize: 18)),
-                leading: Icon(
-                  Icons.person_add,
-                  size: 35,
-                ),
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push<CupertinoPageRoute>(
-                  CupertinoPageRoute(
-                    builder: (context) => EventAcessor(),
+                child: ListTile(
+                  title: Text('Acessor',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[700],
+                          fontSize: 18)),
+                  leading: Icon(
+                    Icons.person_add,
+                    size: 35,
                   ),
-                );
-              } 
-            ),
+                ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push<CupertinoPageRoute>(
+                    CupertinoPageRoute(
+                      builder: (context) => EventAcessor(),
+                    ),
+                  );
+                }),
 //__________________________ QR Code____________________________
             InkWell(
-              child: ListTile(
-                title: Text('Qr Code',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey[700],
-                        fontSize: 18)
-                ),
-                subtitle: Text('Qr Code do usuário...'),
-                leading: Icon(
-                  Icons.select_all,
-                  color: Colors.greenAccent[400],
-                  size: 35,
-                ),
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push<CupertinoPageRoute>(
-                  CupertinoPageRoute(
-                    builder: (context) => Eventlist(),
+                child: ListTile(
+                  title: Text('Qr Code',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[700],
+                          fontSize: 18)),
+                  subtitle: Text('Qr Code do usuário...'),
+                  leading: Icon(
+                    Icons.select_all,
+                    color: Colors.greenAccent[400],
+                    size: 35,
                   ),
-                );
-              }
-            ),
+                ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push<CupertinoPageRoute>(
+                    CupertinoPageRoute(
+                      builder: (context) => Eventlist(),
+                    ),
+                  );
+                }),
 //__________________________ EVENTOS ____________________________
             InkWell(
-              child: ListTile(
-                title: Text('Eventos',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey[700],
-                        fontSize: 18)
-                ),
-                subtitle: Text('Lista de Eventos...'),
-                leading: Icon(
-                  Icons.event,
-                  size: 35,
-                ),
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).push<CupertinoPageRoute>(
-                  CupertinoPageRoute(
-                    builder: (context) => EventModule(),
+                child: ListTile(
+                  title: Text('Eventos',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[700],
+                          fontSize: 18)),
+                  subtitle: Text('Lista de Eventos...'),
+                  leading: Icon(
+                    Icons.event,
+                    size: 35,
                   ),
-                );
-              }
-            ),
+                ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push<CupertinoPageRoute>(
+                    CupertinoPageRoute(
+                      builder: (context) => EventModule(),
+                    ),
+                  );
+                }),
             InkWell(
               child: ListTile(
                 title: Text('Sobre',
@@ -217,16 +206,17 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.bold,
                         color: Colors.grey[700],
                         fontSize: 18)),
-                leading: Icon(Icons.help,
-                color: orange,
-                size: 35,
+                leading: Icon(
+                  Icons.help,
+                  color: orange,
+                  size: 35,
                 ),
               ),
             ),
           ],
-        ),        
+        ),
       ),
-      
+
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: PageView(
@@ -257,4 +247,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
