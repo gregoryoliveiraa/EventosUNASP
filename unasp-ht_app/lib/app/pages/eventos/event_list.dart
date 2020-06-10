@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
@@ -8,13 +9,13 @@ class Eventlist extends StatefulWidget {
   _EventlistState createState() => _EventlistState();
 }
 
-class _EventlistState extends State<Eventlist> {
+class _EventlistState extends State<Eventlist> {  
   AppBloc bloc = AppModule.to.getBloc();  
 
   @override
   Widget build(BuildContext context) {
     String path = bloc.currentUser.value.imagePath;
-    
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown,]);    
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -26,13 +27,10 @@ class _EventlistState extends State<Eventlist> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-
                 CircleAvatar(
                     radius: 110.0,
                     backgroundColor: Colors.grey[300],
                     backgroundImage: path != null ? NetworkImage(path) : null),
-                //const SizedBox(height: 10),
-
                 Column(
                   children: <Widget>[
                     Row(

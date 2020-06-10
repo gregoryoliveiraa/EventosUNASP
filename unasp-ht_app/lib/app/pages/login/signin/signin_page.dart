@@ -96,10 +96,7 @@ class _SigninPageState extends State<SigninPage>
             child: Column(
               children: <Widget>[
                 SizedBox(height: appWidth * .3),
-                Image.asset(
-                  'assets/img/logo_branco.png',
-                  width: 180,
-                ),
+                Image.asset('assets/img/logo_branco.png',width: 180),
                 SizedBox(height: appWidth * 0.2),
                 AnimatedBuilder(
                   animation: animTransformEmail,

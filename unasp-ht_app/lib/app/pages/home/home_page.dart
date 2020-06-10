@@ -19,12 +19,19 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
+
 class _HomePageState extends State<HomePage> {
   AppBloc bloc = AppModule.to.getBloc(); 
+
+  @override
+  void initState() {
+    super.initState();
+  }
    
   @override
   Widget build(BuildContext context) {
     String path = bloc.currentUser.value.imagePath;
+
     List<Widget> t = [
       Container(
         padding: EdgeInsets.all(10),

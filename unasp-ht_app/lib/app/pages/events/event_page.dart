@@ -21,55 +21,46 @@ class _EventPageState extends State<EventPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         title: Text('lista eventos'.toUpperCase()),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        child: Container(
+      body: Container(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(20),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  StreamBuilder<List<Eventos>>(
-                    stream: _bloc.eventos,
-                    builder: (c, s, ) {
-                      if (!s.hasData) {
-                        return Center(
-                          child: LoadingWidget(),
-                        );
-                      }
-                      return ListView.separated(
-                        shrinkWrap: true,
-                        itemBuilder: (c, i) => EventCard(eventos: s.data[i]),
-                        itemCount: s.data.length,
-                        separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
-                      );
-                    },
-                  )
-                ],
-              ),
-            ),
+          child: Column(
+            children: <Widget>[
+              StreamBuilder<List<Eventos>>(
+                stream: _bloc.eventos,
+                builder: (c,s) {
+                  if (!s.hasData) {
+                    return Center(
+                      child: LoadingWidget(),
+                    );
+                  }
+                  return ListView.separated(
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemBuilder: (c, i) => EventCard(eventos: s.data[i]),
+                    itemCount: s.data.length,
+                    separatorBuilder: (BuildContext context, int index) => const SizedBox(height: 20),
+                  );
+                },
+              )
+            ],
           ),
         ),
       ),
-
-      floatingActionButton: AppModule.to.getBloc<AppBloc>()
-      .currentUser.value.mainCategory != CategoryEnum.Admin
-      ? null
-      : FloatingActionButton(
-        backgroundColor: Theme.of(context).accentColor,
-        child: Icon(FontAwesomeIcons.plus),
-        onPressed: () => Navigator.of(context).push<CupertinoPageRoute>(
-          CupertinoPageRoute(
-            builder: (context) => NewEventPage(),
-          ),
-        ),
-      ),
-    );
+      floatingActionButton: AppModule.to
+                  .getBloc<AppBloc>()
+                  .currentUser.value.mainCategory != CategoryEnum.Admin
+          ? null
+          : FloatingActionButton(
+              backgroundColor: Theme.of(context).accentColor,
+              child: Icon(FontAwesomeIcons.plus),
+              onPressed: () => Navigator.of(context).push<CupertinoPageRoute>(
+                CupertinoPageRoute(builder: (context) => NewEventPage())))
+      );
   }
 }
-

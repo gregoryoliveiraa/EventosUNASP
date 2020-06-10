@@ -11,6 +11,7 @@ class AppWidget extends StatelessWidget {
           fontFamily: FONT_FAMILY,
           accentColor: ORANGE,
           primaryColor: BLUE,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         debugShowCheckedModeBanner: false,
         home: LoginModule(),

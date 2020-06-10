@@ -1,7 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:unasp_ht/app/pages/departures/departures_module.dart';
 import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 import 'package:unasp_ht/app/pages/events/event_module.dart';
 import 'package:unasp_ht/app/pages/home/components/square_home_button.dart';
@@ -19,6 +21,7 @@ class _HomeState extends State<Home> {
   
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown,]);
     double appWidth = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Center(
@@ -28,15 +31,22 @@ class _HomeState extends State<Home> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                SquareHomeButton('calendário', Color(0xFFC0CA33), FontAwesomeIcons.calendarAlt, () {}),
+
+                SquareHomeButton('Saidas', Color(0xFFC0CA33), FontAwesomeIcons.calendarAlt, 
+                  () => Navigator.of(context).push<CupertinoPageRoute>(CupertinoPageRoute(
+                    builder: (context) => DeparturesModule()))
+                ),
+
                 SquareHomeButton('Qr Code', Color(0xFFFF4500), FontAwesomeIcons.qrcode,
                   () => Navigator.of(context).push<CupertinoPageRoute>(CupertinoPageRoute(
                     builder: (context) => Eventlist()))
                 ),
+
                 SquareHomeButton('Eventos', Color(0xFF228B22), FontAwesomeIcons.thList,
                   () => Navigator.of(context).push<CupertinoPageRoute>(CupertinoPageRoute(
                     builder: (context) => EventModule()))
                 ),
+
               ],
             ),
             SizedBox(height: appWidth * 0.1),
