@@ -16,7 +16,6 @@ class _NewEventPageState extends State<NewEventPage> {
   final NewEventBloc _bloc = EventModule.to.getBloc<NewEventBloc>();
   final EventFormBloc _formBloc = EventModule.to.getBloc<EventFormBloc>();
   final EventBloc _eventosBloc = EventModule.to.getBloc<EventBloc>();
-
   DateTime today = DateTime.now();
 
   @override

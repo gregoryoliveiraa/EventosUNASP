@@ -33,8 +33,7 @@ class UserModel {
     data['genre'] = genre;
     data['imagePath'] = imagePath;
     data['mainCategory'] = mainCategory.index;
-    data['secondaryCategory'] =
-        secondaryCategory != null ? secondaryCategory.index : null;
+    data['secondaryCategory'] = secondaryCategory != null ? secondaryCategory.index : null;
     data['ra'] = ra;
     data['tipo'] = 'aluno';
     return data;

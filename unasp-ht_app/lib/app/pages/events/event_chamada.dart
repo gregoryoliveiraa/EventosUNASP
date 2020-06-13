@@ -276,16 +276,13 @@ class _ChamadaState extends State<Chamada> {
           children: <Widget>[
             Center(
               child: MaterialButton(
-                child: Text(
-                  'Scanner',
+                child: Text('Scanner',
                   style: TextStyle(fontSize: 26),
                 ),
                 onPressed: () => scanQrCode(),
               ),
             ),
-            Text(
-              barcode,
-              // code,
+            Text(barcode,// code,
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             )
           ],

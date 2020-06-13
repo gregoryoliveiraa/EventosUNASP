@@ -15,8 +15,7 @@ class SigninPage extends StatefulWidget {
   _SigninPageState createState() => _SigninPageState();
 }
 
-class _SigninPageState extends State<SigninPage>
-    with SingleTickerProviderStateMixin {
+class _SigninPageState extends State<SigninPage> with SingleTickerProviderStateMixin {
   Animation<double> animTransformEmail;
   Animation<double> animTransformPassword;
   Animation<double> animButtonSigninCircular;
@@ -87,7 +86,11 @@ class _SigninPageState extends State<SigninPage>
           CupertinoPageRoute(builder: (context) => SignupPage()));
     }
 
-    return Scaffold(
+  return GestureDetector(
+    onTap: () {
+      FocusScope.of(context).requestFocus(FocusNode());
+    },
+    child: Scaffold(
       backgroundColor: BLUE,
       body: SingleChildScrollView(
         child: Padding(
@@ -96,10 +99,9 @@ class _SigninPageState extends State<SigninPage>
             child: Column(
               children: <Widget>[
                 SizedBox(height: appWidth * .3),
-                Image.asset('assets/img/logo_branco.png',width: 180),
+                Image.asset('assets/img/logo_branco.png', width: 180),
                 SizedBox(height: appWidth * 0.2),
-                AnimatedBuilder(
-                  animation: animTransformEmail,
+                AnimatedBuilder(animation: animTransformEmail,
                   child: CustomTextField(
                     controller: _bloc.emailController,
                     hintText: 'Email',
@@ -116,8 +118,7 @@ class _SigninPageState extends State<SigninPage>
                   },
                 ),
                 SizedBox(height: 20),
-                AnimatedBuilder(
-                  animation: animTransformPassword,
+                AnimatedBuilder(animation: animTransformPassword,
                   child: CustomTextField(
                       controller: _bloc.passwordController,
                       hintText: 'Senha',
@@ -141,68 +142,56 @@ class _SigninPageState extends State<SigninPage>
                           stream: _bloc.isValidForm,
                           builder: (context, snapshot) {
                             return Button(
-                                enabled: snapshot.hasData && snapshot.data,
-                                color: ORANGE,
-                                text: 'entrar',
-                                onTap: () async {
-                                  FocusScope.of(context)
-                                      .requestFocus(FocusNode());
-                                  String res = await _bloc.login();
-                                  _bloc.animationController.reverse();
-                                  if (res != null) {
-                                    Scaffold.of(context).showSnackBar(SnackBar(
-                                      content: Text(res ?? 'Erro'),
-                                      backgroundColor: Colors.red,
-                                    ));
-                                  } else {
-                                    _bloc.emailController.clear();
-                                    _bloc.passwordController.clear();
-                                
-                                    await Navigator.of(context).pushReplacement<
-                                            CupertinoPageRoute,
-                                            CupertinoPageRoute>(
-                                        CupertinoPageRoute(
-                                            builder: (context) =>
-                                                HomeModule()));                                    
-                                  }
-                                },
-                                width: animButtonWidth.value,
-                                circular: animButtonSigninCircular.value,
-                                isLoading: animButtonTransform.value < 0,
+                              enabled: snapshot.hasData && snapshot.data,
+                              color: ORANGE,
+                              text: 'entrar',
+                              onTap: () async {
+                                FocusScope.of(context).requestFocus(FocusNode());
+                                String res = await _bloc.login();
+                                _bloc.animationController.reverse();
+                                if (res != null) {
+                                  Scaffold.of(context).showSnackBar(SnackBar(
+                                    content: Text(res ?? 'Erro'),
+                                    backgroundColor: Colors.red,
+                                  ));
+                                } else {
+                                  _bloc.emailController.clear();
+                                  _bloc.passwordController.clear();
+                                  await Navigator.of(context).pushReplacement<CupertinoPageRoute, CupertinoPageRoute>(
+                                      CupertinoPageRoute(builder: (context) => HomeModule()));
+                                }
+                              },
+                              width: animButtonWidth.value,
+                              circular: animButtonSigninCircular.value,
+                              isLoading: animButtonTransform.value < 0,
                             );
-                                
                           }),
                       offset: Offset(0, animButtonTransform.value),
                     );
                   },
                 ),
-                SizedBox(
-                  height: 18,
-                ),
+                SizedBox(height: 18),
                 Center(
                   child: AnimatedBuilder(
                     animation: animOpacityForgetPass,
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         GestureDetector(
                           onTap: _signUp,
-                          child: Text(
-                            'Cadastre-se'.toUpperCase(),
+                          child: Text('Cadastre-se'.toUpperCase(),
                             style: TextStyle(fontSize: 14, color: Colors.white),
                           ),
                         ),
                         Text('   |   ',
-                            style:
-                                TextStyle(fontSize: 14, color: Colors.white)),
+                            style: TextStyle(fontSize: 14, color: Colors.white)),
                         GestureDetector(
                           onTap: _forgetPass,
-                          child: Text(
-                            'Esqueci minha senha'.toUpperCase(),
+                          child: Text('Esqueci minha senha'.toUpperCase(),
                             style: TextStyle(fontSize: 14, color: Colors.white),
                           ),
                         )
                       ],
-                      mainAxisAlignment: MainAxisAlignment.center,
                     ),
                     builder: (BuildContext context, Widget child) {
                       return Opacity(
@@ -217,6 +206,7 @@ class _SigninPageState extends State<SigninPage>
           ),
         ),
       ),
+    ),
     );
   }
 }

@@ -5,17 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
-//import 'package:unasp_ht/app/pages/eventos/event_list.dart';
-import 'package:unasp_ht/app/pages/events/event_Adm.dart';
-//import 'package:unasp_ht/app/pages/events/event_home.dart';
-//import 'package:unasp_ht/app/pages/events/event_page.dart';
 import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
 import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
 import 'package:unasp_ht/app/pages/login/login_module.dart';
 import 'package:unasp_ht/app/shared/components/labeled.dart';
-
 import 'home_page.dart';
-//import 'package:unasp_ht/app/pages/eventos/event_list.dart';
+
 
 class HomeAdm extends StatefulWidget {
   @override
@@ -130,25 +125,7 @@ class _HomeAdmState extends State<HomeAdm> {
                 ),
               ),
             ),
-            //________________Botão Eventos________________________
-            InkWell(
-              onTap: () => Navigator.of(context).push<CupertinoPageRoute>(
-                CupertinoPageRoute(
-                  builder: (context) => EventAdm(),
-                ),
-              ),
-              child: ListTile(
-                title: Text('Eventos',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.grey[700],
-                        fontSize: 18)),
-                leading: Icon(
-                  Icons.event,
-                  size: 35,
-                ),
-              ),
-            ),
+           
             InkWell(
               child: ListTile(
                 title: Text('Sobre',

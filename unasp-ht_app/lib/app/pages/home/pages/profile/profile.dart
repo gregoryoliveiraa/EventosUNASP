@@ -42,13 +42,6 @@ class _ProfileState extends State<Profile> {
     });
   }
 
-  void atualizarUrlImagemFirestore(String url) {
-    Firestore db = Firestore.instance;
-    final Map<String, dynamic> dadosAtualizar = <String, dynamic>{};
-    dadosAtualizar['imagePath'] = url;
-    db.collection('users').document(idUsuarioLogado).updateData(dadosAtualizar);
-  }
-
   Future uploadImagem() async {
     FirebaseStorage storage = FirebaseStorage.instance;
     StorageReference pastaRaiz = storage.ref();
@@ -79,6 +72,13 @@ class _ProfileState extends State<Profile> {
       urlImagemRecuperada = url;
     });
     print('++++++++++++++ url: ' + url);
+  }
+
+  void atualizarUrlImagemFirestore(String url) {
+    Firestore db = Firestore.instance;
+    final Map<String, dynamic> dadosAtualizar = <String, dynamic>{};
+    dadosAtualizar['imagePath'] = url;
+    db.collection('users').document(idUsuarioLogado).updateData(dadosAtualizar);
   }
 
   void recuperarDadosUsuario() async {
@@ -114,21 +114,7 @@ class _ProfileState extends State<Profile> {
           child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                // Container(
-                //     child: Image.network(bloc.currentUser.value.imagePath,                    
-                //     height: 250.0, width: 380.0, fit: BoxFit.contain),
-                //     decoration: BoxDecoration(border: Border.all(color: Colors.grey[400]),
-                //     borderRadius: BorderRadius.circular(30.0)),
-                //   ),
-
-                // urlImagemRecuperada == null ? Container(
-                //   child: Image.asset('assets/img/user.png',
-                //     height: 250.0, width: 380.0, fit: BoxFit.contain),
-                //     decoration: BoxDecoration(border: Border.all(color: Colors.grey[400]),
-                //       borderRadius: BorderRadius.circular(30.0)),
-                //   )
-                //   :  
-                Container(
+                  Container(
                     child: Image.network(path,                    
                     height: 250.0, width: 380.0, fit: BoxFit.contain),
                     decoration: BoxDecoration(border: Border.all(color: Colors.grey[400]),

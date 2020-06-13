@@ -12,8 +12,11 @@ class BasicInfoStep extends StatefulWidget {
 }
 
 class _BasicInfoStepState extends State<BasicInfoStep> {
+  
   @override
   Widget build(BuildContext context) {
+    // return  GestureDetector(
+    //   onTap: () {FocusScope.of(context).requestFocus(FocusNode());},
     Color orange = Theme.of(context).accentColor;
     SignupBloc signupBloc = LoginModule.to.getBloc<SignupBloc>();
 
@@ -63,18 +66,18 @@ class _BasicInfoStepState extends State<BasicInfoStep> {
             ),
             SizedBox(height: 20),
             StreamBuilder<bool>(
-                stream: signupBloc.isValidBasicController,
-                builder: (context, snapshot) {
-                  return Button(
-                      enabled: snapshot.hasData && snapshot.data,
-                      color: orange,
-                      onTap: () {
-                        signupBloc.pageController.nextPage(
-                            curve: Curves.easeIn,
-                            duration: Duration(milliseconds: 100));
-                      },
-                      text: 'Continuar');
-                }),
+              stream: signupBloc.isValidBasicController,
+              builder: (context, snapshot) {
+                return Button(
+                  enabled: snapshot.hasData && snapshot.data,
+                  color: orange,
+                  onTap: () {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    signupBloc.pageController.nextPage(curve: Curves.easeIn, duration: Duration(milliseconds: 100));
+                  },
+                  text: 'Continuar');
+              }
+            ),
           ],
         ),
       ),

@@ -4,12 +4,12 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
 
-class Eventlist extends StatefulWidget {
+class ProfileQrcode extends StatefulWidget {
   @override
-  _EventlistState createState() => _EventlistState();
+  _ProfileQrcodeState createState() => _ProfileQrcodeState();
 }
 
-class _EventlistState extends State<Eventlist> {
+class _ProfileQrcodeState extends State<ProfileQrcode> {
   AppBloc bloc = AppModule.to.getBloc();
 
   @override
@@ -26,17 +26,15 @@ class _EventlistState extends State<Eventlist> {
       ),
       body: Center(
         child: SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(30, 5, 30, 50),
+            padding: EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                SizedBox(
-                  height: 10,
-                ),
                 CircleAvatar(
-                    radius: 110.0,
+                    radius: 100.0,
                     backgroundColor: Colors.grey[300],
                     backgroundImage: path != null ? NetworkImage(path) : null),
+                     SizedBox(height: 20),
                 Column(
                   children: <Widget>[
                     Row(
@@ -48,39 +46,29 @@ class _EventlistState extends State<Eventlist> {
                             style: TextStyle(fontSize: 18))
                       ],
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8),
                     Row(
                       children: <Widget>[
-                        Text('Nome: ',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            )),
-                        Text(bloc.currentUser.value.name + ' - ',
+                        Text('Nome: ', 
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                        Text(bloc.currentUser.value.name,
                             style: TextStyle(fontSize: 18)),
-                        Text(
-                            '(' +
-                                bloc.currentUser.value.tipo.toUpperCase() +
-                                ')',
-                            style: TextStyle(fontSize: 18)),
+                        // Text(' - (' + bloc.currentUser.value.tipo.toUpperCase() + ')',
+                        //     style: TextStyle(fontSize: 18)),
                       ],
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8),
                     Row(
                       children: <Widget>[
                         Text('E-mail: ',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 18)),
+                            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
                         Text(bloc.currentUser.value.email,
                             style: TextStyle(fontSize: 18))
                       ],
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 20,
-                ),
-                Divider(height: 5, color: Colors.red[600]),
+                Divider(height: 60, color: Colors.red[600]),
                 QrImage(
                   data: bloc.currentUser.value.ra,
                   //____propriedade que melhora a renderização do QrCode

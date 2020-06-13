@@ -3,14 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:unasp_ht/app/pages/eventos/event_list.dart';
-import 'package:unasp_ht/app/pages/events/event_Acessor.dart';
-import 'package:unasp_ht/app/pages/events/event_Adm.dart';
 import 'package:unasp_ht/app/pages/events/event_module.dart';
 import 'package:unasp_ht/app/pages/home/pages/home/home.dart';
 import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
+import 'package:unasp_ht/app/pages/home/pages/profile/profile_qrcode.dart';
 import 'package:unasp_ht/app/pages/login/login_module.dart';
 
 class HomePage extends StatefulWidget {
@@ -65,7 +63,7 @@ class _HomePageState extends State<HomePage> {
               onDetailsPressed: () {
                 Navigator.pop(context);
                 Navigator.of(context).push<CupertinoPageRoute>(
-                    CupertinoPageRoute(builder: (context) => Eventlist()));
+                    CupertinoPageRoute(builder: (context) => ProfileQrcode()));
               },
             ),
 //__________________________ SAIR ____________________________
@@ -85,42 +83,6 @@ class _HomePageState extends State<HomePage> {
                     CupertinoPageRoute(builder: (context) => LoginModule()));
               },
             ),
-//____________________botao Administrador_________________________________
-            InkWell(
-                child: ListTile(
-                  title: Text('Administrador',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[700],
-                          fontSize: 18)),
-                  leading: Icon(Icons.person_outline, size: 35),
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  Navigator.of(context).push<CupertinoPageRoute>(
-                    CupertinoPageRoute(
-                      builder: (context) => EventAdm(),
-                    ),
-                  );
-                }),
-//____________________botao Acessor_________________________________
-            InkWell(
-                child: ListTile(
-                  title: Text('Acessor',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[700],
-                          fontSize: 18)),
-                  leading: Icon(Icons.person_add, size: 35),
-                ),
-                onTap: () {
-                  Navigator.of(context).pop();
-                  Navigator.of(context).push<CupertinoPageRoute>(
-                    CupertinoPageRoute(
-                      builder: (context) => EventAcessor(),
-                    ),
-                  );
-                }),
 //__________________________ QR Code____________________________
             InkWell(
                 child: ListTile(
@@ -140,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.of(context).pop();
                   Navigator.of(context).push<CupertinoPageRoute>(
                     CupertinoPageRoute(
-                      builder: (context) => Eventlist(),
+                      builder: (context) => ProfileQrcode(),
                     ),
                   );
                 }),

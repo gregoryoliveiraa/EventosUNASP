@@ -52,9 +52,7 @@ class _EventPageState extends State<EventPage> {
           ),
         ),
       ),
-      floatingActionButton: AppModule.to
-                  .getBloc<AppBloc>()
-                  .currentUser.value.mainCategory != CategoryEnum.Admin
+      floatingActionButton: AppModule.to.getBloc<AppBloc>().currentUser.value.mainCategory != CategoryEnum.Admin
           ? null
           : FloatingActionButton(
               backgroundColor: Theme.of(context).accentColor,

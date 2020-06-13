@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:unasp_ht/app/pages/departures/departures_module.dart';
-import 'package:unasp_ht/app/pages/eventos/event_list.dart';
 import 'package:unasp_ht/app/pages/events/event_module.dart';
 import 'package:unasp_ht/app/pages/home/components/square_home_button.dart';
 import 'package:unasp_ht/app/pages/home/home_bloc.dart';
 import 'package:unasp_ht/app/pages/home/home_module.dart';
 import 'package:unasp_ht/app/pages/home/news_model.dart';
+import 'package:unasp_ht/app/pages/home/pages/profile/profile_qrcode.dart';
 import 'package:unasp_ht/app/shared/components/loading_widget.dart';
 
 class Home extends StatefulWidget {
@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
 
                 SquareHomeButton('Qr Code', Color(0xFFFF4500), FontAwesomeIcons.qrcode,
                   () => Navigator.of(context).push<CupertinoPageRoute>(CupertinoPageRoute(
-                    builder: (context) => Eventlist()))
+                    builder: (context) => ProfileQrcode()))
                 ),
 
                 SquareHomeButton('Eventos', Color(0xFF228B22), FontAwesomeIcons.thList,
