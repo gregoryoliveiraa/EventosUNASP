@@ -81,26 +81,30 @@ class _EventDetailPageState extends State<EventDetailPage> {
                       .substring(
                           widget.eventos.status.toString().indexOf('.') + 1)
                       .toUpperCase()),
-              const SizedBox(height: 18),
+              const SizedBox(height: 10),
               Container(
                 margin: EdgeInsets.all(10),
                 width: MediaQuery.of(context).size.width,
-                height: 280,
+                height: 200,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: ExactAssetImage('assets/img/test.png'),
                         fit: BoxFit.cover)),
               ),
-              Divider(height: 60, color: Colors.red[600]),
+              //Divider(height: 60, color: Colors.red[600]),
             ],
           ),
         ),
       ),
       floatingActionButton:
-          AppModule.to.getBloc<AppBloc>().currentUser.value.tipo == 'aluno'.toString()
-              ? Align(alignment: Alignment.bottomCenter,              
-                  child: Text( '      '+ bloc.currentUser.value.name.toUpperCase() + 
-          '\nVocê está cordialmente convidado \n a participar deste grande evento. \n Não perca esta oportunidae!!!',
+          AppModule.to.getBloc<AppBloc>().currentUser.value.tipo ==
+                  'aluno'.toString()
+              ? Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Text(
+                      '      ' +
+                          bloc.currentUser.value.name.toUpperCase() +
+                          '\nVocê está cordialmente convidado \n a participar deste grande evento. \n Não perca esta oportunidae!!!',
                       style: TextStyle(fontSize: 18, color: BLUE)),
                 )
               : Container(
@@ -109,19 +113,25 @@ class _EventDetailPageState extends State<EventDetailPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
+                        SizedBox(
+                          height: 220,
+                        ),
                         Text('Registrar chamada:'.toUpperCase(),
-                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: BLUE)),
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: BLUE)),
                         const SizedBox(height: 10),
-                        Text('   Pressione o botão abaixo para leitura do QrCode',
-                            style: TextStyle(fontSize: 16, color: BLUE)),
+                        // Text('Pressione o botão abaixo para leitura do QrCode',
+                        //     style: TextStyle(fontSize: 16, color: BLUE)),
                         const SizedBox(height: 20),
                         FloatingActionButton.extended(
                           elevation: 4.0,
-                          icon: const Icon(
-                            Icons.person_add,
-                            size: 30,
-                          ),
-                          label: const Text('Leitor QrCOde',
+                          // icon: const Icon(
+                          //   Icons.person_add,
+                          //   size: 30,
+                          // ),
+                          label: const Text('Leitor Qr Code',
                               style: TextStyle(fontSize: 18)),
                           onPressed: () => Navigator.of(context)
                               .push<CupertinoPageRoute>(CupertinoPageRoute(
