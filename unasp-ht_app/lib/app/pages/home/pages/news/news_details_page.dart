@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:unasp_ht/app/pages/home/news_model.dart';
+import 'package:unasp_ht/app/pages/home/models/news_model.dart';
 
 class NewsDetailsPage extends StatelessWidget {
   final News model;
@@ -17,8 +17,7 @@ class NewsDetailsPage extends StatelessWidget {
           children: <Widget>[
             Hero(
               tag: model?.title,
-              child: Image.network(
-                model?.image ?? '',
+              child: Image.network(model?.image ?? '',
                 fit: BoxFit.cover,
               ),
             ),

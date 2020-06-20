@@ -41,6 +41,7 @@ class _EventPageState extends State<EventPage> {
                   }
                   return ListView.separated(
                     scrollDirection: Axis.vertical,
+                    controller: ScrollController(),
                     shrinkWrap: true,
                     itemBuilder: (c, i) => EventCard(eventos: s.data[i]),
                     itemCount: s.data.length,

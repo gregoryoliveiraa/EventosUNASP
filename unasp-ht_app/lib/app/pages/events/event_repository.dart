@@ -1,20 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:unasp_ht/app/pages/events/event_model.dart';
 
-class EventRepository {
-  
-  final Firestore _firestore;
- 
+class EventRepository {  
+  final Firestore _firestore; 
   EventRepository(this._firestore);
 
-  Future<List<Eventos>> getEventos() async { try {
+  Future<List<Eventos>> getEventos() async { 
+    try {
       QuerySnapshot snapshot = await _firestore.collection('eventos').getDocuments();
-
       if (snapshot == null || snapshot.documents == null) {
         return null;
       }
       return snapshot.documents.map((f) => Eventos.fromJson(f.data)).toList();
-    } catch (e) {
+    } 
+    catch (e) {
       return null;
     }
   }

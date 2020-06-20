@@ -10,7 +10,7 @@ import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
 import 'package:unasp_ht/app/pages/login/signup/enums/category_enum.dart';
 import 'package:unasp_ht/app/shared/components/labeled.dart';
-import 'package:unasp_ht/app/shared/utils/string_extensions.dart';
+
 
 class Profile extends StatefulWidget {
   @override
@@ -47,16 +47,11 @@ class _ProfileState extends State<Profile> {
     StorageReference pastaRaiz = storage.ref();
     StorageReference arquivo = pastaRaiz.child('fotos').child(idUsuarioLogado + '.jpg');
     StorageUploadTask task = arquivo.putFile(imagem);
-
     task.events.listen((StorageTaskEvent storageEvent) {
       if (storageEvent.type == StorageTaskEventType.progress) {
-        setState(() {
-          statusUpload = true;
-        });
+        setState(() {statusUpload = true;});
       } else if (storageEvent.type == StorageTaskEventType.success) {
-        setState(() {
-          statusUpload = false;
-        });
+        setState(() {statusUpload = false;});
       } 
     });
     await task.onComplete.then((StorageTaskSnapshot snap) {
@@ -75,10 +70,9 @@ class _ProfileState extends State<Profile> {
   }
 
   void atualizarUrlImagemFirestore(String url) {
-    Firestore db = Firestore.instance;
     final Map<String, dynamic> dadosAtualizar = <String, dynamic>{};
     dadosAtualizar['imagePath'] = url;
-    db.collection('users').document(idUsuarioLogado).updateData(dadosAtualizar);
+    Firestore.instance.collection('users').document(idUsuarioLogado).updateData(dadosAtualizar);
   }
 
   void recuperarDadosUsuario() async {
@@ -87,18 +81,16 @@ class _ProfileState extends State<Profile> {
     idUsuarioLogado = usuarioLogado.uid;
     Firestore db = Firestore.instance;
     DocumentSnapshot snapshot = await db.collection('users').document(idUsuarioLogado).get();
-
     Map<String, dynamic> dados = snapshot.data;
     if (dados['imagePath'] != null) {
       urlImagemRecuperada = dados['imagePath'] as String;
     }
   }
 
-
    @override
     void initState() {
       super.initState();
-      recuperarDadosUsuario();
+        recuperarDadosUsuario();
     }
 
 
@@ -115,12 +107,12 @@ class _ProfileState extends State<Profile> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                   Container(
-                    child: Image.network(path,                    
-                    height: 250.0, width: 380.0, fit: BoxFit.contain),
+                    child: Image.network(path ?? 'https://vectorified.com/images/facebook-no-photo-icon-20.jpg',                    
+                    height: 250.0, width: 380.0, 
+                    fit: BoxFit.scaleDown),
                     decoration: BoxDecoration(border: Border.all(color: Colors.grey[400]),
-                    borderRadius: BorderRadius.circular(30.0)),
+                    borderRadius: BorderRadius.circular(10)),
                   ),
-                
                 const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -167,20 +159,13 @@ class _ProfileState extends State<Profile> {
                         inline: false,
                       ),
                       SizedBox(height: 20),
-                      Visibility(
-                        visible: !bloc.currentUser.value.ra.isNullOrEmpty,
-                        child: Column(
-                          children: <Widget>[
-                            Labeled(
-                              label: 'ra',
-                              text: bloc.currentUser.value.ra,
-                              icon: FontAwesomeIcons.idCard,
-                              inline: false,
-                            ),
-                            SizedBox(height: 20),
-                          ],
-                        ),
+                      Labeled(
+                        label: 'ra',
+                        text: bloc.currentUser.value.ra,
+                        icon: FontAwesomeIcons.idCard,
+                        inline: false,
                       ),
+                      SizedBox(height: 20),
                       Labeled(
                         label: 'email',
                         text: bloc.currentUser.value.email.toLowerCase(),
@@ -198,7 +183,7 @@ class _ProfileState extends State<Profile> {
                       Labeled(
                         label: 'categorias',
                         text:
-                            '${stringValue(bloc.currentUser.value.mainCategory.index)} \n${stringValue(bloc.currentUser.value.secondaryCategory?.index)}',
+      '${stringValue(bloc.currentUser.value.mainCategory.index)} \n${stringValue(bloc.currentUser.value.secondaryCategory?.index)}',
                         icon: FontAwesomeIcons.infoCircle,
                         inline: false,
                       ),

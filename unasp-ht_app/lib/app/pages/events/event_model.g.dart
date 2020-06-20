@@ -1,3 +1,4 @@
+
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'event_model.dart';
@@ -15,6 +16,7 @@ Eventos _$EventFromJson(Map<String, dynamic> json) {
     json['obs'] as String,
     _$enumDecodeNullable(_$EventStatusEnumMap, json['status']),
     json['userId'] as String,
+    json['zra'] as String, 
   );
 }
 
@@ -26,6 +28,7 @@ Map<String, dynamic> _$EventToJson(Eventos instance) => <String, dynamic>{
       'obs': instance.obs.toString(),
       'status': _$EventStatusEnumMap[instance.status],
       'userId': instance.userId,
+      'zra': instance.zra,
     };
 
 T _$enumDecode<T>(

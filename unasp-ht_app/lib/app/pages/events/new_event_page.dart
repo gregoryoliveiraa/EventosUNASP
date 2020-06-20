@@ -52,14 +52,14 @@ class _NewEventPageState extends State<NewEventPage> {
                 child: Column(
                   children: <Widget>[
                     EventForm(),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
                     StreamBuilder<bool>(
                         stream: _formBloc.isValidFormController,
                         builder: (c, snapshot) {
                           return Button(
                             enabled: snapshot.hasData && snapshot.data,
                             onTap: () async {
-                              bool res = await _bloc.sendEventos();
+                              bool res = await _bloc.sendEventos(); 
                               if (res) {
                                 _formBloc.clearFields();
                                 _eventosBloc.getEventos();
@@ -73,7 +73,7 @@ class _NewEventPageState extends State<NewEventPage> {
                               }
                             },
                             color: theme.accentColor,
-                            text: 'enviar',                            
+                            text: 'salvar',                            
                           );
                         })
                   ],

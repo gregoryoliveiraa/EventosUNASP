@@ -80,10 +80,11 @@ class EventCard extends StatelessWidget {
                                 Text('início: '.toUpperCase(),
                                   textAlign: TextAlign.left,
                                   style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
-                                Text(DateFormat('dd/MM/yy').format(eventos.inicio ?? DateTime.now())),
-                                Text(' as ',
+                                Text(DateFormat('dd/MM/yy      ').format(eventos.inicio ?? DateTime.now())),
+                                Text('término: '.toUpperCase(),
+                                  textAlign: TextAlign.left,
                                   style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
-                                  Text(DateFormat('HH:mm').format(eventos.inicio ?? DateTime.now()))
+                                Text(DateFormat('dd/MM/yy').format(eventos.termino ?? DateTime.now())),
                               ],
                             ),
                             const SizedBox(height: 5),
@@ -91,12 +92,11 @@ class EventCard extends StatelessWidget {
 /*___________TERMINO___________ */
                             Row(
                               children: <Widget>[
-                                Text('término: '.toUpperCase(),
-                                  textAlign: TextAlign.left,
+                                Text('das: ',
                                   style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
-                                Text(DateFormat('dd/MM/yy').format(eventos.inicio ?? DateTime.now())),
-                                Text(' as ', style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
-                                  Text(DateFormat('HH:mm').format(eventos.inicio ?? DateTime.now()))
+                                  Text(DateFormat('HH:mm ').format(eventos.inicio ?? DateTime.now())),
+                                Text(' as: ', style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
+                                  Text(DateFormat('HH:mm').format(eventos.termino ?? DateTime.now())),
                               ],
                             ),
                             const SizedBox(height: 5),
@@ -107,7 +107,7 @@ class EventCard extends StatelessWidget {
                                 Text('local: '.toUpperCase(),
                                   textAlign: TextAlign.left,
                                   style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
-                                Text(eventos.local.toUpperCase())
+                                Text(eventos.local.toUpperCase()),
                               ],
                             ),
                             const SizedBox(height: 5),
@@ -118,7 +118,7 @@ class EventCard extends StatelessWidget {
                                 Text('obs: '.toUpperCase(),
                                   textAlign: TextAlign.left,
                                   style: TextStyle(fontWeight: FontWeight.bold, color: Theme.of(context).primaryColor)),
-                                Text(eventos.obs)
+                                Text(eventos.obs),
                               ],
                             ),
                           ],

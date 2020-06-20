@@ -10,8 +10,8 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final Function onChanged;
 
-  CustomTextField(
-      {@required this.hintText,
+  CustomTextField({
+      @required this.hintText,
       @required this.icon,
       this.isPassword = false,
       this.isBlue = false,

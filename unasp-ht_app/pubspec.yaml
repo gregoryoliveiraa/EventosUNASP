@@ -27,13 +27,18 @@ dependencies:
   font_awesome_flutter: ^8.5.0
   carousel_slider: ^1.3.0
   getflutter: ^1.0.11
-  firebase_storage: ^3.1.5  
-  qr_flutter: ^2.0.0  
-  qrcode_reader: ^0.4.4  
+  firebase_storage: ^3.1.5
+  firebase_analytics: ^5.0.15
+  firebase_ml_vision: ^0.9.4  
+  qr_flutter: ^3.2.0
+  qrcode_reader: ^0.4.4
   image_picker: ^0.6.6+4
   file_picker: ^1.1.1
   barcode_scan: ^3.0.1
   fluttertoast: ^4.0.0
+  camera: ^0.5.8+2
+  cloud_functions: ^0.5.0
+  path_provider: ^1.6.10
 
   flutter:
     sdk: flutter    

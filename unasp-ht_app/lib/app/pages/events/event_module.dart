@@ -12,10 +12,8 @@ import 'package:unasp_ht/app/pages/events/new_event_bloc.dart';
 class EventModule extends ModuleWidget {
   @override
   List<Bloc> get blocs => [
-        Bloc<EventBloc>(
-            (i) => EventBloc(i.getDependency<EventRepository>())),
-        Bloc<NewEventBloc>(
-            (i) => NewEventBloc(i.getDependency<EventRepository>())),
+        Bloc<EventBloc>((i) => EventBloc(i.getDependency<EventRepository>())),
+        Bloc<NewEventBloc>((i) => NewEventBloc(i.getDependency<EventRepository>())),
         Bloc<EventFormBloc>((i) => EventFormBloc())
       ];
 

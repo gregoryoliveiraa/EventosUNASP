@@ -12,6 +12,7 @@ class EventFormBloc extends BlocBase {
   TextEditingController terminoTimeController = TextEditingController();
   TextEditingController obsController = TextEditingController();
   TextEditingController localController = TextEditingController();
+  TextEditingController zraController = TextEditingController();
 
   BehaviorSubject<DateTime> inicioDateC = BehaviorSubject<DateTime>();
   BehaviorSubject<DateTime> terminoDateC = BehaviorSubject<DateTime>();
@@ -24,18 +25,15 @@ class EventFormBloc extends BlocBase {
     terminoTimeController.addListener(validate);
     obsController.addListener(validate);
     localController.addListener(validate);
-    inicioDateC.listen((onData) {
-      if (onData != null) {
+    inicioDateC.listen((onData) {if (onData != null) {
         inicioDateController.text = DateFormat('dd/MM/yyyy').format(onData);
         inicioTimeController.text = DateFormat('HH:mm').format(onData) + ' h';
-      }
-    });
-    terminoDateC.listen((onData) {
-      if (onData != null) {
+      }});
+    terminoDateC.listen((onData) {if (onData != null) {
         terminoDateController.text = DateFormat('dd/MM/yyyy').format(onData);
         terminoTimeController.text = DateFormat('HH:mm').format(onData) + ' h';
-      }
-    });
+      }});
+       zraController.addListener(validate);
   }
 
   void clearFields() {

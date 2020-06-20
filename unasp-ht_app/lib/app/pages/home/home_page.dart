@@ -9,6 +9,7 @@ import 'package:unasp_ht/app/pages/home/pages/profile/profile.dart';
 import 'package:unasp_ht/app/app_bloc.dart';
 import 'package:unasp_ht/app/app_module.dart';
 import 'package:unasp_ht/app/pages/home/pages/profile/profile_qrcode.dart';
+import 'package:unasp_ht/app/pages/home/pages/sobre/sobreAppUnasp.dart';
 import 'package:unasp_ht/app/pages/login/login_module.dart';
 
 class HomePage extends StatefulWidget {
@@ -59,7 +60,8 @@ class _HomePageState extends State<HomePage> {
               currentAccountPicture: CircleAvatar(
                   radius: 40.0,
                   backgroundColor: Colors.grey[300],
-                  backgroundImage: path != null ? NetworkImage(path) : null),
+                  backgroundImage: path != null ? NetworkImage(path) : null
+              ),
               onDetailsPressed: () {
                 Navigator.pop(context);
                 Navigator.of(context).push<CupertinoPageRoute>(
@@ -70,10 +72,8 @@ class _HomePageState extends State<HomePage> {
             InkWell(
               child: ListTile(
                   title: Text('Sair'.toUpperCase(),
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[700],
-                          fontSize: 18)),
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[700],fontSize: 18)),
+                      subtitle: Text('Sair do aplicativo.'),
                   leading: Icon(Icons.exit_to_app, size: 35)),
               onTap: () async {
                 FirebaseAuth auth = FirebaseAuth.instance;
@@ -87,11 +87,8 @@ class _HomePageState extends State<HomePage> {
             InkWell(
                 child: ListTile(
                   title: Text('Qr Code',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.grey[700],
-                          fontSize: 18)),
-                  subtitle: Text('Qr Code do usuário...'),
+                      style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey[700], fontSize: 18)),
+                  subtitle: Text('Qr Code do usuário.'),
                   leading: Icon(
                     Icons.select_all,
                     color: Colors.greenAccent[400],
@@ -114,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.bold,
                           color: Colors.grey[700],
                           fontSize: 18)),
-                  subtitle: Text('Lista de Eventos...'),
+                  subtitle: Text('Lista de Eventos.'),
                   leading: Icon(
                     Icons.event,
                     size: 35,
@@ -128,6 +125,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   );
                 }),
+//__________________________ SOBRE ____________________________
             InkWell(
               child: ListTile(
                 title: Text('Sobre',
@@ -141,6 +139,12 @@ class _HomePageState extends State<HomePage> {
                   size: 35,
                 ),
               ),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.of(context).push<CupertinoPageRoute>(
+                  CupertinoPageRoute(builder: (context) => Sobre()),
+                );
+                }
             ),
           ],
         ),
@@ -151,7 +155,7 @@ class _HomePageState extends State<HomePage> {
         child: PageView(
           controller: pageController,
           physics: NeverScrollableScrollPhysics(),
-          children: <Widget>[Home(), Profile()],
+          children: <Widget>[Home(), Profile(),],
         ),
       ),
       bottomNavigationBar: CurvedNavigationBar(
@@ -159,11 +163,12 @@ class _HomePageState extends State<HomePage> {
         buttonBackgroundColor: orange,
         color: blue,
         items: t,
+        index: 0,
         onTap: (index) {
           setState(() {
             t[index] = Icon(
               Icons.add,
-              size: 30,
+              size: 10,
               color: Colors.white,
             );
             pageController.animateToPage(index,

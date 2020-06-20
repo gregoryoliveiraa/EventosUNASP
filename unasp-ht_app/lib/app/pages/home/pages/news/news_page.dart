@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:unasp_ht/app/pages/home/home_bloc.dart';
 import 'package:unasp_ht/app/pages/home/home_module.dart';
-import 'package:unasp_ht/app/pages/home/news_model.dart';
+import 'package:unasp_ht/app/pages/home/models/news_model.dart';
 import 'package:unasp_ht/app/pages/home/pages/news/news_details_page.dart';
 import 'package:unasp_ht/app/pages/login/signup/components/loading_widget.dart';
 
@@ -17,7 +17,8 @@ class _NewsPageState extends State<NewsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Notícias'.toUpperCase()),
+          title: Text('Notícias - UNASP'.toUpperCase()),
+          centerTitle: true,
         ),
         body: StreamBuilder<List<News>>(
             stream: bloc.newsController,

@@ -11,6 +11,7 @@ class Eventos {
   final String obs;
   final EventStatus status;
   final String userId;
+  final String zra;
 
   Eventos(
     this.titulo,
@@ -19,7 +20,8 @@ class Eventos {
     this.local, 
     this.obs, 
     this.status,
-    this.userId
+    this.userId, 
+    this.zra,
   );
 
   factory Eventos.fromJson(Map<String, dynamic> json) =>

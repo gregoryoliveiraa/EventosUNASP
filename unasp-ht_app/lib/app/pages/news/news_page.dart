@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:unasp_ht/app/pages/home/home_bloc.dart';
 import 'package:unasp_ht/app/pages/home/home_module.dart';
-import 'package:unasp_ht/app/pages/home/news_model.dart';
+import 'package:unasp_ht/app/pages/home/models/news_model.dart';
 import 'package:unasp_ht/app/pages/login/signup/components/loading_widget.dart';
 import 'package:unasp_ht/app/pages/news/news_details_page.dart';
 

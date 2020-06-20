@@ -18,20 +18,13 @@ class SignupBloc extends BlocBase {
   final TextEditingController passController = TextEditingController();
   final TextEditingController passconfirmController = TextEditingController();
   final TextEditingController raController = TextEditingController();
-
   final BehaviorSubject<String> genderController = BehaviorSubject<String>();
-  final BehaviorSubject<CategoryEnum> mainCategoryController =
-      BehaviorSubject<CategoryEnum>();
-  final BehaviorSubject<CategoryEnum> secondaryCategoryController =
-      BehaviorSubject<CategoryEnum>();
+  final BehaviorSubject<CategoryEnum> mainCategoryController = BehaviorSubject<CategoryEnum>();
+  final BehaviorSubject<CategoryEnum> secondaryCategoryController = BehaviorSubject<CategoryEnum>();
   final BehaviorSubject<bool> isLoadingController = BehaviorSubject<bool>();
-
-  final BehaviorSubject<bool> isValidBasicController =
-      BehaviorSubject<bool>.seeded(false);
-  final BehaviorSubject<bool> isValidGenderController =
-      BehaviorSubject<bool>.seeded(false);
-  final BehaviorSubject<bool> isValidCategoryController =
-      BehaviorSubject<bool>.seeded(false);
+  final BehaviorSubject<bool> isValidBasicController = BehaviorSubject<bool>.seeded(false);
+  final BehaviorSubject<bool> isValidGenderController = BehaviorSubject<bool>.seeded(false);
+  final BehaviorSubject<bool> isValidCategoryController = BehaviorSubject<bool>.seeded(false);
 
   SignupBloc(this.loginRepository) {
     nameController.addListener(isValidBasicForm);
@@ -42,8 +35,7 @@ class SignupBloc extends BlocBase {
     mainCategoryController.listen((value) {isValidCategoryController.add(value != null && value == CategoryEnum.Church);});
     secondaryCategoryController.listen((value) {isValidCategoryController.add(mainCategoryController.value != null &&
       ((mainCategoryController.value != CategoryEnum.Church &&secondaryCategoryController.value != null) ||
-      mainCategoryController.value == CategoryEnum.Church));});
-  
+      mainCategoryController.value == CategoryEnum.Church));});  
   }
 
   Future<String> sendData() async => await loginRepository.signUp(UserModel()
@@ -55,8 +47,7 @@ class SignupBloc extends BlocBase {
     ..ra = raController.text
     ..secondaryCategory = secondaryCategoryController.value);
 
-  void isValidBasicForm() => isValidBasicController.add(nameController.text !=
-          null &&
+  void isValidBasicForm() => isValidBasicController.add(nameController.text != null &&
       nameController.text != '' &&
       emailController.text != null &&
       emailController.text != '' &&
